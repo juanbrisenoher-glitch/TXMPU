@@ -503,6 +503,7 @@
     <div id="userPill">
       <div class="u-avatar-placeholder" id="userInitial">?</div>
       <span class="u-name" id="userNameNav">—</span>
+      <button onclick="handleSignOut()" style="background:none;border:none;cursor:pointer;color:var(--text2);font-size:.65rem;padding:.1rem .3rem;margin-left:.2rem;border-radius:4px;transition:color .15s;" title="Sign out">✕</button>
     </div>
   </div>
 </nav>
@@ -811,7 +812,7 @@
 const CONFIG = {
   googleClientId:   "962036782925-phqp23kjdooqlbetm8qtmq9vfqe1cdf5.apps.googleusercontent.com",
   appsScriptUrl:    "https://script.google.com/macros/s/AKfycbwpft_VNDNld8i9dHytn5_dwHV_Km2pSkQKR2uTgC8u9lStarRady0jyGfrpHxfU80A/exec",
-  adminEmail:       "jbriseno@texasmedicalcareplans.com",
+  adminEmails:      ["jbriseno@texasmedicalcareplans.com","mcarillo@texasmedicalcareplans.com"],
 };
 // ═══════════════════════════════════════════════
 
@@ -831,11 +832,22 @@ function handleGoogleSignIn(response){
   document.getElementById('userInitial').textContent = currentUser.name[0].toUpperCase();
   document.getElementById('userPill').style.display = 'flex';
   // Show admin tab if admin
-  if(currentUser.email === CONFIG.adminEmail){
+  if(CONFIG.adminEmails.includes(currentUser.email)){
     document.getElementById('adminNavLink').style.display = '';
   }
   // Hide overlay
   document.getElementById('loginOverlay').style.display = 'none';
+}
+
+function handleSignOut(){
+  currentUser = null;
+  google.accounts.id.disableAutoSelect();
+  document.getElementById('userPill').style.display = 'none';
+  document.getElementById('adminNavLink').style.display = 'none';
+  document.getElementById('userNameNav').textContent = '—';
+  document.getElementById('userInitial').textContent = '?';
+  document.getElementById('loginOverlay').style.display = 'flex';
+  switchPanel('home');
 }
 
 // Init Google Sign-In button
