@@ -1019,11 +1019,26 @@ const DB = [
    rx:"$0,$0,20%,25%,27%",gym:"Covered",note:"NEW"},
 
   // ── HUMANA ──
-  {name:"HumanaChoice Giveback Full (HMO)",provider:"Humana",type:"Giveback",
-   premium:"$0",giveback:"$174",moop:"$7,950",pcp:"$0",specialist:"$35",
-   hospital:"$325/d (d1-6)",er:"$120",ambulance:"$275",
-   dental:"$3,000 (no dentures)",vision:"$75–$150",hearing:"$699–$999/aid",
-   otc:"$40/q ($160/yr)",food_util:"—",transport:"Not covered",rx_deduct:"$0 T1-2"},
+  {name:"Alignment Health Dual Heart & Diabetes Plus (C-SNP)",provider:"Alignment",type:"C-SNP",plan_id:"H5472-004-000",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,600 (Liberty Dental)",vision:"$500 every 2yr (VSP)",hearing:"$0 copay (basic aids)",
+   otc:"—",food_util:"$197/mo",transport:"50 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"QMB, FBDE, QMB+, SLMB+"},
+
+  {name:"HumanaChoice (PPO)",provider:"Humana",type:"Standard",plan_id:"H7617-063-000",
+   premium:"$0",giveback:"$0",moop:"$4,225",pcp:"$0",specialist:"$30",
+   hospital:"$245/d (d1-5)",er:"$130",ambulance:"$335",
+   dental:"$1,000 (no dentures)",vision:"$200–$300",hearing:"$299–$599/aid",
+   otc:"$60/q",food_util:"Not covered",transport:"48 one-way",rx_deduct:"$340 (T3-5)",
+   rx:"$0,$9,$45,45%,29%",gym:"Covered"},
+
+  {name:"HumanaChoice (PPO) Premium",provider:"Humana",type:"Standard",plan_id:"H7617-059-000",
+   premium:"$20/mo",giveback:"$2",moop:"$7,700",pcp:"$0",specialist:"$40",
+   hospital:"$345/d (d1-6)",er:"$115",ambulance:"$335",
+   dental:"$2,500 (no dentures)",vision:"$75–$150",hearing:"$699–$999/aid",
+   otc:"$45/q",food_util:"Not covered",transport:"Not covered",rx_deduct:"$420 (T3-5)",
+   rx:"$0,$5,$47,48%,28%",gym:"Covered"},
 
   {name:"HumanaChoice Giveback (PPO)",provider:"Humana",type:"Giveback",
    premium:"$0",giveback:"$120",moop:"$7,950",pcp:"$0",specialist:"$35",
