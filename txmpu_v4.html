@@ -8,24 +8,49 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     :root {
-      --navy:#100a14; --navy2:#180d1e; --navy3:#1e1026; --navy4:#261530;
-      --gold:#4545f0; --gold2:#6b6bf5; --gold3:rgba(69,69,240,.12);
-      --cream:#f2e8e0; --cream2:#e8d8cc; --cream3:#faf5f2;
-      --text:#eaeeff; --text2:#9090c8; --text3:#5050a0;
-      --teal:#4545f0; --teal2:rgba(69,69,240,.13);
-      --amber:#ff4040; --purple:#6b6bf5; --rose:#ff4040;
-      --success:#22c55e; --error:#ff4040;
-      --brand-blue:#4545f0; --brand-red:#ff4040;
-      --brand-maroon:#3d0a18; --brand-cream:#f2e8e0;
+      /* ── brand constants ── */
+      --brand-blue:#484DFF; --brand-red:#FF4534;
+      --brand-maroon:#560D32; --brand-cream:#f0e8df;
+      --success:#22c55e; --error:#FF4534;
       --r:14px; --rs:9px; --rxs:6px;
-      --border:rgba(255,255,255,.07);
-      --border2:rgba(69,69,240,.3);
-      --shadow:0 4px 24px rgba(0,0,0,.4);
-      --shadow2:0 2px 12px rgba(0,0,0,.3);
+
+      /* ── dark mode (default) ── */
+      --bg:#0f0610; --bg2:#1a0b1a; --bg3:#200d20; --bg4:#2a1028;
+      --surface:#1a0b1a; --surface2:#200d20; --surface3:#2a1028;
+      --text:#f0e8df; --text2:#a890a0; --text3:#785068;
+      --navy:var(--bg); --navy2:var(--surface); --navy3:var(--surface2); --navy4:var(--surface3);
+      --gold:var(--brand-blue); --gold2:#7a7fff; --gold3:rgba(72,77,255,.12);
+      --cream:#f0e8df; --cream2:#e0d0c8; --cream3:#faf5f2;
+      --teal:var(--brand-blue); --teal2:rgba(72,77,255,.13);
+      --amber:var(--brand-red); --purple:#7a7fff; --rose:var(--brand-red);
+      --border:rgba(255,255,255,.07); --border2:rgba(72,77,255,.3);
+      --shadow:0 4px 24px rgba(0,0,0,.5); --shadow2:0 2px 12px rgba(0,0,0,.35);
+      --hero-title:#f0e8df; --card-bg:var(--surface); --card-border:var(--border);
+      --input-bg:var(--bg3); --input-border:rgba(255,255,255,.1);
+      --mh-color:var(--brand-blue); --section-bg:#1a0b1a; --section-title:#f0e8df;
+      --ref-card-bg:#200d20; --ref-card-border:#2a1028;
+    }
+
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --bg:#f0e8df; --bg2:#ffffff; --bg3:#fdf8f5; --bg4:#e8dcd4;
+      --surface:#ffffff; --surface2:#fdf8f5; --surface3:#f5ede5;
+      --navy:var(--bg); --navy2:var(--surface); --navy3:var(--surface2); --navy4:var(--surface3);
+      --text:#560D32; --text2:#8a3058; --text3:#b06080;
+      --gold:var(--brand-blue); --gold2:#3035cc; --gold3:rgba(72,77,255,.1);
+      --teal:var(--brand-blue); --teal2:rgba(72,77,255,.1);
+      --amber:var(--brand-red); --purple:#3035cc; --rose:var(--brand-red);
+      --border:rgba(86,13,50,.1); --border2:rgba(72,77,255,.25);
+      --shadow:0 4px 24px rgba(86,13,50,.12); --shadow2:0 2px 12px rgba(86,13,50,.08);
+      --hero-title:#560D32; --card-bg:#ffffff; --card-border:rgba(86,13,50,.1);
+      --input-bg:#fdf8f5; --input-border:rgba(86,13,50,.15);
+      --mh-color:var(--brand-blue); --section-bg:#e8dcd4; --section-title:#560D32;
+      --ref-card-bg:#fdf8f5; --ref-card-border:#e0d0c5;
+      --cream3:var(--bg3);
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
-    body{background:var(--navy);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;}
+    body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;}
 
     /* ══ SCROLLBAR ══ */
     ::-webkit-scrollbar{width:5px;height:5px;}
@@ -36,9 +61,10 @@
     /* ══ TOP NAV ══ */
     .topnav{
       position:fixed;top:0;left:0;right:0;z-index:1000;height:58px;
-      background:rgba(8,15,30,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--border2);
+      background:rgba(16,10,20,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border2);transition:background .25s;
     }
+    [data-theme="light"] .topnav{background:rgba(255,255,255,.97);}
     .nav-inner{max-width:1540px;margin:0 auto;padding:0 1.75rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
     .nav-brand{display:flex;align-items:center;gap:.65rem;flex-shrink:0;}
     .nav-logo{
@@ -63,7 +89,7 @@
 
     /* ══ HERO ══ */
     .hero{
-      background:var(--navy);min-height:80vh;display:flex;align-items:center;justify-content:center;
+      background:var(--bg);min-height:80vh;display:flex;align-items:center;justify-content:center;
       text-align:center;padding:5rem 2rem 4rem;position:relative;overflow:hidden;
     }
     .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
@@ -94,7 +120,7 @@
     @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
     .hero-h1{
       font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.6rem);
-      font-weight:900;line-height:1.07;color:#ecf3ff;margin-bottom:1.4rem;
+      font-weight:900;line-height:1.07;color:var(--hero-title);margin-bottom:1.4rem;
       letter-spacing:-.02em;
     }
     .hero-gold{
@@ -109,10 +135,10 @@
     .hstat-divider{width:1px;background:var(--border2);align-self:stretch;}
 
     /* ══ START SECTION (home) ══ */
-    .start-section{background:var(--cream3);padding:4rem 2rem;}
+    .start-section{background:var(--section-bg);padding:4rem 2rem;}
     .start-inner{max-width:1260px;margin:0 auto;}
     .s-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:2.5px;color:var(--brand-blue);text-transform:uppercase;margin-bottom:.5rem;}
-    .s-title{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:800;color:#0f1e35;margin-bottom:2rem;}
+    .s-title{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:800;color:var(--section-title);margin-bottom:2rem;}
     .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
     .mode-card{
       background:white;border:1.5px solid var(--cream2);border-radius:var(--r);padding:1.4rem 1.25rem;
@@ -127,14 +153,14 @@
     .mode-desc{font-size:.73rem;color:#5a7394;line-height:1.55;}
 
     /* ══ REF SECTION ══ */
-    .ref-section{background:var(--cream3);padding:0 2rem 4rem;}
+    .ref-section{background:var(--section-bg);padding:0 2rem 4rem;}
     .ref-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
     @media(max-width:900px){.ref-inner{grid-template-columns:1fr;}}
-    .ref-card{background:white;border:1.5px solid var(--cream2);border-radius:var(--r);padding:1.4rem;overflow:hidden;}
+    .ref-card{background:var(--ref-card-bg);border:1.5px solid var(--ref-card-border);border-radius:var(--r);padding:1.4rem;overflow:hidden;}
     .ref-card-title{font-weight:700;font-size:.84rem;color:#0f1e35;margin-bottom:1rem;padding-left:.75rem;border-left:3px solid var(--gold);}
 
     /* ══ PANEL PAGES ══ */
-    .panel-pg{background:var(--navy);min-height:calc(100vh - 58px);padding:2rem 2rem 4rem;}
+    .panel-pg{background:var(--bg);min-height:calc(100vh - 58px);padding:2rem 2rem 4rem;}
     .panel-pg-inner{max-width:1540px;margin:0 auto;}
     .pg-header{margin-bottom:1.6rem;}
     .pg-eyebrow{font-size:.58rem;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:.35rem;}
@@ -360,7 +386,7 @@
     .qc-sub{font-size:.6rem;color:var(--text2);}
 
     /* ══ MISC / CARDS ══ */
-    .card{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;margin-bottom:1.2rem;}
+    .card{background:var(--surface);border:1px solid var(--card-border);border-radius:var(--r);padding:1.4rem;margin-bottom:1.2rem;}
     .card-hd{display:flex;align-items:center;gap:.5rem;margin-bottom:1.15rem;}
     .caccent{width:3px;height:18px;border-radius:2px;background:linear-gradient(to bottom,var(--teal),var(--gold));flex-shrink:0;}
     .ctitle{font-size:.9rem;font-weight:700;color:var(--text);}
@@ -404,19 +430,19 @@
     /* ══ LOGIN OVERLAY ══ */
     #loginOverlay{
       position:fixed;inset:0;z-index:9999;
-      background:var(--navy);display:flex;align-items:center;justify-content:center;
+      background:var(--bg);display:flex;align-items:center;justify-content:center;
       flex-direction:column;gap:0;
     }
     .login-box{
-      background:var(--navy2);border:1px solid var(--border2);border-radius:var(--r);
-      padding:2.5rem 2.8rem;text-align:center;max-width:400px;width:90%;
-      box-shadow:0 24px 64px rgba(0,0,0,.5);
+      background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);
+      padding:2.5rem 2.8rem;text-align:center;max-width:420px;width:90%;
+      box-shadow:0 24px 64px rgba(0,0,0,.45);
     }
     .login-logo{
       display:flex;align-items:center;justify-content:center;
       margin:0 auto 1.2rem;
     }
-    .login-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#ecf3ff;margin-bottom:.4rem;}
+    .login-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:var(--text);margin-bottom:.4rem;}
     .login-sub{font-size:.78rem;color:var(--text2);margin-bottom:1.8rem;line-height:1.6;}
     .login-divider{height:1px;background:var(--border);margin:1.4rem 0;}
     .login-note{font-size:.65rem;color:var(--text3);line-height:1.6;}
@@ -471,7 +497,17 @@
     /* ══ FLASHCARD MODAL ══ */
     #fcModal{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem;}
     #fcModal.open{display:flex;}
-    .fcm-box{background:var(--navy2);border:1px solid var(--border2);border-radius:var(--r);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+    /* ── THEME TOGGLE ── */
+    .theme-toggle{
+      background:var(--surface2);border:1px solid var(--border2);color:var(--text2);
+      font-size:.72rem;font-weight:600;padding:.3rem .7rem;border-radius:20px;
+      cursor:pointer;display:flex;align-items:center;gap:.35rem;transition:all .2s;
+      white-space:nowrap;flex-shrink:0;
+    }
+    .theme-toggle:hover{background:var(--brand-blue);color:#fff;border-color:var(--brand-blue);}
+
+    .fcm-box{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+
     .fcm-top{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem .8rem;border-bottom:1px solid var(--border);}
     .fcm-nav{display:flex;align-items:center;gap:.5rem;}
     .fcm-arrow{background:var(--navy3);border:1px solid var(--border);color:var(--text);font-size:1.1rem;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
@@ -495,7 +531,16 @@
 <div id="loginOverlay">
   <div class="login-box">
     <div class="login-logo">
-      <img src="https://texasmedicalcareplans.com/wp-content/uploads/2024/10/TMCP-logo-web.png" alt="Texas Medical Care Plans" style="width:180px;height:auto;border-radius:8px;">
+      <svg viewBox="0 0 220 68" width="240" height="74" xmlns="http://www.w3.org/2000/svg" style="border-radius:10px;margin-bottom:.8rem;display:block;">
+        <rect width="220" height="68" fill="#560D32"/>
+        <!-- Texas® -->
+        <text x="11" y="25" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Texas</text>
+        <text x="73" y="15" font-family="Georgia,serif" font-size="8" fill="#f0e8df">®</text>
+        <!-- Medical -->
+        <text x="11" y="44" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Medical</text>
+        <!-- Care Plans -->
+        <text x="11" y="63" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Care Plans</text>
+      </svg>
     </div>
     <div class="login-title">Texas Medical Care Plans University</div>
     <div class="login-sub">Texas Medical Care Plans University<br>Sign in with your Google account to continue.</div>
@@ -524,7 +569,16 @@
   <div class="nav-inner">
     <div class="nav-brand">
       <div class="nav-logo">
-        <img src="https://texasmedicalcareplans.com/wp-content/uploads/2024/10/TMCP-logo-web.png" alt="TMCP" style="height:32px;width:auto;border-radius:4px;">
+        <svg viewBox="0 0 148 44" width="130" height="39" xmlns="http://www.w3.org/2000/svg" style="border-radius:5px;display:block;">
+          <rect width="148" height="44" fill="#560D32"/>
+          <!-- Texas® -->
+          <text x="7" y="15" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="11.5" fill="#f0e8df" letter-spacing=".2">Texas</text>
+          <text x="46" y="10" font-family="Georgia,serif" font-size="5.5" fill="#f0e8df">®</text>
+          <!-- Medical -->
+          <text x="7" y="29" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="11.5" fill="#f0e8df" letter-spacing=".2">Medical</text>
+          <!-- Care Plans -->
+          <text x="7" y="42" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="11.5" fill="#f0e8df" letter-spacing=".2">Care Plans</text>
+        </svg>
       </div>
       <div class="nav-brand-text">
         <span class="nav-abbr">TMCPU</span>
@@ -542,6 +596,7 @@
       <a class="nl" data-panel="studyplan">Study Plan</a>
       <a class="nl" id="adminNavLink" data-panel="admin" style="display:none;color:var(--gold)">⚙ Admin</a>
     </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙 Dark</button>
     <div id="userPill">
       <div class="u-avatar-placeholder" id="userInitial">?</div>
       <span class="u-name" id="userNameNav">—</span>
@@ -1436,7 +1491,21 @@ function renderFlashcards(filt="all",search=""){
   document.querySelectorAll('.flashcard').forEach((c,i)=>c.addEventListener('click',()=>openFcModal(i)));
 }
 
-// ── FLASHCARD MODAL ──
+// ── THEME TOGGLE ──
+(function(){
+  const saved = localStorage.getItem('tmcpu-theme') || 'dark';
+  applyTheme(saved);
+})();
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  const btn = document.getElementById('themeToggle');
+  if(btn) btn.innerHTML = t === 'light' ? '🌙 Dark' : '☀️ Light';
+  localStorage.setItem('tmcpu-theme', t);
+}
+document.getElementById('themeToggle')?.addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(cur === 'dark' ? 'light' : 'dark');
+});
 let fcCurrentData=[];
 let fcCurrentIdx=0;
 function openFcModal(idx){
