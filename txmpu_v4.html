@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TXMPU | Medicare Advantage – Professional Study Suite</title>
+  <title>TMCPU | Texas Medical Care Plans University</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     :root {
-      --navy:#080f1e; --navy2:#0c1628; --navy3:#101f35; --navy4:#162440;
-      --gold:#c9a227; --gold2:#e8c252; --gold3:rgba(201,162,39,.12);
-      --cream:#f0ead8; --cream2:#e5ddc8; --cream3:#faf7f0;
-      --text:#dce8f8; --text2:#6e90b5; --text3:#2e4a68;
-      --teal:#00d4aa; --teal2:rgba(0,212,170,.1);
-      --amber:#f5a623; --purple:#b48ef4; --rose:#f06292;
+      --navy:#0a0f1c; --navy2:#0e1525; --navy3:#121c30; --navy4:#172238;
+      --gold:#e63329; --gold2:#ff4f45; --gold3:rgba(230,51,41,.12);
+      --cream:#f0f4ff; --cream2:#e0e8f8; --cream3:#f8faff;
+      --text:#dce8f8; --text2:#7a9cc4; --text3:#2e4a68;
+      --teal:#2a56c6; --teal2:rgba(42,86,198,.13);
+      --amber:#e63329; --purple:#4a7fd4; --rose:#e63329;
       --success:#22c55e; --error:#ef4444;
+      --brand-blue:#2a56c6; --brand-red:#e63329;
       --r:14px; --rs:9px; --rxs:6px;
       --border:rgba(255,255,255,.06);
-      --border2:rgba(201,162,39,.18);
+      --border2:rgba(42,86,198,.3);
       --shadow:0 4px 24px rgba(0,0,0,.35);
       --shadow2:0 2px 12px rgba(0,0,0,.25);
     }
@@ -29,7 +30,7 @@
     ::-webkit-scrollbar{width:5px;height:5px;}
     ::-webkit-scrollbar-track{background:var(--navy2);}
     ::-webkit-scrollbar-thumb{background:var(--navy4);border-radius:3px;}
-    ::-webkit-scrollbar-thumb:hover{background:var(--gold);}
+    ::-webkit-scrollbar-thumb:hover{background:var(--brand-blue);}
 
     /* ══ TOP NAV ══ */
     .topnav{
@@ -40,20 +41,18 @@
     .nav-inner{max-width:1540px;margin:0 auto;padding:0 1.75rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
     .nav-brand{display:flex;align-items:center;gap:.65rem;flex-shrink:0;}
     .nav-logo{
-      width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-      font-weight:800;font-size:.8rem;color:#08111f;letter-spacing:-.5px;
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-      box-shadow:0 0 16px rgba(201,162,39,.3);
+      width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      background:#0e1525;border:1px solid rgba(42,86,198,.25);
     }
     .nav-brand-text{display:flex;flex-direction:column;line-height:1.15;}
-    .nav-abbr{font-size:.55rem;font-weight:700;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;}
+    .nav-abbr{font-size:.55rem;font-weight:700;letter-spacing:2.5px;color:var(--brand-blue);text-transform:uppercase;}
     .nav-fullname{font-size:.73rem;font-weight:600;color:var(--text);}
     .nav-links{display:flex;gap:.05rem;align-items:center;overflow-x:auto;}
     .nl{color:var(--text2);font-size:.76rem;font-weight:500;padding:.38rem .7rem;border-radius:7px;cursor:pointer;transition:color .15s,background .15s;text-decoration:none;user-select:none;white-space:nowrap;position:relative;}
     .nl:hover:not(.active){color:var(--text);background:rgba(255,255,255,.05);}
     .nl.active{color:var(--text);font-weight:700;}
-    .nl.active::after{content:'';position:absolute;bottom:-1px;left:.7rem;right:.7rem;height:2px;background:linear-gradient(to right,var(--gold),var(--gold2));border-radius:2px;}
-    .nav-badge{background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(0,212,170,.05));border:1px solid rgba(0,212,170,.3);color:var(--teal);font-size:.58rem;font-weight:700;letter-spacing:1px;padding:.2rem .5rem;border-radius:4px;margin-left:.3rem;text-transform:uppercase;}
+    .nl.active::after{content:'';position:absolute;bottom:-1px;left:.7rem;right:.7rem;height:2px;background:linear-gradient(to right,var(--brand-blue),var(--brand-red));border-radius:2px;}
+    .nav-badge{background:linear-gradient(135deg,rgba(42,86,198,.15),rgba(42,86,198,.05));border:1px solid rgba(42,86,198,.3);color:#7aaaf4;font-size:.58rem;font-weight:700;letter-spacing:1px;padding:.2rem .5rem;border-radius:4px;margin-left:.3rem;text-transform:uppercase;}
 
     /* ══ PANELS ══ */
     main{padding-top:58px;}
@@ -69,12 +68,12 @@
     .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
     .hero-bg::before{
       content:'';position:absolute;width:700px;height:700px;border-radius:50%;
-      background:radial-gradient(ellipse,rgba(201,162,39,.09) 0%,transparent 70%);
+      background:radial-gradient(ellipse,rgba(42,86,198,.09) 0%,transparent 70%);
       top:-200px;left:50%;transform:translateX(-50%);
     }
     .hero-bg::after{
       content:'';position:absolute;width:400px;height:400px;border-radius:50%;
-      background:radial-gradient(ellipse,rgba(0,212,170,.06) 0%,transparent 70%);
+      background:radial-gradient(ellipse,rgba(230,51,41,.06) 0%,transparent 70%);
       bottom:-100px;right:10%;
     }
     .hero-grid{
@@ -85,12 +84,12 @@
     .hero-content{position:relative;z-index:1;max-width:740px;margin:0 auto;}
     .hero-badge{
       display:inline-flex;align-items:center;gap:.45rem;
-      border:1px solid var(--border2);color:var(--gold);
+      border:1px solid rgba(42,86,198,.35);color:#7aaaf4;
       font-size:.62rem;letter-spacing:2.5px;padding:.32rem 1rem;border-radius:40px;
       margin-bottom:2rem;font-weight:700;text-transform:uppercase;
-      background:rgba(201,162,39,.05);
+      background:rgba(42,86,198,.08);
     }
-    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:pulse 2s infinite;}
+    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--brand-blue);box-shadow:0 0 8px var(--brand-blue);animation:pulse 2s infinite;}
     @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
     .hero-h1{
       font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.6rem);
@@ -98,7 +97,7 @@
       letter-spacing:-.02em;
     }
     .hero-gold{
-      background:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold));
+      background:linear-gradient(135deg,var(--brand-blue),#5b8af0,var(--brand-red));
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
     }
     .hero-sub{font-size:.9rem;color:var(--text2);max-width:480px;margin:0 auto 3rem;line-height:1.75;}
@@ -111,7 +110,7 @@
     /* ══ START SECTION (home) ══ */
     .start-section{background:var(--cream3);padding:4rem 2rem;}
     .start-inner{max-width:1260px;margin:0 auto;}
-    .s-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem;}
+    .s-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:2.5px;color:var(--brand-blue);text-transform:uppercase;margin-bottom:.5rem;}
     .s-title{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:800;color:#0f1e35;margin-bottom:2rem;}
     .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
     .mode-card{
@@ -413,10 +412,9 @@
       box-shadow:0 24px 64px rgba(0,0,0,.5);
     }
     .login-logo{
-      width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-      font-weight:800;font-size:1rem;color:#08111f;
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-      margin:0 auto 1.2rem;box-shadow:0 0 24px rgba(201,162,39,.35);
+      width:72px;height:72px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+      background:#0e1525;border:1px solid rgba(42,86,198,.25);
+      margin:0 auto 1.2rem;box-shadow:0 0 32px rgba(42,86,198,.2);
     }
     .login-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#ecf3ff;margin-bottom:.4rem;}
     .login-sub{font-size:.78rem;color:var(--text2);margin-bottom:1.8rem;line-height:1.6;}
@@ -453,14 +451,14 @@
     .admin-srch:focus{outline:none;border-color:rgba(201,162,39,.45);}
     .admin-srch::placeholder{color:var(--text3);}
     .score-bar-wrap{background:var(--navy3);border-radius:3px;height:5px;width:80px;display:inline-block;vertical-align:middle;margin-left:.4rem;}
-    .score-bar-fill{height:100%;border-radius:3px;background:linear-gradient(to right,var(--teal),var(--gold));}
+    .score-bar-fill{height:100%;border-radius:3px;background:linear-gradient(to right,var(--brand-blue),var(--brand-red));}
     .admin-empty{text-align:center;padding:3rem;color:var(--text2);font-size:.82rem;}
     .admin-refresh{
       background:var(--navy2);border:1px solid var(--border);color:var(--text2);
       font-family:'DM Sans',sans-serif;font-size:.71rem;font-weight:500;
       padding:.3rem .75rem;border-radius:40px;cursor:pointer;transition:all .13s;
     }
-    .admin-refresh:hover{border-color:var(--border2);color:var(--gold);}
+    .admin-refresh:hover{border-color:var(--border2);color:var(--brand-blue);}
     .score-hi{color:var(--teal);font-weight:700;}
     .score-mid{color:var(--amber);font-weight:700;}
     .score-lo{color:#f87171;font-weight:700;}
@@ -471,9 +469,21 @@
 <!-- ══ LOGIN OVERLAY ══ -->
 <div id="loginOverlay">
   <div class="login-box">
-    <div class="login-logo">TX</div>
-    <div class="login-title">TXMPU</div>
-    <div class="login-sub">Texas Medicare Plans University<br>Sign in with your Google account to continue.</div>
+    <div class="login-logo">
+      <svg viewBox="0 0 60 60" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(30,30)">
+          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#2a56c6" transform="rotate(0)"/>
+          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#2a56c6" transform="rotate(60)"/>
+          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#e63329" transform="rotate(120)"/>
+          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#e63329" transform="rotate(180)"/>
+          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#e63329" transform="rotate(240)"/>
+          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#2a56c6" transform="rotate(300)"/>
+          <circle r="5" fill="#0e1525"/>
+        </g>
+      </svg>
+    </div>
+    <div class="login-title">TMCPU</div>
+    <div class="login-sub">Texas Medical Care Plans University<br>Sign in with your Google account to continue.</div>
     <div id="gSignInBtn"></div>
     <div class="login-divider"></div>
     <div class="login-note">Your quiz scores will be saved automatically.<br>Contact your manager if you have trouble signing in.</div>
@@ -483,10 +493,22 @@
 <nav class="topnav">
   <div class="nav-inner">
     <div class="nav-brand">
-      <div class="nav-logo">TX</div>
+      <div class="nav-logo">
+        <svg viewBox="0 0 60 60" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(30,30)">
+            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#2a56c6" transform="rotate(0)"/>
+            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#2a56c6" transform="rotate(60)"/>
+            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#e63329" transform="rotate(120)"/>
+            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#e63329" transform="rotate(180)"/>
+            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#e63329" transform="rotate(240)"/>
+            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#2a56c6" transform="rotate(300)"/>
+            <circle r="5" fill="#0e1525"/>
+          </g>
+        </svg>
+      </div>
       <div class="nav-brand-text">
-        <span class="nav-abbr">TXMPU</span>
-        <span class="nav-fullname">Texas Medicare Plans University</span>
+        <span class="nav-abbr">TMCPU</span>
+        <span class="nav-fullname">Texas Medical Care Plans University</span>
       </div>
     </div>
     <div class="nav-links">
