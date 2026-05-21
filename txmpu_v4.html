@@ -8,19 +8,20 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     :root {
-      --navy:#0a0f1c; --navy2:#0e1525; --navy3:#121c30; --navy4:#172238;
-      --gold:#e63329; --gold2:#ff4f45; --gold3:rgba(230,51,41,.12);
-      --cream:#f0f4ff; --cream2:#e0e8f8; --cream3:#f8faff;
-      --text:#dce8f8; --text2:#7a9cc4; --text3:#2e4a68;
-      --teal:#2a56c6; --teal2:rgba(42,86,198,.13);
-      --amber:#e63329; --purple:#4a7fd4; --rose:#e63329;
-      --success:#22c55e; --error:#ef4444;
-      --brand-blue:#2a56c6; --brand-red:#e63329;
+      --navy:#100a14; --navy2:#180d1e; --navy3:#1e1026; --navy4:#261530;
+      --gold:#4545f0; --gold2:#6b6bf5; --gold3:rgba(69,69,240,.12);
+      --cream:#f2e8e0; --cream2:#e8d8cc; --cream3:#faf5f2;
+      --text:#eaeeff; --text2:#9090c8; --text3:#5050a0;
+      --teal:#4545f0; --teal2:rgba(69,69,240,.13);
+      --amber:#ff4040; --purple:#6b6bf5; --rose:#ff4040;
+      --success:#22c55e; --error:#ff4040;
+      --brand-blue:#4545f0; --brand-red:#ff4040;
+      --brand-maroon:#3d0a18; --brand-cream:#f2e8e0;
       --r:14px; --rs:9px; --rxs:6px;
-      --border:rgba(255,255,255,.06);
-      --border2:rgba(42,86,198,.3);
-      --shadow:0 4px 24px rgba(0,0,0,.35);
-      --shadow2:0 2px 12px rgba(0,0,0,.25);
+      --border:rgba(255,255,255,.07);
+      --border2:rgba(69,69,240,.3);
+      --shadow:0 4px 24px rgba(0,0,0,.4);
+      --shadow2:0 2px 12px rgba(0,0,0,.3);
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
@@ -41,8 +42,8 @@
     .nav-inner{max-width:1540px;margin:0 auto;padding:0 1.75rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
     .nav-brand{display:flex;align-items:center;gap:.65rem;flex-shrink:0;}
     .nav-logo{
-      width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-      background:#0e1525;border:1px solid rgba(42,86,198,.25);
+      height:38px;display:flex;align-items:center;justify-content:center;
+      background:transparent;padding:0;
     }
     .nav-brand-text{display:flex;flex-direction:column;line-height:1.15;}
     .nav-abbr{font-size:.55rem;font-weight:700;letter-spacing:2.5px;color:var(--brand-blue);text-transform:uppercase;}
@@ -412,9 +413,8 @@
       box-shadow:0 24px 64px rgba(0,0,0,.5);
     }
     .login-logo{
-      width:72px;height:72px;border-radius:16px;display:flex;align-items:center;justify-content:center;
-      background:#0e1525;border:1px solid rgba(42,86,198,.25);
-      margin:0 auto 1.2rem;box-shadow:0 0 32px rgba(42,86,198,.2);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 1.2rem;
     }
     .login-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#ecf3ff;margin-bottom:.4rem;}
     .login-sub{font-size:.78rem;color:var(--text2);margin-bottom:1.8rem;line-height:1.6;}
@@ -462,6 +462,31 @@
     .score-hi{color:var(--teal);font-weight:700;}
     .score-mid{color:var(--amber);font-weight:700;}
     .score-lo{color:#f87171;font-weight:700;}
+    .net-tag{font-size:.68rem;font-weight:600;padding:.25rem .6rem;border-radius:20px;white-space:nowrap;}
+    .net-blue{background:rgba(69,69,240,.15);color:#8888ff;border:1px solid rgba(69,69,240,.3);}
+    .net-red{background:rgba(255,64,64,.12);color:#ff8080;border:1px solid rgba(255,64,64,.25);}
+    .net-yes{color:var(--success);font-size:.85rem;text-align:center;}
+    .net-no{color:var(--error);font-size:.85rem;text-align:center;}
+
+    /* ══ FLASHCARD MODAL ══ */
+    #fcModal{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem;}
+    #fcModal.open{display:flex;}
+    .fcm-box{background:var(--navy2);border:1px solid var(--border2);border-radius:var(--r);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+    .fcm-top{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem .8rem;border-bottom:1px solid var(--border);}
+    .fcm-nav{display:flex;align-items:center;gap:.5rem;}
+    .fcm-arrow{background:var(--navy3);border:1px solid var(--border);color:var(--text);font-size:1.1rem;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+    .fcm-arrow:hover{background:var(--brand-blue);border-color:var(--brand-blue);}
+    .fcm-counter{font-size:.72rem;color:var(--text2);font-weight:600;min-width:50px;text-align:center;}
+    .fcm-close{background:none;border:none;color:var(--text2);font-size:1.3rem;cursor:pointer;padding:.2rem .4rem;border-radius:6px;transition:color .15s;}
+    .fcm-close:hover{color:var(--brand-red);}
+    .fcm-body{padding:1.5rem;}
+    .fcm-prov{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:.3rem;}
+    .fcm-name{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:800;color:#ecf3ff;margin-bottom:.6rem;line-height:1.25;}
+    .fcm-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.8rem;}
+    .fcm-row:last-child{border-bottom:none;}
+    .fcm-rl{color:var(--text2);font-weight:500;}
+    .fcm-rv{color:var(--text);font-weight:600;text-align:right;max-width:60%;}
+    .fcm-note{margin-top:.6rem;font-size:.67rem;color:var(--amber);background:rgba(255,64,64,.08);padding:.35rem .6rem;border-radius:6px;}
   </style>
 </head>
 <body>
@@ -470,19 +495,9 @@
 <div id="loginOverlay">
   <div class="login-box">
     <div class="login-logo">
-      <svg viewBox="0 0 60 60" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(30,30)">
-          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#2a56c6" transform="rotate(0)"/>
-          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#2a56c6" transform="rotate(60)"/>
-          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#e63329" transform="rotate(120)"/>
-          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#e63329" transform="rotate(180)"/>
-          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#e63329" transform="rotate(240)"/>
-          <rect x="-4" y="-26" width="8" height="20" rx="3" fill="#2a56c6" transform="rotate(300)"/>
-          <circle r="5" fill="#0e1525"/>
-        </g>
-      </svg>
+      <img src="https://texasmedicalcareplans.com/wp-content/uploads/2024/10/TMCP-logo-web.png" alt="Texas Medical Care Plans" style="width:180px;height:auto;border-radius:8px;">
     </div>
-    <div class="login-title">TMCPU</div>
+    <div class="login-title">Texas Medical Care Plans University</div>
     <div class="login-sub">Texas Medical Care Plans University<br>Sign in with your Google account to continue.</div>
     <div id="gSignInBtn"></div>
     <div class="login-divider"></div>
@@ -490,21 +505,26 @@
   </div>
 </div>
 
+<!-- ══ FLASHCARD MODAL ══ -->
+<div id="fcModal">
+  <div class="fcm-box">
+    <div class="fcm-top">
+      <div class="fcm-nav">
+        <button class="fcm-arrow" id="fcPrev">&#8592;</button>
+        <span class="fcm-counter" id="fcCounter">1 / 1</span>
+        <button class="fcm-arrow" id="fcNext">&#8594;</button>
+      </div>
+      <button class="fcm-close" id="fcClose">✕</button>
+    </div>
+    <div class="fcm-body" id="fcModalBody"></div>
+  </div>
+</div>
+
 <nav class="topnav">
   <div class="nav-inner">
     <div class="nav-brand">
       <div class="nav-logo">
-        <svg viewBox="0 0 60 60" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-          <g transform="translate(30,30)">
-            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#2a56c6" transform="rotate(0)"/>
-            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#2a56c6" transform="rotate(60)"/>
-            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#e63329" transform="rotate(120)"/>
-            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#e63329" transform="rotate(180)"/>
-            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#e63329" transform="rotate(240)"/>
-            <rect x="-4" y="-28" width="8" height="22" rx="3" fill="#2a56c6" transform="rotate(300)"/>
-            <circle r="5" fill="#0e1525"/>
-          </g>
-        </svg>
+        <img src="https://texasmedicalcareplans.com/wp-content/uploads/2024/10/TMCP-logo-web.png" alt="TMCP" style="height:32px;width:auto;border-radius:4px;">
       </div>
       <div class="nav-brand-text">
         <span class="nav-abbr">TMCPU</span>
@@ -516,7 +536,7 @@
       <a class="nl" data-panel="notes">Notes</a>
       <a class="nl" data-panel="flashcards">Flashcards</a>
       <a class="nl" data-panel="quiz">Quiz</a>
-      <a class="nl" data-panel="drills">Drills</a>
+      <a class="nl" data-panel="networks">🏥 Networks</a>
       <a class="nl" data-panel="compare">Compare <span class="nav-badge">NEW</span></a>
       <a class="nl" data-panel="memory">Memory Aids</a>
       <a class="nl" data-panel="studyplan">Study Plan</a>
@@ -559,7 +579,7 @@
         <div class="mode-card" data-goto="notes"><span class="mode-icon">📋</span><div class="mode-title">Plan Notes</div><div class="mode-desc">Full benefit table for all 37 plans. Filter by type, search by name.</div></div>
         <div class="mode-card" data-goto="flashcards"><span class="mode-icon">📇</span><div class="mode-title">Flashcards</div><div class="mode-desc">Tap to flip and quiz yourself on every key benefit per plan.</div></div>
         <div class="mode-card" data-goto="quiz"><span class="mode-icon">📝</span><div class="mode-title">Quiz</div><div class="mode-desc">Multiple-choice questions. Now with per-plan filtering.</div></div>
-        <div class="mode-card" data-goto="drills"><span class="mode-icon">⚡</span><div class="mode-title">Drills</div><div class="mode-desc">Fill-in-the-blank, match game, and 7-second speed rounds.</div></div>
+        <div class="mode-card" data-goto="networks"><span class="mode-icon">🏥</span><div class="mode-title">Hospital Networks</div><div class="mode-desc">See which plans cover Del Sol, Providence, UMC, and Las Palmas.</div></div>
         <div class="mode-card" data-goto="compare"><span class="mode-icon">⚖️</span><div class="mode-title">Compare Plans</div><div class="mode-desc">Side-by-side plan comparison tool. Pick any plans to compare.</div></div>
         <div class="mode-card" data-goto="memory"><span class="mode-icon">🧠</span><div class="mode-title">Memory Aids</div><div class="mode-desc">Patterns, rankings, and mnemonics for rapid recall.</div></div>
       </div>
@@ -649,22 +669,106 @@
   </div></div>
 </div>
 
-<!-- ══ DRILLS ══ -->
-<div id="drillsPanel" class="panel">
+<!-- ══ HOSPITAL NETWORKS ══ -->
+<div id="networksPanel" class="panel">
   <div class="panel-pg"><div class="panel-pg-inner">
     <div class="pg-header">
-      <div class="pg-eyebrow">Study Tool</div>
-      <h2 class="pg-title">Drills</h2>
+      <div class="pg-eyebrow">Provider Reference</div>
+      <h2 class="pg-title">Hospital Networks</h2>
     </div>
-    <div class="card">
-      <div class="card-hd"><div class="caccent"></div><div class="ctitle">Number Drills</div></div>
-      <div class="dmodes">
-        <button class="dmbtn dma" id="drillFillBtn">✍️ Fill in the Blank</button>
-        <button class="dmbtn" id="drillMatchBtn">🃏 Match Game</button>
-        <button class="dmbtn" id="drillSpeedBtn">⏱️ Speed Round (7s)</button>
+    <div class="note-banner">🏥 Use this to quickly match a client's hospital to eligible plans. Network access is based on El Paso, TX service area.</div>
+
+    <!-- Hospital cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;margin-bottom:2rem;">
+
+      <!-- Del Sol -->
+      <div class="card" style="border-top:3px solid var(--brand-blue);">
+        <div class="card-hd"><div class="caccent" style="background:var(--brand-blue)"></div><div class="ctitle">🏥 Del Sol Medical Center</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">Accepted by ALL carriers in the area</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-blue">UnitedHealthcare</span>
+          <span class="net-tag net-blue">AARP</span>
+          <span class="net-tag net-blue">Humana</span>
+          <span class="net-tag net-blue">Wellpoint</span>
+          <span class="net-tag net-blue">Wellcare</span>
+          <span class="net-tag net-red">Alignment</span>
+          <span class="net-tag net-red">Devoted</span>
+          <span class="net-tag net-red">HealthSpring</span>
+        </div>
       </div>
-      <div id="drillContent"></div>
+
+      <!-- Providence -->
+      <div class="card" style="border-top:3px solid var(--brand-red);">
+        <div class="card-hd"><div class="caccent" style="background:var(--brand-red)"></div><div class="ctitle">🏥 Providence Memorial / Sierra Providence</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">Includes all Providence-affiliated facilities in El Paso</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-blue">UnitedHealthcare</span>
+          <span class="net-tag net-blue">AARP</span>
+          <span class="net-tag net-blue">Humana</span>
+          <span class="net-tag net-blue">Wellpoint</span>
+          <span class="net-tag net-blue">Wellcare</span>
+          <span class="net-tag net-red">Alignment</span>
+          <span class="net-tag net-red">Devoted</span>
+          <span class="net-tag net-red">HealthSpring</span>
+        </div>
+      </div>
+
+      <!-- UMC -->
+      <div class="card" style="border-top:3px solid var(--brand-maroon);">
+        <div class="card-hd"><div class="caccent" style="background:var(--brand-maroon)"></div><div class="ctitle">🏥 University Medical Center (UMC)</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">County hospital — covered by select carriers only</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-blue">UnitedHealthcare</span>
+          <span class="net-tag net-blue">AARP</span>
+          <span class="net-tag net-blue">Humana</span>
+          <span class="net-tag net-blue">Wellpoint</span>
+          <span class="net-tag net-blue">Wellcare</span>
+        </div>
+        <div style="margin-top:.6rem;font-size:.68rem;color:var(--amber);background:rgba(255,64,64,.08);padding:.35rem .5rem;border-radius:6px;">⚠️ Alignment, Devoted, and HealthSpring do NOT cover UMC</div>
+      </div>
+
+      <!-- Las Palmas -->
+      <div class="card" style="border-top:3px solid #a855f7;">
+        <div class="card-hd"><div class="caccent" style="background:#a855f7"></div><div class="ctitle">🏥 Las Palmas Medical Center</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">HCA-affiliated — covered by select carriers only</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-red">Alignment</span>
+          <span class="net-tag net-red">Devoted</span>
+          <span class="net-tag net-red">HealthSpring</span>
+        </div>
+        <div style="margin-top:.6rem;font-size:.68rem;color:var(--amber);background:rgba(255,64,64,.08);padding:.35rem .5rem;border-radius:6px;">⚠️ UHC, AARP, Humana, Wellpoint, and Wellcare do NOT cover Las Palmas</div>
+      </div>
+
     </div>
+
+    <!-- Carrier lookup table -->
+    <div class="card">
+      <div class="card-hd"><div class="caccent"></div><div class="ctitle">Carrier → Hospital Coverage at a Glance</div></div>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead>
+            <tr>
+              <th>Carrier</th>
+              <th>Del Sol</th>
+              <th>Providence / Sierra</th>
+              <th>UMC</th>
+              <th>Las Palmas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>UnitedHealthcare</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>AARP</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Humana</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Wellpoint</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Wellcare</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Alignment</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td><td class="net-yes">✅</td></tr>
+            <tr><td><strong>Devoted</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td><td class="net-yes">✅</td></tr>
+            <tr><td><strong>HealthSpring</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td><td class="net-yes">✅</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div></div>
 </div>
 
@@ -1306,7 +1410,7 @@ function renderFlashcards(filt="all",search=""){
             <div class="fc-stat"><div class="fc-sl">OTC</div><div class="fc-sv">${p.otc||"—"}</div></div>
             <div class="fc-stat"><div class="fc-sl">Dental</div><div class="fc-sv">${p.dental||"—"}</div></div>
           </div>
-          <div class="fc-hint">↺ tap to flip for all benefits</div>
+          <div class="fc-hint">↗ tap to view full details</div>
         </div>
         <div class="fc-back">
           <div class="fc-backname">${p.name}</div>
@@ -1329,8 +1433,60 @@ function renderFlashcards(filt="all",search=""){
         </div>
       </div>
     </div>`).join('');
-  document.querySelectorAll('.flashcard').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('flipped')));
+  document.querySelectorAll('.flashcard').forEach((c,i)=>c.addEventListener('click',()=>openFcModal(i)));
 }
+
+// ── FLASHCARD MODAL ──
+let fcCurrentData=[];
+let fcCurrentIdx=0;
+function openFcModal(idx){
+  const filt=document.querySelector('.fc-chip.ff.afa')?.dataset.f||'all';
+  const search=document.getElementById('flashSearch')?.value||'';
+  fcCurrentData=DB.filter(p=>{
+    if(filt!=='all'&&p.type!==filt)return false;
+    if(search&&!p.name.toLowerCase().includes(search.toLowerCase()))return false;
+    return true;
+  });
+  fcCurrentIdx=idx;
+  renderFcModal();
+  document.getElementById('fcModal').classList.add('open');
+}
+function renderFcModal(){
+  const p=fcCurrentData[fcCurrentIdx];
+  if(!p)return;
+  document.getElementById('fcCounter').textContent=`${fcCurrentIdx+1} / ${fcCurrentData.length}`;
+  document.getElementById('fcModalBody').innerHTML=`
+    <div class="fcm-prov">${p.provider} &nbsp;·&nbsp; ${p.type}</div>
+    <div class="fcm-name">${p.name}</div>
+    <div style="margin-bottom:.8rem">${typeBadge(p.type)}</div>
+    <div class="fcm-row"><span class="fcm-rl">Premium</span><span class="fcm-rv">${p.premium||'$0'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Part B Giveback</span><span class="fcm-rv" style="color:var(--brand-blue)">${p.giveback||'$0'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">MOOP</span><span class="fcm-rv">${p.moop||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">PCP / Specialist</span><span class="fcm-rv">${p.pcp||'—'} / ${p.specialist||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Hospital</span><span class="fcm-rv">${p.hospital||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">ER / Ambulance</span><span class="fcm-rv">${p.er||'—'} / ${p.ambulance||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Dental</span><span class="fcm-rv">${p.dental||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Vision</span><span class="fcm-rv">${p.vision||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Hearing</span><span class="fcm-rv">${p.hearing||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">OTC</span><span class="fcm-rv">${p.otc||'—'}</span></div>
+    ${p.food_util&&p.food_util!=='—'?`<div class="fcm-row"><span class="fcm-rl">Food + Utilities</span><span class="fcm-rv">${p.food_util}</span></div>`:''}
+    <div class="fcm-row"><span class="fcm-rl">Transport</span><span class="fcm-rv" style="color:${(p.transport==='Not covered'||!p.transport)?"var(--error)":p.transport==="Unlimited"?"var(--success)":"inherit"}">${p.transport||'Not covered'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Rx Deductible</span><span class="fcm-rv">${p.rx_deduct||'—'}</span></div>
+    ${p.rx?`<div class="fcm-row"><span class="fcm-rl">Rx Tiers</span><span class="fcm-rv">${p.rx}</span></div>`:''}
+    ${p.gym?`<div class="fcm-row"><span class="fcm-rl">Gym</span><span class="fcm-rv" style="color:var(--success)">${p.gym}</span></div>`:''}
+    ${p.note?`<div class="fcm-note">📌 ${p.note}</div>`:''}
+  `;
+}
+document.getElementById('fcClose').addEventListener('click',()=>document.getElementById('fcModal').classList.remove('open'));
+document.getElementById('fcModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+document.getElementById('fcNext').addEventListener('click',()=>{fcCurrentIdx=(fcCurrentIdx+1)%fcCurrentData.length;renderFcModal();});
+document.getElementById('fcPrev').addEventListener('click',()=>{fcCurrentIdx=(fcCurrentIdx-1+fcCurrentData.length)%fcCurrentData.length;renderFcModal();});
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('fcModal').classList.contains('open'))return;
+  if(e.key==='ArrowRight')document.getElementById('fcNext').click();
+  if(e.key==='ArrowLeft')document.getElementById('fcPrev').click();
+  if(e.key==='Escape')document.getElementById('fcModal').classList.remove('open');
+});
 
 // ── QUIZ with Plan Picker ──
 let qPool=[],qIdx=0,qScore=0,quizFilterPlan="all";
@@ -1606,7 +1762,6 @@ function switchPanel(target){
   document.querySelectorAll('.nl').forEach(l=>l.classList.remove('active'));
   document.querySelectorAll('.nl').forEach(l=>{if(l.dataset.panel===target)l.classList.add('active');});
   window.scrollTo({top:0,behavior:'smooth'});
-  if(target==="drills")renderDrill();
   if(target==="compare"){buildCmpSelRow();renderCmpTable();}
   if(target==="admin")loadAdminData();
 }
