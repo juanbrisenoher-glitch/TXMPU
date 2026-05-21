@@ -68,8 +68,7 @@
     .nav-inner{max-width:1540px;margin:0 auto;padding:0 1.75rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
     .nav-brand{display:flex;align-items:center;gap:.65rem;flex-shrink:0;}
     .nav-logo{
-      height:38px;display:flex;align-items:center;justify-content:center;
-      background:transparent;padding:0;
+      width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
     }
     .nav-brand-text{display:flex;flex-direction:column;line-height:1.15;}
     .nav-abbr{font-size:.55rem;font-weight:700;letter-spacing:2.5px;color:var(--brand-blue);text-transform:uppercase;}
@@ -168,48 +167,50 @@
 
     /* ══ TABLES ══ */
     .tbl-wrap{overflow-x:auto;border-radius:var(--rs);}
-    .data-tbl{width:100%;border-collapse:collapse;font-size:.71rem;}
+    .data-tbl{width:100%;border-collapse:collapse;font-size:.72rem;}
     .data-tbl th{
-      background:#0b1929;color:var(--text2);font-weight:600;font-size:.59rem;text-transform:uppercase;
-      letter-spacing:.9px;padding:.6rem .7rem;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;
-      position:sticky;top:0;z-index:2;
+      background:var(--bg3);color:var(--text2);font-weight:700;font-size:.6rem;text-transform:uppercase;
+      letter-spacing:1.2px;padding:.65rem .85rem;text-align:left;border-bottom:2px solid var(--brand-blue);
+      white-space:nowrap;position:sticky;top:0;z-index:2;
     }
-    .data-tbl td{padding:.6rem .7rem;border-bottom:1px solid var(--border);vertical-align:top;transition:background .1s;}
+    .data-tbl td{padding:.7rem .85rem;border-bottom:1px solid var(--border);vertical-align:middle;transition:background .12s;line-height:1.4;}
     .data-tbl tr:last-child td{border-bottom:none;}
-    .data-tbl tbody tr:hover td{background:rgba(255,255,255,.025);}
-    .ref-card .data-tbl th{background:#f5f0e6;color:#6b7a8d;border-bottom:1px solid var(--cream2);position:static;}
-    .ref-card .data-tbl td{border-bottom:1px solid #ede8de;color:#1a2d44;font-size:.72rem;}
-    .ref-card .data-tbl tbody tr:hover td{background:#f8f4ec;}
-    .pname{font-weight:700;font-size:.74rem;}
-    .pprov{font-size:.6rem;color:var(--text2);margin-top:.1rem;}
-    .ref-card .pprov{color:#7a8ea0;}
+    .data-tbl tbody tr:hover td{background:rgba(72,77,255,.06);}
+    .data-tbl tbody tr:nth-child(even) td{background:rgba(255,255,255,.018);}
+    .data-tbl tbody tr:nth-child(even):hover td{background:rgba(72,77,255,.06);}
+    .ref-card .data-tbl th{background:var(--ref-card-bg);color:var(--text2);border-bottom:2px solid var(--brand-blue);position:static;}
+    .ref-card .data-tbl td{border-bottom:1px solid var(--ref-card-border);color:var(--text);}
+    .ref-card .data-tbl tbody tr:hover td{background:rgba(72,77,255,.05);}
+    .pname{font-weight:700;font-size:.76rem;color:var(--text);}
+    .pprov{font-size:.6rem;color:var(--text2);margin-top:.15rem;letter-spacing:.3px;}
+    .ref-card .pprov{color:var(--text3);}
     .mono{font-family:'DM Mono',monospace;}
-    .hilite{color:var(--gold);font-weight:700;font-family:'DM Mono',monospace;}
-    .hilite-t{color:var(--teal);font-weight:700;font-family:'DM Mono',monospace;}
+    .hilite{color:var(--brand-blue);font-weight:700;font-family:'DM Mono',monospace;}
+    .hilite-t{color:var(--brand-blue);font-weight:700;font-family:'DM Mono',monospace;}
 
     /* ══ TYPE BADGES ══ */
-    .tb{display:inline-block;font-size:.58rem;font-weight:700;padding:.12rem .45rem;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;}
-    .tb-giveback{background:rgba(245,166,35,.14);color:var(--amber);border:1px solid rgba(245,166,35,.28);}
-    .tb-dsnp{background:rgba(0,212,170,.1);color:var(--teal);border:1px solid rgba(0,212,170,.22);}
-    .tb-csnp{background:rgba(180,142,244,.1);color:var(--purple);border:1px solid rgba(180,142,244,.22);}
-    .tb-standard{background:rgba(122,154,191,.1);color:var(--text2);border:1px solid rgba(122,154,191,.18);}
+    .tb{display:inline-block;font-size:.58rem;font-weight:700;padding:.14rem .5rem;border-radius:5px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+    .tb-giveback{background:rgba(255,69,52,.12);color:#FF4534;border:1px solid rgba(255,69,52,.28);}
+    .tb-dsnp{background:rgba(72,77,255,.12);color:#484DFF;border:1px solid rgba(72,77,255,.28);}
+    .tb-csnp{background:rgba(86,13,50,.2);color:#c06090;border:1px solid rgba(86,13,50,.35);}
+    .tb-standard{background:rgba(160,160,160,.1);color:var(--text2);border:1px solid rgba(160,160,160,.2);}
 
     /* ══ FILTERS ══ */
     .filter-bar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-bottom:1.3rem;}
     .fc-chip{
-      background:var(--navy2);border:1px solid var(--border);padding:.3rem .78rem;
+      background:var(--surface2);border:1px solid var(--border);padding:.32rem .85rem;
       border-radius:40px;font-size:.71rem;font-weight:500;cursor:pointer;color:var(--text2);
-      transition:all .13s;
+      transition:all .15s;
     }
-    .fc-chip:hover:not(.afa){border-color:rgba(201,162,39,.35);color:var(--text);}
-    .fc-chip.afa{background:var(--gold);border-color:var(--gold);color:#08111f;font-weight:700;}
+    .fc-chip:hover:not(.afa){border-color:rgba(72,77,255,.4);color:var(--text);}
+    .fc-chip.afa{background:var(--brand-blue);border-color:var(--brand-blue);color:#fff;font-weight:700;}
     .srch{
-      background:var(--navy2);border:1px solid var(--border);border-radius:40px;
-      padding:.3rem .9rem;font-family:'DM Sans',sans-serif;font-size:.73rem;
+      background:var(--surface2);border:1px solid var(--border);border-radius:40px;
+      padding:.32rem .9rem;font-family:'DM Sans',sans-serif;font-size:.73rem;
       color:var(--text);width:210px;transition:border-color .15s;
     }
     .srch::placeholder{color:var(--text3);}
-    .srch:focus{outline:none;border-color:rgba(201,162,39,.45);}
+    .srch:focus{outline:none;border-color:rgba(72,77,255,.5);}
 
     /* ══ FLASHCARDS ══ */
     .fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem;}
@@ -325,13 +326,23 @@
     .mi.ms{background:rgba(201,162,39,.1);border-color:var(--gold);}
 
     /* ══ MEMORY AIDS ══ */
-    .mem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:1rem;}
-    .mem-card{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;}
-    .mem-title{font-weight:700;font-size:.84rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem;}
-    .mem-row{font-size:.75rem;color:var(--text2);padding:.28rem 0;border-bottom:1px solid var(--border);line-height:1.45;}
+    .mem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem;}
+    .mem-card{
+      background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+      padding:1.5rem;position:relative;overflow:hidden;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    .mem-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(72,77,255,.1);}
+    .mem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--brand-blue),var(--brand-red));}
+    .mem-title{font-weight:700;font-size:.88rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;color:var(--text);}
+    .mem-row{
+      font-size:.76rem;color:var(--text2);padding:.38rem 0;
+      border-bottom:1px solid var(--border);line-height:1.5;
+      display:flex;align-items:baseline;gap:.4rem;flex-wrap:wrap;
+    }
     .mem-row:last-child{border-bottom:none;}
-    .mh{font-family:'DM Mono',monospace;color:var(--gold);font-weight:700;}
-    .mht{font-family:'DM Mono',monospace;color:var(--teal);font-weight:700;}
+    .mh{font-family:'DM Mono',monospace;color:var(--brand-blue);font-weight:700;white-space:nowrap;}
+    .mht{font-family:'DM Mono',monospace;color:var(--brand-red);font-weight:700;white-space:nowrap;}
 
     /* ══ STUDY PLAN ══ */
     .wk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-bottom:1.2rem;}
@@ -388,11 +399,12 @@
     /* ══ MISC / CARDS ══ */
     .card{background:var(--surface);border:1px solid var(--card-border);border-radius:var(--r);padding:1.4rem;margin-bottom:1.2rem;}
     .card-hd{display:flex;align-items:center;gap:.5rem;margin-bottom:1.15rem;}
-    .caccent{width:3px;height:18px;border-radius:2px;background:linear-gradient(to bottom,var(--teal),var(--gold));flex-shrink:0;}
-    .ctitle{font-size:.9rem;font-weight:700;color:var(--text);}
+    .caccent{width:3px;height:20px;border-radius:2px;background:linear-gradient(to bottom,var(--brand-blue),var(--brand-red));flex-shrink:0;}
+    .ctitle{font-size:.92rem;font-weight:700;color:var(--text);}
     .note-banner{
-      font-size:.7rem;color:var(--text2);margin-bottom:1.1rem;padding:.55rem .85rem;
-      background:rgba(201,162,39,.06);border-radius:var(--rxs);border-left:3px solid var(--gold);
+      background:rgba(72,77,255,.07);border-left:3px solid var(--brand-blue);
+      border-radius:0 var(--rs) var(--rs) 0;padding:.75rem 1rem;margin-bottom:1.5rem;
+      font-size:.78rem;color:var(--text2);line-height:1.6;
     }
     .info-pill{
       display:inline-flex;align-items:center;gap:.35rem;
@@ -531,15 +543,12 @@
 <div id="loginOverlay">
   <div class="login-box">
     <div class="login-logo">
-      <svg viewBox="0 0 220 68" width="240" height="74" xmlns="http://www.w3.org/2000/svg" style="border-radius:10px;margin-bottom:.8rem;display:block;">
-        <rect width="220" height="68" fill="#560D32"/>
-        <!-- Texas® -->
-        <text x="11" y="25" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Texas</text>
-        <text x="73" y="15" font-family="Georgia,serif" font-size="8" fill="#f0e8df">®</text>
-        <!-- Medical -->
-        <text x="11" y="44" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Medical</text>
-        <!-- Care Plans -->
-        <text x="11" y="63" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Care Plans</text>
+      <svg viewBox="0 0 220 82" width="220" height="82" xmlns="http://www.w3.org/2000/svg" style="border-radius:10px;margin-bottom:.9rem;display:block;">
+        <rect width="220" height="82" fill="#560D32"/>
+        <!-- 3 lines: y positions give equal ~10px top/bottom padding, lines spaced ~20px -->
+        <text x="14" y="29" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Texas<tspan font-size="9" dy="-6">®</tspan></text>
+        <text x="14" y="51" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Medical</text>
+        <text x="14" y="73" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" fill="#f0e8df" letter-spacing=".3">Care Plans</text>
       </svg>
     </div>
     <div class="login-title">Texas Medical Care Plans University</div>
@@ -569,15 +578,15 @@
   <div class="nav-inner">
     <div class="nav-brand">
       <div class="nav-logo">
-        <svg viewBox="0 0 148 44" width="130" height="39" xmlns="http://www.w3.org/2000/svg" style="border-radius:5px;display:block;">
-          <rect width="148" height="44" fill="#560D32"/>
-          <!-- Texas® -->
-          <text x="7" y="15" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="11.5" fill="#f0e8df" letter-spacing=".2">Texas</text>
-          <text x="46" y="10" font-family="Georgia,serif" font-size="5.5" fill="#f0e8df">®</text>
-          <!-- Medical -->
-          <text x="7" y="29" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="11.5" fill="#f0e8df" letter-spacing=".2">Medical</text>
-          <!-- Care Plans -->
-          <text x="7" y="42" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="11.5" fill="#f0e8df" letter-spacing=".2">Care Plans</text>
+        <svg viewBox="0 0 44 44" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(22,22)">
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(0)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(60)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(120)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(180)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(240)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(300)"/>
+          </g>
         </svg>
       </div>
       <div class="nav-brand-text">
