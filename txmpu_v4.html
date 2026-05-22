@@ -543,14 +543,13 @@
 <div id="loginOverlay">
   <div class="login-box">
     <div class="login-logo">
-      <svg viewBox="0 0 300 165" width="210" height="116" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 1.2rem;">
-        <rect x="0"  y="0"   width="160" height="46" fill="#484DFF"/>
-        <rect x="50" y="45"  width="200" height="46" fill="#484DFF"/>
-        <rect x="0"  y="90"  width="250" height="46" fill="#484DFF"/>
-
-        <text x="7"  y="38"  font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="42" fill="white" letter-spacing="-1">Texas<tspan font-size="16" dy="-12">®</tspan></text>
-        <text x="57" y="83"  font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="42" fill="white" letter-spacing="-1">Medical</text>
-        <text x="7"  y="128" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="42" fill="white" letter-spacing="-1">Care Plans</text>
+      <svg viewBox="0 0 300 150" width="255" height="127" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:.9rem;">
+        <!-- Left: Texas(0→165), notch(0→60 on Medical row), Care Plans(0→300) -->
+        <!-- Right: Texas ends x=165, Medical ends x=300, Care Plans ends x=240 -->
+        <path d="M 0 0 L 165 0 L 165 50 L 300 50 L 300 100 L 240 100 L 240 150 L 0 150 L 0 100 L 60 100 L 60 50 L 0 50 Z" fill="#484DFF"/>
+        <text x="8" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="32" fill="white">Texas<tspan font-size="13" baseline-shift="super">®</tspan></text>
+        <text x="68" y="90" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="32" fill="white">Medical</text>
+        <text x="8" y="138" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="32" fill="white">Care Plans</text>
       </svg>
     </div>
     <div class="login-title">Texas Medical Care Plans University</div>
@@ -580,10 +579,19 @@
   <div class="nav-inner">
     <div class="nav-brand">
       <div class="nav-logo">
-        <svg viewBox="0 0 36 36" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
-          <rect x="6" y="1"  width="24" height="10" fill="#484DFF"/>
-          <rect x="0" y="13" width="36" height="10" fill="#484DFF"/>
-          <rect x="0" y="25" width="30" height="10" fill="#484DFF"/>
+        <svg viewBox="0 0 44 44" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(22,23)">
+            <!-- Blue upper arms (0°, -60°, +60°) -->
+            <rect x="-2.5" y="-17" width="5" height="17" fill="#484DFF" transform="rotate(0)"/>
+            <rect x="-2.5" y="-17" width="5" height="17" fill="#484DFF" transform="rotate(-60)"/>
+            <rect x="-2.5" y="-17" width="5" height="17" fill="#484DFF" transform="rotate(60)"/>
+            <!-- Red lower arms (180°, 120°, 240°) -->
+            <rect x="-2.5" y="-17" width="5" height="17" fill="#FF4534" transform="rotate(180)"/>
+            <rect x="-2.5" y="-17" width="5" height="17" fill="#FF4534" transform="rotate(120)"/>
+            <rect x="-2.5" y="-17" width="5" height="17" fill="#FF4534" transform="rotate(240)"/>
+          </g>
+          <!-- ® mark -->
+          <text x="31" y="8" font-family="sans-serif" font-size="7" fill="#FF4534" font-weight="600">®</text>
         </svg>
       </div>
       <div class="nav-brand-text">
