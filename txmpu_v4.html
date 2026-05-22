@@ -1003,109 +1003,187 @@
   </div></div>
 </div>
 
-<!-- ══ STUDY PLAN ══ -->
+<!-- ══ LIS & MEDICAID ══ -->
 <div id="lisPanel" class="panel">
   <div class="panel-pg"><div class="panel-pg-inner">
 
     <div class="pg-header">
-      <div class="pg-eyebrow">Eligibility Reference</div>
-      <h2 class="pg-title">LIS & Medicaid Income Limits</h2>
+      <div class="pg-eyebrow">Eligibility Reference · 2026</div>
+      <h2 class="pg-title">LIS & Medicaid Quick Guide</h2>
     </div>
 
-    <!-- HOW IT WORKS -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem;">
-      <div class="card" style="margin:0">
-        <div class="card-hd"><div class="caccent"></div><div class="ctitle">💊 What is LIS / Extra Help?</div></div>
-        <div style="font-size:.78rem;color:var(--text2);line-height:1.85;">
-          <strong style="color:var(--text)">LIS (Low Income Subsidy)</strong> is a federal program that helps Medicare beneficiaries pay Part D drug costs — premiums, deductibles, and copays.<br><br>
-          Clients who qualify get dramatically reduced drug costs. <strong style="color:var(--brand-blue)">$0 deductible, $0–$11 copays</strong> on most drugs. Many D-SNP clients are auto-enrolled.<br><br>
-          <strong style="color:var(--text)">Auto-enrolled:</strong> Anyone with QMB, FBDE, SLMB, or QI is automatically enrolled in Full LIS — they don't apply separately.
-        </div>
-      </div>
-      <div class="card" style="margin:0">
-        <div class="card-hd"><div class="caccent"></div><div class="ctitle">📋 One Level Since 2024</div></div>
-        <div style="font-size:.78rem;color:var(--text2);line-height:1.85;">
-          Before 2024 there were two tiers — Full and Partial LIS. <strong style="color:var(--brand-blue)">The Inflation Reduction Act eliminated the partial category.</strong> Everyone who qualifies now gets the same full benefit.<br><br>
-          If a client is under the income and asset limits, they get: <strong style="color:var(--text)">$0 premium (benchmark plan), $0 deductible, and capped copays</strong> — no sliding scale anymore.
-        </div>
-      </div>
-      <div class="card" style="margin:0">
-        <div class="card-hd"><div class="caccent"></div><div class="ctitle">🔗 How It Connects to D-SNP Plans</div></div>
-        <div style="font-size:.78rem;color:var(--text2);line-height:1.85;">
-          <strong style="color:var(--text)">D-SNP eligibility</strong> requires either QMB, FBDE, SLMB, or QI status — they must have an active Medicare Savings Program.<br><br>
-          <strong style="color:var(--text)">FBDE</strong> (full Medicaid + Medicare) unlocks the richest D-SNP plans — $0 MOOP, highest OTC, food allowances.<br><br>
-          A client with <strong style="color:var(--brand-blue)">QI only</strong> qualifies for fewer D-SNP plans — check each carrier's specific eligibility before enrolling.
-        </div>
-      </div>
+    <!-- ── SECTION 1: LIS QUALIFICATION ── -->
+    <div style="margin-bottom:.5rem;font-size:.6rem;font-weight:700;letter-spacing:2px;color:var(--brand-blue);text-transform:uppercase;">💊 LIS / Extra Help — Who Qualifies?</div>
+    <div style="font-size:.76rem;color:var(--text2);margin-bottom:1rem;line-height:1.7;max-width:680px;">
+      LIS (Low Income Subsidy), also called Extra Help, is a federal program that slashes Part D drug costs — $0 deductible, $0 premium on benchmark plans, and capped copays at the pharmacy. Since 2024 there's only <strong style="color:var(--text)">one level</strong> — if they qualify, they get the full benefit. Anyone with QMB, SLMB, or QI is <strong style="color:var(--brand-blue)">auto-enrolled</strong> and doesn't need to apply separately.
     </div>
 
-    <!-- LIS TABLE -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:2rem;">
+
+      <div class="ref-card" style="margin:0">
+        <div class="ref-card-title">🧑 Single Person</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;">
+          <div style="background:var(--gold3);border:1px solid var(--border2);border-radius:var(--rs);padding:.75rem 1rem;text-align:center;">
+            <div style="font-size:.58rem;color:var(--brand-blue);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.3rem">Monthly Income</div>
+            <div style="font-size:1.4rem;font-weight:800;color:var(--text);font-family:'Playfair Display',serif">$2,015</div>
+            <div style="font-size:.62rem;color:var(--text2);margin-top:.15rem">or less</div>
+          </div>
+          <div style="background:var(--gold3);border:1px solid var(--border2);border-radius:var(--rs);padding:.75rem 1rem;text-align:center;">
+            <div style="font-size:.58rem;color:var(--brand-blue);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.3rem">Assets</div>
+            <div style="font-size:1.4rem;font-weight:800;color:var(--text);font-family:'Playfair Display',serif">$18,090</div>
+            <div style="font-size:.62rem;color:var(--text2);margin-top:.15rem">or less</div>
+          </div>
+        </div>
+        <div style="font-size:.7rem;color:var(--text2);line-height:1.75;">Annual income: <strong style="color:var(--text)">≤ $24,180</strong><br>Assets counted: checking, savings, stocks, bonds, IRAs<br>Assets <em>not</em> counted: home, one car, personal belongings, burial funds up to $1,500</div>
+      </div>
+
+      <div class="ref-card" style="margin:0">
+        <div class="ref-card-title">👫 Married Couple</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;">
+          <div style="background:var(--gold3);border:1px solid var(--border2);border-radius:var(--rs);padding:.75rem 1rem;text-align:center;">
+            <div style="font-size:.58rem;color:var(--brand-blue);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.3rem">Monthly Income</div>
+            <div style="font-size:1.4rem;font-weight:800;color:var(--text);font-family:'Playfair Display',serif">$2,725</div>
+            <div style="font-size:.62rem;color:var(--text2);margin-top:.15rem">or less</div>
+          </div>
+          <div style="background:var(--gold3);border:1px solid var(--border2);border-radius:var(--rs);padding:.75rem 1rem;text-align:center;">
+            <div style="font-size:.58rem;color:var(--brand-blue);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.3rem">Assets</div>
+            <div style="font-size:1.4rem;font-weight:800;color:var(--text);font-family:'Playfair Display',serif">$36,100</div>
+            <div style="font-size:.62rem;color:var(--text2);margin-top:.15rem">or less</div>
+          </div>
+        </div>
+        <div style="font-size:.7rem;color:var(--text2);line-height:1.75;">Annual income: <strong style="color:var(--text)">≤ $32,700</strong><br>Both spouses' income and assets are combined<br>Apply through SSA.gov or call <strong style="color:var(--text)">1-800-772-1213</strong></div>
+      </div>
+
+    </div>
+
+    <!-- ── SECTION 2: MEDICAID LEVELS ── -->
+    <div style="margin-bottom:.5rem;font-size:.6rem;font-weight:700;letter-spacing:2px;color:var(--brand-blue);text-transform:uppercase;">🏥 Medicaid Levels — QMB, SLMB & QI</div>
+    <div style="font-size:.76rem;color:var(--text2);margin-bottom:1rem;line-height:1.7;max-width:680px;">
+      These are Medicare Savings Programs (MSP) — Texas Medicaid programs that help pay Medicare costs. <strong style="color:var(--text)">Texas has no asset test</strong> for any of these — income only. Having any of these auto-qualifies the client for LIS. Apply at <strong style="color:var(--text)">YourTexasBenefits.com</strong> or call 2-1-1.
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2rem;">
+
+      <div class="ref-card" style="margin:0;border-left:3px solid var(--brand-blue);">
+        <div style="font-size:.6rem;font-weight:700;letter-spacing:1.5px;color:var(--brand-blue);text-transform:uppercase;margin-bottom:.3rem">QMB · ≤ 100% FPL</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--text);margin-bottom:.6rem">Qualified Medicare Beneficiary</div>
+        <div style="display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap;">
+          <span style="background:var(--gold3);border:1px solid var(--border2);border-radius:20px;padding:.2rem .65rem;font-size:.68rem;font-weight:700;color:var(--brand-blue)">Single ≤ $1,330/mo</span>
+          <span style="background:var(--gold3);border:1px solid var(--border2);border-radius:20px;padding:.2rem .65rem;font-size:.68rem;font-weight:700;color:var(--brand-blue)">Married ≤ $1,803/mo</span>
+        </div>
+        <div style="font-size:.72rem;color:var(--text2);line-height:1.8;">
+          ✅ Part A &amp; B premiums paid<br>
+          ✅ All Medicare cost-sharing covered<br>
+          ✅ Auto-enrolled in LIS<br>
+          ✅ Qualifies for D-SNP plans<br>
+          ✅ Providers cannot bill QMB clients for cost-sharing
+        </div>
+      </div>
+
+      <div class="ref-card" style="margin:0;border-left:3px solid var(--gold2);">
+        <div style="font-size:.6rem;font-weight:700;letter-spacing:1.5px;color:var(--gold2);text-transform:uppercase;margin-bottom:.3rem">SLMB · 100–120% FPL</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--text);margin-bottom:.6rem">Specified Low-Income Medicare Beneficiary</div>
+        <div style="display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap;">
+          <span style="background:rgba(122,127,255,.1);border:1px solid rgba(122,127,255,.3);border-radius:20px;padding:.2rem .65rem;font-size:.68rem;font-weight:700;color:var(--gold2)">Single $1,331–$1,596/mo</span>
+          <span style="background:rgba(122,127,255,.1);border:1px solid rgba(122,127,255,.3);border-radius:20px;padding:.2rem .65rem;font-size:.68rem;font-weight:700;color:var(--gold2)">Married $1,804–$2,164/mo</span>
+        </div>
+        <div style="font-size:.72rem;color:var(--text2);line-height:1.8;">
+          ✅ Part B premium paid (~$185/mo in 2026)<br>
+          ❌ Cost-sharing NOT covered<br>
+          ✅ Auto-enrolled in LIS<br>
+          ✅ Qualifies for most D-SNP plans
+        </div>
+      </div>
+
+      <div class="ref-card" style="margin:0;border-left:3px solid var(--text3);">
+        <div style="font-size:.6rem;font-weight:700;letter-spacing:1.5px;color:var(--text3);text-transform:uppercase;margin-bottom:.3rem">QI · 120–135% FPL</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--text);margin-bottom:.6rem">Qualifying Individual</div>
+        <div style="display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap;">
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:.2rem .65rem;font-size:.68rem;font-weight:700;color:var(--text2)">Single $1,597–$1,795/mo</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:.2rem .65rem;font-size:.68rem;font-weight:700;color:var(--text2)">Married $2,165–$2,435/mo</span>
+        </div>
+        <div style="font-size:.72rem;color:var(--text2);line-height:1.8;">
+          ✅ Part B premium paid<br>
+          ❌ Cost-sharing NOT covered<br>
+          ✅ Auto-enrolled in LIS<br>
+          ⚠️ Limited slots — first come, first served<br>
+          ⚠️ Fewer D-SNP plans accept QI only
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── SECTION 3: DRUG TIERS WITH LIS ── -->
+    <div style="margin-bottom:.5rem;font-size:.6rem;font-weight:700;letter-spacing:2px;color:var(--brand-blue);text-transform:uppercase;">💊 Drug Tiers — What They Pay With LIS Active</div>
+    <div style="font-size:.76rem;color:var(--text2);margin-bottom:1rem;line-height:1.7;max-width:680px;">
+      With LIS, the client always pays the <strong style="color:var(--text)">lower</strong> of the plan's normal copay or the LIS cap. QMB clients get the lowest copays. Once the $2,100 out-of-pocket threshold is hit, every covered drug is <strong style="color:var(--brand-blue)">$0 for the rest of the year</strong>.
+    </div>
+
     <div class="ref-card" style="margin-bottom:1.25rem;">
-      <div class="ref-card-title">💊 LIS (Extra Help) — 2026 Income & Asset Limits</div>
+      <div class="ref-card-title">Pharmacy Copays by Tier — 2026</div>
       <div class="tbl-wrap">
         <table class="data-tbl">
           <thead><tr>
-            <th>Program</th>
-            <th>% FPL</th>
-            <th>Single / Month</th>
-            <th>Married / Month</th>
-            <th>Single / Year</th>
-            <th>Married / Year</th>
-            <th>Asset Limit — Single</th>
-            <th>Asset Limit — Married</th>
-            <th>What They Get</th>
+            <th>Tier</th>
+            <th>Drug Type</th>
+            <th>Examples</th>
+            <th style="color:var(--brand-blue)">With LIS (QMB / FBDE)</th>
+            <th style="color:var(--gold2)">With LIS (SLMB / QI)</th>
+            <th style="color:var(--text3)">Without LIS</th>
           </tr></thead>
           <tbody>
             <tr>
-              <td><strong style="color:var(--brand-blue)">Full LIS (Extra Help)</strong></td>
-              <td>≤ 150%</td>
-              <td><strong>≤ $2,015</strong></td>
-              <td><strong>≤ $2,725</strong></td>
-              <td>≤ $24,180</td>
-              <td>≤ $32,700</td>
-              <td>$18,090</td>
-              <td>$36,100</td>
-              <td style="color:var(--success)">$0 premium (benchmark) · $0 deductible · $0–$11.20 copays · worth ~$5,700/yr</td>
+              <td><strong>Tier 1</strong></td>
+              <td>Preferred Generic</td>
+              <td style="color:var(--text2);font-size:.68rem">Lisinopril, Metformin, Amlodipine</td>
+              <td style="color:var(--success)"><strong>$1.60</strong></td>
+              <td style="color:var(--brand-blue)"><strong>$5.10</strong></td>
+              <td style="color:var(--text2)">$0–$5 (plan varies)</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--text3)">No LIS</strong></td>
-              <td>&gt; 150%</td>
-              <td><strong>&gt; $2,015</strong></td>
-              <td><strong>&gt; $2,725</strong></td>
-              <td>&gt; $24,180</td>
-              <td>&gt; $32,700</td>
-              <td>—</td>
-              <td>—</td>
-              <td style="color:var(--text3)">Standard Part D costs apply — full premium, $590 deductible, standard copays</td>
+              <td><strong>Tier 2</strong></td>
+              <td>Generic</td>
+              <td style="color:var(--text2);font-size:.68rem">Atorvastatin, Omeprazole, Gabapentin</td>
+              <td style="color:var(--success)"><strong>$1.60</strong></td>
+              <td style="color:var(--brand-blue)"><strong>$5.10</strong></td>
+              <td style="color:var(--text2)">$5–$20 (plan varies)</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 3</strong></td>
+              <td>Preferred Brand</td>
+              <td style="color:var(--text2);font-size:.68rem">Eliquis, Jardiance, Ozempic</td>
+              <td style="color:var(--success)"><strong>$4.90</strong></td>
+              <td style="color:var(--brand-blue)"><strong>$12.65</strong></td>
+              <td style="color:var(--text2)">$40–$100 (plan varies)</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 4</strong></td>
+              <td>Non-Preferred Brand</td>
+              <td style="color:var(--text2);font-size:.68rem">Brand when generic exists</td>
+              <td style="color:var(--success)"><strong>$4.90</strong></td>
+              <td style="color:var(--brand-blue)"><strong>$12.65</strong></td>
+              <td style="color:var(--text2)">$100+ or 40–50% coinsurance</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 5</strong></td>
+              <td>Specialty</td>
+              <td style="color:var(--text2);font-size:.68rem">Biologics, cancer drugs, injectables</td>
+              <td style="color:var(--success)"><strong>$4.90</strong></td>
+              <td style="color:var(--brand-blue)"><strong>$12.65</strong></td>
+              <td style="color:var(--text2)">25–33% coinsurance (can be $000s)</td>
+            </tr>
+            <tr style="background:rgba(34,197,94,.05)">
+              <td colspan="2"><strong style="color:var(--success)">After $2,100 OOP Threshold</strong></td>
+              <td style="font-size:.68rem;color:var(--text2)">Catastrophic coverage kicks in</td>
+              <td style="color:var(--success)"><strong>$0</strong></td>
+              <td style="color:var(--success)"><strong>$0</strong></td>
+              <td style="color:var(--success)"><strong>$0</strong> (IRA cap, all Part D)</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div style="font-size:.67rem;color:var(--text3);margin-top:.75rem;line-height:1.7;">
-        ⚠️ Asset limits include: checking/savings, stocks, bonds, mutual funds, IRAs. <strong>Excluded:</strong> primary home, one car, personal belongings, life insurance ≤ $1,500, burial funds ≤ $1,500/person. Limits updated annually — apply through Social Security (SSA.gov) or call 1-800-772-1213.
-      </div>
-    </div>
-
-    <!-- QUICK TIPS -->
-    <div class="ref-card">
-      <div class="ref-card-title">⚡ Quick Tips for the Office</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;font-size:.77rem;color:var(--text2);line-height:1.8;">
-        <div>
-          <strong style="color:var(--text);display:block;margin-bottom:.3rem">Checking LIS Status</strong>
-          Pull up the client's Medicare card. A <strong style="color:var(--brand-blue)">green/silver card</strong> indicates they may have LIS. Confirm in the CMS system or ask if they have a "green card" for prescriptions.
-        </div>
-        <div>
-          <strong style="color:var(--text);display:block;margin-bottom:.3rem">LIS & D-SNP Together</strong>
-          Most D-SNP clients are <strong style="color:var(--brand-blue)">auto-enrolled in Full LIS</strong> — they don't apply separately. When you enroll them in a D-SNP, their drug costs drop automatically.
-        </div>
-        <div>
-          <strong style="color:var(--text);display:block;margin-bottom:.3rem">When Income is Too High</strong>
-          If a client is just over the limit, ask about <strong style="color:var(--brand-blue)">deductible expenses</strong> — out-of-pocket medical costs and insurance premiums can be subtracted from countable income.
-        </div>
-        <div>
-          <strong style="color:var(--text);display:block;margin-bottom:.3rem">Apply at YourTexasBenefits.com</strong>
-          Clients can apply online or call 2-1-1. Processing takes 30–45 days. <strong style="color:var(--amber)">Don't wait until AEP</strong> — encourage clients to apply year-round so they're ready.
-        </div>
+      <div style="font-size:.67rem;color:var(--text3);margin-top:.75rem;line-height:1.75;">
+        ⚠️ Client always pays whichever is <strong>lower</strong> — plan copay or LIS cap. Institutionalized clients (nursing home, HCBS waiver) pay <strong>$0 on all tiers</strong> regardless. Tier copays shown are 2026 LIS cap amounts per CMS.
       </div>
     </div>
 
