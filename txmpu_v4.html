@@ -241,6 +241,18 @@
     .fc-C{border-top:3px solid var(--purple);}
     .fc-S{border-top:3px solid var(--text3);}
 
+    /* ── Upgraded FC front stat boxes ── */
+    .fc-stat{background:var(--navy3);border-radius:var(--rxs);padding:.32rem .42rem;border-left:2px solid var(--border);}
+    .fc-chip-benefit{display:flex;flex-direction:column;gap:.1rem;}
+    .fc-chip-label{font-size:.52rem;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);}
+    .fc-chip-val{font-size:.72rem;font-weight:700;font-family:'DM Mono',monospace;}
+
+    /* ── Notes table ── */
+    .notes-tbl tbody tr{border-left:3px solid transparent;transition:background .12s;}
+    .notes-tbl tbody tr:hover td{background:rgba(72,77,255,.05)!important;}
+    .notes-tbl td{padding:.75rem .85rem;vertical-align:middle;}
+    .notes-tbl .mono{font-family:'DM Mono',monospace;font-size:.71rem;}
+
     /* ══ QUIZ ══ */
     .quiz-layout{display:grid;grid-template-columns:280px 1fr;gap:1.5rem;align-items:start;}
     @media(max-width:900px){.quiz-layout{grid-template-columns:1fr;}}
@@ -656,7 +668,6 @@
       <a class="nl" data-panel="quiz">Quiz</a>
       <a class="nl" data-panel="networks">🏥 Networks</a>
       <a class="nl" data-panel="compare">Compare <span class="nav-badge">NEW</span></a>
-      <a class="nl" data-panel="memory">Memory Aids</a>
       <a class="nl" data-panel="lis">💡 LIS & Medicaid</a>
       <a class="nl" id="adminNavLink" data-panel="admin" style="display:none;color:var(--gold)">⚙ Admin</a>
     </div>
@@ -700,7 +711,6 @@
         <div class="mode-card" data-goto="quiz"><span class="mode-icon">📝</span><div class="mode-title">Quiz</div><div class="mode-desc">Multiple-choice questions. Now with per-plan filtering.</div></div>
         <div class="mode-card" data-goto="networks"><span class="mode-icon">🏥</span><div class="mode-title">Hospital Networks</div><div class="mode-desc">See which plans cover Del Sol, Providence, UMC, and Las Palmas.</div></div>
         <div class="mode-card" data-goto="compare"><span class="mode-icon">⚖️</span><div class="mode-title">Compare Plans</div><div class="mode-desc">Side-by-side plan comparison tool. Pick any plans to compare.</div></div>
-        <div class="mode-card" data-goto="memory"><span class="mode-icon">🧠</span><div class="mode-title">Memory Aids</div><div class="mode-desc">Patterns, rankings, and mnemonics for rapid recall.</div></div>
         <div class="mode-card" data-goto="lis"><span class="mode-icon">💡</span><div class="mode-title">LIS & Medicaid</div><div class="mode-desc">Income limits, eligibility levels, and how Extra Help works — single vs. married.</div></div>
       </div>
     </div>
@@ -735,8 +745,12 @@
         <input type="text" id="notesSearch" class="srch" placeholder="🔍 Search plan...">
       </div>
     </div>
-    <div class="tbl-wrap"><table class="data-tbl">
-      <thead><tr><th>Plan</th><th>Type</th><th>Giveback</th><th>Premium</th><th>MOOP</th><th>PCP</th><th>Specialist</th><th>Hospital</th><th>ER</th><th>Ambulance</th><th>Dental</th><th>Vision</th><th>Hearing</th><th>OTC / Food+Util</th><th>Transport</th><th>Rx Deduct</th></tr></thead>
+    <div class="tbl-wrap"><table class="data-tbl notes-tbl">
+      <thead><tr>
+        <th>Plan</th><th>Type</th><th>Giveback</th><th>Premium</th><th>MOOP</th>
+        <th>PCP</th><th>Specialist</th><th>Hospital</th><th>ER</th><th>Ambulance</th>
+        <th>Dental</th><th>Vision</th><th>Hearing</th><th>OTC / Food+Util</th><th>Transport</th><th>Rx Deduct</th>
+      </tr></thead>
       <tbody id="notesTableBody"></tbody>
     </table></div>
   </div></div>
@@ -908,94 +922,6 @@
 </div>
 
 <!-- ══ MEMORY AIDS ══ -->
-<div id="memoryPanel" class="panel">
-  <div class="panel-pg"><div class="panel-pg-inner">
-    <div class="pg-header">
-      <div class="pg-eyebrow">Quick Reference</div>
-      <h2 class="pg-title">Memory Aids</h2>
-    </div>
-    <div class="note-banner">💡 Optimized for rapid recall. Review these every night before AEP season.</div>
-    <div class="mem-grid">
-      <div class="mem-card">
-        <div class="mem-title" style="color:var(--teal)">🔵 D-SNP Rules</div>
-        <div class="mem-row">MOOP often <span class="mh">$0</span> — "Zero for the Duals"</div>
-        <div class="mem-row">OTC: <span class="mh">$69–$197/mo</span></div>
-        <div class="mem-row">Dental: up to <span class="mh">$4,000</span> (Wellcare Liberty / Alignment)</div>
-        <div class="mem-row">Transport: <span class="mh">24–100 trips</span> — Devoted has <span class="mh">50 one-way</span></div>
-        <div class="mem-row">Hearing: up to <span class="mh">$2,000</span> (Wellcare Liberty)</div>
-        <div class="mem-row">Top OTC: <span class="mh">Devoted Dual $197/mo</span></div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-title" style="color:var(--purple)">🟣 C-SNP Rules</div>
-        <div class="mem-row">Focus: <span class="mh">Diabetes / Heart</span></div>
-        <div class="mem-row">Specialist: <span class="mh">$15</span></div>
-        <div class="mem-row">MOOP: <span class="mh">$2,400</span></div>
-        <div class="mem-row">OTC: <span class="mh">$40/mo</span></div>
-        <div class="mem-row">Transport: <span class="mh">50 one-way</span></div>
-        <div class="mem-row">Hearing: <span class="mh">$195–$1,750/aid</span> (not $0)</div>
-        <div class="mem-row">Alignment SmartSavings hearing: <span class="mh">$0 exam, NO aids</span></div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-title" style="color:var(--amber)">🟡 Giveback Rankings</div>
-        <div class="mem-row">#1 <span class="mh">HealthSpring Full $185</span> — low OTC, high giveback</div>
-        <div class="mem-row">#2 <span class="mh">Devoted 008 $184.70</span> — no transport</div>
-        <div class="mem-row">#3 <span class="mh">HumanaChoice Full $174</span></div>
-        <div class="mem-row">#4 <span class="mh">Alignment SmartSavings $164.90</span></div>
-        <div class="mem-row">#5 <span class="mh">HealthSpring Preferred $145</span></div>
-        <div class="mem-row">#6 <span class="mh">Wellcare Giveback $124</span></div>
-        <div class="mem-row">#7 <span class="mh">HumanaChoice PPO $120</span></div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-title">🔢 Critical Numbers</div>
-        <div class="mem-row">Devoted 008 giveback: <span class="mh">$184.70</span> — NO transport</div>
-        <div class="mem-row">Devoted Dual OTC: <span class="mh">$197/mo</span></div>
-        <div class="mem-row">Alignment Total Dual OTC: <span class="mh">$193/mo</span></div>
-        <div class="mem-row">Wellcare Liberty OTC: <span class="mh">$123/mo</span></div>
-        <div class="mem-row">Humana Gold OTC+Food: <span class="mh">$215/mo</span></div>
-        <div class="mem-row">HS TotalCare transport: <span class="mh">Unlimited</span></div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-title">🚗 Transport Cheat Sheet</div>
-        <div class="mem-row"><span class="mh">Devoted</span> — NO transport on ANY plan (Giveback, Core, Dual)</div>
-        <div class="mem-row"><span class="mh">HS TotalCare D-SNP</span> — Unlimited one-way</div>
-        <div class="mem-row"><span class="mh">Humana SNP-DE</span> — 100 one-way (most trips)</div>
-        <div class="mem-row"><span class="mh">Alignment C-SNP + Total Dual</span> — 50 one-way</div>
-        <div class="mem-row"><span class="mh">Wellpoint Dual Advantage</span> — 48 one-way</div>
-        <div class="mem-row"><span class="mh">Wellpoint Full Dual</span> — 48 one-way</div>
-        <div class="mem-row"><span class="mh">UHC S4 + Wellcare Liberty</span> — 48 one-way</div>
-        <div class="mem-row"><span class="mh">Wellpoint Dual Advantage (lower)</span> — <span class="mht">$0 / Not covered</span></div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-title">👂 Hearing Highlights</div>
-        <div class="mem-row"><span class="mh">Alignment SmartSavings (Giveback)</span> — $0 exam, NO aids</div>
-        <div class="mem-row"><span class="mh">HS Full Savings (Giveback)</span> — $399–$1,800/aid copay</div>
-        <div class="mem-row"><span class="mh">Wellcare Liberty D-SNP</span> — up to <span class="mh">$2,000</span></div>
-        <div class="mem-row"><span class="mh">Wellcare Simple (Standard)</span> — up to <span class="mh">$2,000</span></div>
-        <div class="mem-row"><span class="mh">Humana Gold Plus</span> — <span class="mht">$0 basic aids</span></div>
-        <div class="mem-row"><span class="mh">UHC S4</span> — $750 allowance</div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-title">🏥 Hospital / ER Patterns</div>
-        <div class="mem-row">D-SNP hospital: often <span class="mh">$0/day</span></div>
-        <div class="mem-row">Giveback hospital d1: <span class="mh">$320–$375/day</span></div>
-        <div class="mem-row">C-SNP hospital: <span class="mh">$200/d max 5 days</span></div>
-        <div class="mem-row">ER (Giveback): <span class="mh">$115–$120</span></div>
-        <div class="mem-row">Ambulance: <span class="mh">$200–$275</span></div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-title">📋 Carrier Quick IDs</div>
-        <div class="mem-row">Alignment — <span class="mh">3 plans, local El Paso</span></div>
-        <div class="mem-row">Devoted — <span class="mh">#2 giveback $184.70, NO transport</span></div>
-        <div class="mem-row">HealthSpring — <span class="mh">Cigna, #1 giveback $185</span></div>
-        <div class="mem-row">Humana — <span class="mh">100-trip SNP-DE, $215 OTC</span></div>
-        <div class="mem-row">UHC — <span class="mh">Q2 (basic) vs S4 (premium)</span></div>
-        <div class="mem-row">Wellcare — <span class="mh">7 plans, Liberty/Reserve/Giveback+</span></div>
-        <div class="mem-row">Wellpoint — <span class="mh">Dual plans only</span></div>
-      </div>
-    </div>
-  </div></div>
-</div>
-
 <!-- ══ LIS & MEDICAID ══ -->
 <div id="lisPanel" class="panel">
   <div class="panel-pg"><div class="panel-pg-inner">
@@ -1702,6 +1628,22 @@ function renderHomeDsnp(){
 }
 
 // ── NOTES ──
+const CARRIER_COLORS={
+  'Alignment':'#484DFF','Devoted':'#e05c2a','HealthSpring':'#16a34a',
+  'Humana':'#0ea5e9','UHC':'#1d4ed8','Wellcare':'#7c3aed','Wellpoint':'#db2777'
+};
+function carrierAccent(prov){
+  for(const k in CARRIER_COLORS)if(prov&&prov.includes(k))return CARRIER_COLORS[k];
+  return 'var(--border2)';
+}
+function notesVal(v,opts={}){
+  if(!v||v==='—')return`<span style="color:var(--text3)">—</span>`;
+  if(/not covered/i.test(v))return`<span style="color:var(--error);font-weight:600">${v}</span>`;
+  if(opts.isGiveback&&v!=='$0')return`<span style="color:var(--amber);font-weight:700">${v}</span>`;
+  if(opts.isMOOP&&v==='$0')return`<span style="color:var(--teal);font-weight:700">$0</span>`;
+  if(opts.isTransport&&/unlimited/i.test(v))return`<span style="color:var(--teal);font-weight:700">${v}</span>`;
+  return`<span class="mono">${v}</span>`;
+}
 let notesFilter="all";
 function renderNotes(filt="all",search=""){
   notesFilter=filt;
@@ -1710,13 +1652,18 @@ function renderNotes(filt="all",search=""){
     if(search&&!p.name.toLowerCase().includes(search.toLowerCase())&&!p.provider.toLowerCase().includes(search.toLowerCase()))return false;
     return true;
   });
+  const accent=p=>carrierAccent(p.provider);
   document.getElementById("notesTableBody").innerHTML=data.map(p=>`
-    <tr>
-    <td><div class="pname">${p.name}</div><div class="pprov">${p.provider}${p.plan_id?` · ${p.plan_id}`:""}</div>${p.note?`<div style="font-size:.59rem;margin-top:.1rem"><span style="color:var(--amber)">${p.note}</span></div>`:""}</td>
+    <tr style="border-left:3px solid ${accent(p)}">
+    <td style="min-width:160px">
+      <div class="pname" style="color:var(--text)">${p.name}</div>
+      <div class="pprov" style="color:${accent(p)};opacity:.8">${p.provider}${p.plan_id?` · <span style="color:var(--text3)">${p.plan_id}</span>`:""}</div>
+      ${p.note?`<div style="font-size:.59rem;margin-top:.2rem;color:var(--amber);background:rgba(245,166,35,.08);border-radius:4px;padding:.1rem .35rem;display:inline-block">${p.note}</div>`:""}
+    </td>
     <td>${typeBadge(p.type)}</td>
-    <td class="hilite">${p.giveback||"$0"}</td>
+    <td>${notesVal(p.giveback||"$0",{isGiveback:true})}</td>
     <td class="mono">${p.premium||"$0"}</td>
-    <td class="mono">${p.moop||"—"}</td>
+    <td>${notesVal(p.moop||"—",{isMOOP:true})}</td>
     <td class="mono">${p.pcp||"—"}</td>
     <td class="mono">${p.specialist||"—"}</td>
     <td class="mono">${p.hospital||"—"}</td>
@@ -1724,13 +1671,20 @@ function renderNotes(filt="all",search=""){
     <td class="mono">${p.ambulance||"—"}</td>
     <td class="mono">${p.dental||"—"}</td>
     <td class="mono">${p.vision||"—"}</td>
-    <td class="mono">${p.hearing||"—"}</td>
-    <td class="mono">${p.otc||"—"}${p.food_util&&p.food_util!=="—"&&p.food_util!=="Not covered"?`<br><span style='font-size:.6rem;color:var(--text2)'>Food: ${p.food_util}</span>`:""}</td>
-    <td class="mono" style="color:${(p.transport==="Not covered"||p.transport==="—")?"var(--error)":p.transport==="Unlimited"?"var(--teal)":"inherit"}">${p.transport||"—"}</td>
+    <td class="mono">${p.hearing&&/no aids/i.test(p.hearing)?`<span style="color:var(--error)">${p.hearing}</span>`:p.hearing||"—"}</td>
+    <td class="mono">${p.otc||"—"}${p.food_util&&p.food_util!=="—"&&!/not covered/i.test(p.food_util)?`<br><span style='font-size:.6rem;color:var(--teal)'>Food: ${p.food_util}</span>`:""}</td>
+    <td>${notesVal(p.transport||"—",{isTransport:true})}</td>
     <td class="mono">${p.rx_deduct||"—"}</td></tr>`).join('');
 }
 
 // ── FLASHCARDS ──
+function fcBenefitChip(label,val,opts={}){
+  if(!val||val==='—'||/not covered/i.test(val))return'';
+  let color='var(--gold)';
+  if(opts.teal)color='var(--teal)';
+  if(opts.red||(val==='Not covered'))color='var(--error)';
+  return`<div class="fc-chip-benefit"><div class="fc-chip-label">${label}</div><div class="fc-chip-val" style="color:${color}">${val}</div></div>`;
+}
 function renderFlashcards(filt="all",search=""){
   let data=DB.filter(p=>{
     if(filt!=="all"&&p.type!==filt)return false;
@@ -1738,42 +1692,63 @@ function renderFlashcards(filt="all",search=""){
     return true;
   });
   const grid=document.getElementById("flashcardGrid");
-  grid.innerHTML=data.map(p=>`
+  grid.innerHTML=data.map(p=>{
+    const ac=carrierAccent(p.provider);
+    const typeColors={Giveback:'var(--amber)',Standard:'var(--text3)','D-SNP':'var(--teal)','C-SNP':'var(--purple)'};
+    const tc=typeColors[p.type]||'var(--text3)';
+    return`
     <div class="flashcard">
       <div class="fc-inner">
-        <div class="fc-front ${fcClass(p.type)}">
-          <div class="fc-prov">${p.provider}</div>
-          <div class="fc-name">${p.name}</div>
-          <div style="margin-top:.25rem">${typeBadge(p.type)}</div>
-          <div class="fc-statgrid">
-            <div class="fc-stat"><div class="fc-sl">Giveback</div><div class="fc-sv">${p.giveback||"$0"}</div></div>
-            <div class="fc-stat"><div class="fc-sl">MOOP</div><div class="fc-sv">${p.moop||"—"}</div></div>
-            <div class="fc-stat"><div class="fc-sl">OTC</div><div class="fc-sv">${p.otc||"—"}</div></div>
-            <div class="fc-stat"><div class="fc-sl">Dental</div><div class="fc-sv">${p.dental||"—"}</div></div>
+        <div class="fc-front ${fcClass(p.type)}" style="border-top:3px solid ${ac}">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem">
+            <div class="fc-prov" style="color:${ac};font-size:.62rem;font-weight:800;letter-spacing:.8px">${p.provider.toUpperCase()}</div>
+            <div>${typeBadge(p.type)}</div>
           </div>
-          <div class="fc-hint">↗ tap to view full details</div>
+          <div class="fc-name" style="font-size:.92rem;line-height:1.25;margin-bottom:.7rem">${p.name}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;flex:1">
+            <div class="fc-stat" style="border-left:2px solid ${p.giveback&&p.giveback!=='$0'?'var(--amber)':'var(--border)'}">
+              <div class="fc-sl">Giveback</div>
+              <div class="fc-sv" style="color:${p.giveback&&p.giveback!=='$0'?'var(--amber)':'var(--text3)'}">${p.giveback||"$0"}</div>
+            </div>
+            <div class="fc-stat" style="border-left:2px solid ${p.moop==='$0'?'var(--teal)':'var(--border)'}">
+              <div class="fc-sl">MOOP</div>
+              <div class="fc-sv" style="color:${p.moop==='$0'?'var(--teal)':'var(--gold)'}">${p.moop||"—"}</div>
+            </div>
+            <div class="fc-stat">
+              <div class="fc-sl">OTC</div>
+              <div class="fc-sv">${p.otc||"—"}</div>
+            </div>
+            <div class="fc-stat">
+              <div class="fc-sl">Dental</div>
+              <div class="fc-sv">${p.dental||"—"}</div>
+            </div>
+          </div>
+          <div class="fc-hint" style="margin-top:.6rem">↗ tap for full details</div>
         </div>
-        <div class="fc-back">
-          <div class="fc-backname">${p.name}</div>
+        <div class="fc-back" style="border-top:3px solid ${ac}">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem">
+            <div class="fc-backname" style="font-size:.82rem">${p.name}</div>
+            <div style="font-size:.58rem;font-weight:700;color:${ac};letter-spacing:.8px">${p.provider.toUpperCase()}</div>
+          </div>
           <div class="fc-row"><span class="fc-rl">Premium</span><span class="fc-rv">${p.premium||"$0"}</span></div>
-          <div class="fc-row"><span class="fc-rl">Part B Giveback</span><span class="fc-rv" style="color:var(--gold)">${p.giveback||"$0"}</span></div>
-          <div class="fc-row"><span class="fc-rl">MOOP</span><span class="fc-rv">${p.moop||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Giveback</span><span class="fc-rv" style="color:${p.giveback&&p.giveback!=='$0'?'var(--amber)':'var(--text3)'}">${p.giveback||"$0"}</span></div>
+          <div class="fc-row"><span class="fc-rl">MOOP</span><span class="fc-rv" style="color:${p.moop==='$0'?'var(--teal)':'inherit'}">${p.moop||"—"}</span></div>
           <div class="fc-row"><span class="fc-rl">PCP / Specialist</span><span class="fc-rv">${p.pcp||"—"} / ${p.specialist||"—"}</span></div>
           <div class="fc-row"><span class="fc-rl">Hospital</span><span class="fc-rv">${p.hospital||"—"}</span></div>
           <div class="fc-row"><span class="fc-rl">ER / Ambulance</span><span class="fc-rv">${p.er||"—"} / ${p.ambulance||"—"}</span></div>
           <div class="fc-row"><span class="fc-rl">Dental</span><span class="fc-rv">${p.dental||"—"}</span></div>
           <div class="fc-row"><span class="fc-rl">Vision</span><span class="fc-rv">${p.vision||"—"}</span></div>
-          <div class="fc-row"><span class="fc-rl">Hearing</span><span class="fc-rv" style="color:${p.hearing&&p.hearing.includes('no aids')?'var(--error)':'inherit'}">${p.hearing||"—"}</span></div>
-          <div class="fc-row"><span class="fc-rl">OTC</span><span class="fc-rv">${p.otc||"—"}</span></div>
-          ${p.food_util&&p.food_util!=="—"?`<div class="fc-row"><span class="fc-rl">Food+Util</span><span class="fc-rv">${p.food_util}</span></div>`:""}
-          <div class="fc-row"><span class="fc-rl">Transport</span><span class="fc-rv" style="color:${(p.transport==="Not covered"||p.transport==="—")?"var(--error)":p.transport==="Unlimited"?"var(--teal)":"inherit"}">${p.transport||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Hearing</span><span class="fc-rv" style="color:${p.hearing&&/no aids/i.test(p.hearing)?'var(--error)':'inherit'}">${p.hearing||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">OTC</span><span class="fc-rv" style="color:var(--gold)">${p.otc||"—"}</span></div>
+          ${p.food_util&&p.food_util!=="—"?`<div class="fc-row"><span class="fc-rl">Food+Util</span><span class="fc-rv" style="color:var(--teal)">${p.food_util}</span></div>`:""}
+          <div class="fc-row"><span class="fc-rl">Transport</span><span class="fc-rv" style="color:${(p.transport==="Not covered"||p.transport==="—")?"var(--error)":/unlimited/i.test(p.transport||"")?"var(--teal)":"inherit"}">${p.transport||"—"}</span></div>
           <div class="fc-row"><span class="fc-rl">Rx Deductible</span><span class="fc-rv">${p.rx_deduct||"—"}</span></div>
-          ${p.rx?`<div class="fc-row"><span class="fc-rl">Rx Tiers</span><span class="fc-rv">${p.rx}</span></div>`:""}
           ${p.gym?`<div class="fc-row"><span class="fc-rl">Gym</span><span class="fc-rv" style="color:var(--teal)">${p.gym}</span></div>`:""}
-          ${p.note?`<div style="margin-top:.4rem;font-size:.61rem;color:var(--amber);padding:.2rem .35rem;background:rgba(245,166,35,.08);border-radius:4px">${p.note}</div>`:""}
+          ${p.note?`<div style="margin-top:.5rem;font-size:.61rem;color:var(--amber);padding:.25rem .4rem;background:rgba(245,166,35,.08);border-radius:4px;border-left:2px solid var(--amber)">${p.note}</div>`:""}
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
   document.querySelectorAll('.flashcard').forEach((c,i)=>c.addEventListener('click',()=>openFcModal(i)));
 }
 
