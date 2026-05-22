@@ -156,7 +156,7 @@
     .ref-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
     @media(max-width:900px){.ref-inner{grid-template-columns:1fr;}}
     .ref-card{background:var(--ref-card-bg);border:1.5px solid var(--ref-card-border);border-radius:var(--r);padding:1.4rem;overflow:hidden;}
-    .ref-card-title{font-weight:700;font-size:.84rem;color:#0f1e35;margin-bottom:1rem;padding-left:.75rem;border-left:3px solid var(--gold);}
+    .ref-card-title{font-weight:700;font-size:.84rem;color:var(--text);margin-bottom:1rem;padding-left:.75rem;border-left:3px solid var(--gold);}
 
     /* ══ PANEL PAGES ══ */
     .panel-pg{background:var(--bg);min-height:calc(100vh - 58px);padding:2rem 2rem 4rem;}
@@ -664,7 +664,7 @@
       <a class="nl" data-panel="networks">🏥 Networks</a>
       <a class="nl" data-panel="compare">Compare <span class="nav-badge">NEW</span></a>
       <a class="nl" data-panel="memory">Memory Aids</a>
-      <a class="nl" data-panel="intake">🎯 Client Match</a>
+      <a class="nl" data-panel="lis">💡 LIS & Medicaid</a>
       <a class="nl" id="adminNavLink" data-panel="admin" style="display:none;color:var(--gold)">⚙ Admin</a>
     </div>
     <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙 Dark</button>
@@ -708,7 +708,7 @@
         <div class="mode-card" data-goto="networks"><span class="mode-icon">🏥</span><div class="mode-title">Hospital Networks</div><div class="mode-desc">See which plans cover Del Sol, Providence, UMC, and Las Palmas.</div></div>
         <div class="mode-card" data-goto="compare"><span class="mode-icon">⚖️</span><div class="mode-title">Compare Plans</div><div class="mode-desc">Side-by-side plan comparison tool. Pick any plans to compare.</div></div>
         <div class="mode-card" data-goto="memory"><span class="mode-icon">🧠</span><div class="mode-title">Memory Aids</div><div class="mode-desc">Patterns, rankings, and mnemonics for rapid recall.</div></div>
-        <div class="mode-card" data-goto="intake"><span class="mode-icon">🎯</span><div class="mode-title">Client Match</div><div class="mode-desc">Walk-in intake tool — answer 4 questions and surface the best-fit plans instantly.</div></div>
+        <div class="mode-card" data-goto="lis"><span class="mode-icon">💡</span><div class="mode-title">LIS & Medicaid</div><div class="mode-desc">Income limits, eligibility levels, and how Extra Help works — single vs. married.</div></div>
       </div>
     </div>
   </div>
@@ -1004,17 +1004,203 @@
 </div>
 
 <!-- ══ STUDY PLAN ══ -->
-<div id="intakePanel" class="panel">
+<div id="lisPanel" class="panel">
   <div class="panel-pg"><div class="panel-pg-inner">
+
     <div class="pg-header">
-      <div class="pg-eyebrow">Walk-In Tool</div>
-      <h2 class="pg-title">Client Quick Match</h2>
-      <p style="color:var(--text2);font-size:.82rem;margin-top:.3rem;max-width:520px;">Answer a few questions to surface the best-fit plans for a walk-in client in seconds.</p>
+      <div class="pg-eyebrow">Eligibility Reference</div>
+      <h2 class="pg-title">LIS & Medicaid Income Limits</h2>
     </div>
-    <div class="intake-wizard">
-      <div class="intake-progress" id="intakeProgress"></div>
-      <div id="intakeStepContent"></div>
+
+    <!-- HOW IT WORKS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem;">
+      <div class="card" style="margin:0">
+        <div class="card-hd"><div class="caccent"></div><div class="ctitle">💊 What is LIS / Extra Help?</div></div>
+        <div style="font-size:.78rem;color:var(--text2);line-height:1.85;">
+          <strong style="color:var(--text)">LIS (Low Income Subsidy)</strong> is a federal program that helps Medicare beneficiaries pay Part D drug costs — premiums, deductibles, and copays.<br><br>
+          Clients who qualify get dramatically reduced drug costs. <strong style="color:var(--brand-blue)">Full LIS = $0 deductible, $0–$11 copays</strong> on most drugs. Many D-SNP clients are auto-enrolled.<br><br>
+          <strong style="color:var(--text)">Auto-enrolled:</strong> Anyone with QMB, FBDE, SLMB, or QI is automatically enrolled in Full LIS — they don't apply separately.
+        </div>
+      </div>
+      <div class="card" style="margin:0">
+        <div class="card-hd"><div class="caccent"></div><div class="ctitle">🏥 What are Medicare Savings Programs?</div></div>
+        <div style="font-size:.78rem;color:var(--text2);line-height:1.85;">
+          <strong style="color:var(--text)">Medicare Savings Programs (MSP)</strong> are Texas Medicaid programs that help pay Medicare costs — premiums, deductibles, and copays depending on level.<br><br>
+          <strong style="color:var(--brand-blue)">QMB</strong> = most help (premiums + all cost-sharing). <strong style="color:var(--brand-blue)">SLMB / QI</strong> = Part B premium only.<br><br>
+          <strong style="color:var(--text)">Texas has NO asset test</strong> for MSP programs — income is the only qualifier. Apply through Texas HHSC.
+        </div>
+      </div>
+      <div class="card" style="margin:0">
+        <div class="card-hd"><div class="caccent"></div><div class="ctitle">🔗 How They Connect to Plans</div></div>
+        <div style="font-size:.78rem;color:var(--text2);line-height:1.85;">
+          <strong style="color:var(--text)">D-SNP eligibility</strong> requires either QMB, FBDE, SLMB, or QI status — they must have an active MSP.<br><br>
+          <strong style="color:var(--text)">FBDE</strong> (full Medicaid + Medicare) unlocks the richest D-SNP plans — $0 MOOP, highest OTC, food allowances.<br><br>
+          A client with <strong style="color:var(--brand-blue)">QI only</strong> qualifies for fewer D-SNP plans — check each carrier's specific eligibility before enrolling.
+        </div>
+      </div>
     </div>
+
+    <!-- LIS TABLE -->
+    <div class="ref-card" style="margin-bottom:1.25rem;">
+      <div class="ref-card-title">💊 LIS (Extra Help) — 2025 Income Limits</div>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead><tr>
+            <th>Level</th>
+            <th>% FPL</th>
+            <th>Single / Month</th>
+            <th>Married / Month</th>
+            <th>Single / Year</th>
+            <th>Married / Year</th>
+            <th>Asset Limit — Single</th>
+            <th>Asset Limit — Married</th>
+            <th>What They Get</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--brand-blue)">Full LIS</strong></td>
+              <td>≤ 135%</td>
+              <td><strong>≤ $1,693</strong></td>
+              <td><strong>≤ $2,300</strong></td>
+              <td>≤ $20,316</td>
+              <td>≤ $27,600</td>
+              <td>$17,220</td>
+              <td>$34,360</td>
+              <td style="color:var(--success)">$0 deductible · $0–$11 copays · $0 premium (benchmark plan)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--gold2)">Partial LIS</strong></td>
+              <td>135–150%</td>
+              <td><strong>$1,694–$1,882</strong></td>
+              <td><strong>$2,301–$2,555</strong></td>
+              <td>$20,317–$22,590</td>
+              <td>$27,601–$30,660</td>
+              <td>$17,220</td>
+              <td>$34,360</td>
+              <td style="color:var(--amber)">Reduced premium &amp; deductible · sliding-scale copays</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--text3)">No LIS</strong></td>
+              <td>&gt; 150%</td>
+              <td><strong>&gt; $1,882</strong></td>
+              <td><strong>&gt; $2,555</strong></td>
+              <td>&gt; $22,590</td>
+              <td>&gt; $30,660</td>
+              <td>—</td>
+              <td>—</td>
+              <td style="color:var(--text3)">Standard Part D costs apply</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:.67rem;color:var(--text3);margin-top:.75rem;line-height:1.7;">
+        ⚠️ Asset limits exclude: primary home, one car, personal belongings, life insurance ≤ $1,500 face value, and burial funds ≤ $1,500. Social Security income is counted; some income types are excluded — verify with SSA.
+      </div>
+    </div>
+
+    <!-- MSP TABLE -->
+    <div class="ref-card" style="margin-bottom:1.25rem;">
+      <div class="ref-card-title">🏥 Medicare Savings Programs (Texas MSP) — 2025 Income Limits</div>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead><tr>
+            <th>Program</th>
+            <th>% FPL</th>
+            <th>Single / Month</th>
+            <th>Married / Month</th>
+            <th>Single / Year</th>
+            <th>Married / Year</th>
+            <th>Asset Test</th>
+            <th>D-SNP Eligible?</th>
+            <th>What They Get</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--brand-blue)">QMB</strong></td>
+              <td>≤ 100%</td>
+              <td><strong>≤ $1,255</strong></td>
+              <td><strong>≤ $1,703</strong></td>
+              <td>≤ $15,060</td>
+              <td>≤ $20,436</td>
+              <td style="color:var(--success)">None (TX)</td>
+              <td style="color:var(--success)">✅ Yes</td>
+              <td>Part A &amp; B premiums + all Medicare cost-sharing covered by Medicaid</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--brand-blue)">FBDE</strong></td>
+              <td>Varies</td>
+              <td><strong>≤ ~$1,255</strong></td>
+              <td><strong>≤ ~$1,703</strong></td>
+              <td>≤ ~$15,060</td>
+              <td>≤ ~$20,436</td>
+              <td style="color:var(--success)">None (TX)</td>
+              <td style="color:var(--success)">✅ Yes</td>
+              <td>Full Medicaid + Medicare — highest level, unlocks richest D-SNP plans</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--gold2)">SLMB</strong></td>
+              <td>100–120%</td>
+              <td><strong>$1,256–$1,506</strong></td>
+              <td><strong>$1,704–$2,044</strong></td>
+              <td>$15,061–$18,072</td>
+              <td>$20,437–$24,528</td>
+              <td style="color:var(--success)">None (TX)</td>
+              <td style="color:var(--success)">✅ Yes</td>
+              <td>Part B premium paid by Medicaid ($185/mo in 2025)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--gold2)">QI</strong></td>
+              <td>120–135%</td>
+              <td><strong>$1,507–$1,693</strong></td>
+              <td><strong>$2,045–$2,300</strong></td>
+              <td>$18,073–$20,316</td>
+              <td>$24,529–$27,600</td>
+              <td style="color:var(--success)">None (TX)</td>
+              <td style="color:var(--amber)">⚠️ Limited</td>
+              <td>Part B premium paid — limited enrollment slots, first-come first-served</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--text3)">QDWI</strong></td>
+              <td>≤ 200%</td>
+              <td><strong>≤ $2,510</strong></td>
+              <td><strong>≤ $3,406</strong></td>
+              <td>≤ $30,120</td>
+              <td>≤ $40,872</td>
+              <td style="color:var(--error)">$4,000 / $6,000</td>
+              <td style="color:var(--error)">❌ No</td>
+              <td>Part A premium only — working disabled under 65 who lost premium-free Part A</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:.67rem;color:var(--text3);margin-top:.75rem;line-height:1.7;">
+        ⚠️ Texas eliminated the asset test for QMB, SLMB, and QI. FBDE requires full Medicaid eligibility — income limits may vary. Apply at <strong>YourTexasBenefits.com</strong> or call Texas HHSC: 2-1-1. Limits updated annually in January based on new FPL figures.
+      </div>
+    </div>
+
+    <!-- QUICK TIPS -->
+    <div class="ref-card">
+      <div class="ref-card-title">⚡ Quick Tips for the Office</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;font-size:.77rem;color:var(--text2);line-height:1.8;">
+        <div>
+          <strong style="color:var(--text);display:block;margin-bottom:.3rem">Checking LIS Status</strong>
+          Pull up the client's Medicare card. A <strong style="color:var(--brand-blue)">green/silver card</strong> indicates they may have LIS. Confirm in the CMS system or ask if they have a "green card" for prescriptions.
+        </div>
+        <div>
+          <strong style="color:var(--text);display:block;margin-bottom:.3rem">LIS & D-SNP Together</strong>
+          Most D-SNP clients are <strong style="color:var(--brand-blue)">auto-enrolled in Full LIS</strong> — they don't apply separately. When you enroll them in a D-SNP, their drug costs drop automatically.
+        </div>
+        <div>
+          <strong style="color:var(--text);display:block;margin-bottom:.3rem">When Income is Too High</strong>
+          If a client is just over the limit, ask about <strong style="color:var(--brand-blue)">deductible expenses</strong> — out-of-pocket medical costs and insurance premiums can be subtracted from countable income.
+        </div>
+        <div>
+          <strong style="color:var(--text);display:block;margin-bottom:.3rem">Apply at YourTexasBenefits.com</strong>
+          Clients can apply online or call 2-1-1. Processing takes 30–45 days. <strong style="color:var(--amber)">Don't wait until AEP</strong> — encourage clients to apply year-round so they're ready.
+        </div>
+      </div>
+    </div>
+
   </div></div>
 </div>
 <!-- ══ ADMIN DASHBOARD ══ -->
@@ -1893,7 +2079,6 @@ function switchPanel(target){
   window.scrollTo({top:0,behavior:'smooth'});
   if(target==="compare"){buildCmpSelRow();renderCmpTable();}
   if(target==="admin")loadAdminData();
-  if(target==="intake"){intakeReset();}
 }
 
 // ── INIT ──
