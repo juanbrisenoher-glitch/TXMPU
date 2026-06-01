@@ -2,862 +2,1902 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Texas Medical Care Plans</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMCPU | Texas Medical Care Plans University</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Light mode (default) */
     :root {
-      --bg: #f5f3f0;
-      --surface: #ffffff;
-      --card: #ffffff;
-      --text: #1a1a2e;
-      --text-muted: #6b6b7a;
-      --border: #e2dfd9;
-      --accent: #c8553d;
-      --accent-hover: #b03e28;
-      --accent-soft: #fef1ee;
-      --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
-      --shadow-hover: 0 8px 20px rgba(0,0,0,0.08);
-      --radius: 12px;
+      /* ── brand constants ── */
+      --brand-blue:#484DFF; --brand-red:#FF4534;
+      --brand-maroon:#560D32; --brand-cream:#f0e8df;
+      --success:#22c55e; --error:#FF4534;
+      --r:14px; --rs:9px; --rxs:6px;
+
+      /* ── dark mode (default) ── */
+      --bg:#0f0610; --bg2:#1a0b1a; --bg3:#200d20; --bg4:#2a1028;
+      --surface:#1a0b1a; --surface2:#200d20; --surface3:#2a1028;
+      --text:#f0e8df; --text2:#a890a0; --text3:#785068;
+      --navy:var(--bg); --navy2:var(--surface); --navy3:var(--surface2); --navy4:var(--surface3);
+      --gold:var(--brand-blue); --gold2:#7a7fff; --gold3:rgba(72,77,255,.12);
+      --cream:#f0e8df; --cream2:#e0d0c8; --cream3:#faf5f2;
+      --teal:var(--brand-blue); --teal2:rgba(72,77,255,.13);
+      --amber:var(--brand-red); --purple:#7a7fff; --rose:var(--brand-red);
+      --border:rgba(255,255,255,.07); --border2:rgba(72,77,255,.3);
+      --shadow:0 4px 24px rgba(0,0,0,.5); --shadow2:0 2px 12px rgba(0,0,0,.35);
+      --hero-title:#f0e8df; --card-bg:var(--surface); --card-border:var(--border);
+      --input-bg:var(--bg3); --input-border:rgba(255,255,255,.1);
+      --mh-color:var(--brand-blue); --section-bg:#1a0b1a; --section-title:#f0e8df;
+      --ref-card-bg:#200d20; --ref-card-border:#2a1028;
     }
 
-    /* Dark mode */
-    [data-theme="dark"] {
-      --bg: #0f0f17;
-      --surface: #1a1a24;
-      --card: #1e1e2a;
-      --text: #ededf0;
-      --text-muted: #8a8a9a;
-      --border: #2a2a34;
-      --accent: #e8734f;
-      --accent-hover: #d95c3e;
-      --accent-soft: #2a1a16;
-      --shadow: 0 1px 3px rgba(0,0,0,0.2);
-      --shadow-hover: 0 8px 20px rgba(0,0,0,0.3);
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --bg:#f0e8df; --bg2:#ffffff; --bg3:#fdf8f5; --bg4:#e8dcd4;
+      --surface:#ffffff; --surface2:#fdf8f5; --surface3:#f5ede5;
+      --navy:var(--bg); --navy2:var(--surface); --navy3:var(--surface2); --navy4:var(--surface3);
+      --text:#560D32; --text2:#8a3058; --text3:#b06080;
+      --gold:var(--brand-blue); --gold2:#3035cc; --gold3:rgba(72,77,255,.1);
+      --teal:var(--brand-blue); --teal2:rgba(72,77,255,.1);
+      --amber:var(--brand-red); --purple:#3035cc; --rose:var(--brand-red);
+      --border:rgba(86,13,50,.1); --border2:rgba(72,77,255,.25);
+      --shadow:0 4px 24px rgba(86,13,50,.12); --shadow2:0 2px 12px rgba(86,13,50,.08);
+      --hero-title:#560D32; --card-bg:#ffffff; --card-border:rgba(86,13,50,.1);
+      --input-bg:#fdf8f5; --input-border:rgba(86,13,50,.15);
+      --mh-color:var(--brand-blue); --section-bg:#e8dcd4; --section-title:#560D32;
+      --ref-card-bg:#fdf8f5; --ref-card-border:#e0d0c5;
+      --cream3:var(--bg3);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;}
+
+    /* ══ SCROLLBAR ══ */
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-track{background:var(--navy2);}
+    ::-webkit-scrollbar-thumb{background:var(--navy4);border-radius:3px;}
+    ::-webkit-scrollbar-thumb:hover{background:var(--brand-blue);}
+
+    /* ══ TOP NAV ══ */
+    .topnav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;height:58px;
+      background:rgba(16,10,20,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border2);transition:background .25s;
+    }
+    [data-theme="light"] .topnav{background:rgba(255,255,255,.97);}
+    .nav-inner{max-width:1540px;margin:0 auto;padding:0 1.75rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+    .nav-brand{display:flex;align-items:center;gap:.65rem;flex-shrink:0;}
+    .nav-logo{
+      width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .nav-brand-text{display:flex;flex-direction:column;line-height:1.15;}
+    .nav-abbr{font-size:.55rem;font-weight:700;letter-spacing:2.5px;color:var(--brand-blue);text-transform:uppercase;}
+    .nav-fullname{font-size:.73rem;font-weight:600;color:var(--text);}
+    .nav-links{display:flex;gap:.05rem;align-items:center;overflow-x:auto;}
+    .nl{color:var(--text2);font-size:.76rem;font-weight:500;padding:.38rem .7rem;border-radius:7px;cursor:pointer;transition:color .15s,background .15s;text-decoration:none;user-select:none;white-space:nowrap;position:relative;}
+    .nl:hover:not(.active){color:var(--text);background:rgba(255,255,255,.05);}
+    .nl.active{color:var(--text);font-weight:700;}
+    .nl.active::after{content:'';position:absolute;bottom:-1px;left:.7rem;right:.7rem;height:2px;background:linear-gradient(to right,var(--brand-blue),var(--brand-red));border-radius:2px;}
+    .nav-badge{background:linear-gradient(135deg,rgba(42,86,198,.15),rgba(42,86,198,.05));border:1px solid rgba(42,86,198,.3);color:#7aaaf4;font-size:.58rem;font-weight:700;letter-spacing:1px;padding:.2rem .5rem;border-radius:4px;margin-left:.3rem;text-transform:uppercase;}
+
+    /* ══ PANELS ══ */
+    main{padding-top:58px;}
+    .panel{display:none;}
+    .panel.active-panel{display:block;animation:pfade .22s ease;}
+    @keyframes pfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ══ HERO ══ */
+    .hero{
+      background:var(--bg);min-height:80vh;display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:5rem 2rem 4rem;position:relative;overflow:hidden;
+    }
+    .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+    .hero-bg::before{
+      content:'';position:absolute;width:700px;height:700px;border-radius:50%;
+      background:radial-gradient(ellipse,rgba(42,86,198,.09) 0%,transparent 70%);
+      top:-200px;left:50%;transform:translateX(-50%);
+    }
+    .hero-bg::after{
+      content:'';position:absolute;width:400px;height:400px;border-radius:50%;
+      background:radial-gradient(ellipse,rgba(230,51,41,.06) 0%,transparent 70%);
+      bottom:-100px;right:10%;
+    }
+    .hero-grid{
+      position:absolute;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+      background-size:60px 60px;
+    }
+    .hero-content{position:relative;z-index:1;max-width:740px;margin:0 auto;}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:.45rem;
+      border:1px solid rgba(42,86,198,.35);color:#7aaaf4;
+      font-size:.62rem;letter-spacing:2.5px;padding:.32rem 1rem;border-radius:40px;
+      margin-bottom:2rem;font-weight:700;text-transform:uppercase;
+      background:rgba(42,86,198,.08);
+    }
+    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--brand-blue);box-shadow:0 0 8px var(--brand-blue);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+    .hero-h1{
+      font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.6rem);
+      font-weight:900;line-height:1.07;color:var(--hero-title);margin-bottom:1.4rem;
+      letter-spacing:-.02em;
+    }
+    .hero-gold{
+      background:linear-gradient(135deg,var(--brand-blue),#5b8af0,var(--brand-red));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero-sub{font-size:.9rem;color:var(--text2);max-width:480px;margin:0 auto 3rem;line-height:1.75;}
+    .hero-stats{display:flex;justify-content:center;gap:3.5rem;flex-wrap:wrap;}
+    .hstat{text-align:center;}
+    .hstat-n{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:800;color:#ecf3ff;line-height:1;}
+    .hstat-l{font-size:.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-top:.3rem;}
+    .hstat-divider{width:1px;background:var(--border2);align-self:stretch;}
+
+    /* ══ START SECTION (home) ══ */
+    .start-section{background:var(--section-bg);padding:4rem 2rem;}
+    .start-inner{max-width:1260px;margin:0 auto;}
+    .s-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:2.5px;color:var(--brand-blue);text-transform:uppercase;margin-bottom:.5rem;}
+    .s-title{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:800;color:var(--section-title);margin-bottom:2rem;}
+    .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+    .mode-card{
+      background:white;border:1.5px solid var(--cream2);border-radius:var(--r);padding:1.4rem 1.25rem;
+      cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);
+    }
+    .mode-card:hover{
+      box-shadow:0 12px 32px rgba(0,0,0,.1);transform:translateY(-3px);
+      border-color:var(--gold);
+    }
+    .mode-icon{font-size:1.5rem;margin-bottom:.7rem;display:block;}
+    .mode-title{font-weight:700;font-size:.88rem;color:#0f1e35;margin-bottom:.3rem;}
+    .mode-desc{font-size:.73rem;color:#5a7394;line-height:1.55;}
+
+    /* ══ REF SECTION ══ */
+    .ref-section{background:var(--section-bg);padding:0 2rem 4rem;}
+    .ref-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    @media(max-width:900px){.ref-inner{grid-template-columns:1fr;}}
+    .ref-card{background:var(--ref-card-bg);border:1.5px solid var(--ref-card-border);border-radius:var(--r);padding:1.4rem;overflow:hidden;}
+    .ref-card-title{font-weight:700;font-size:.84rem;color:#0f1e35;margin-bottom:1rem;padding-left:.75rem;border-left:3px solid var(--gold);}
+
+    /* ══ PANEL PAGES ══ */
+    .panel-pg{background:var(--bg);min-height:calc(100vh - 58px);padding:2rem 2rem 4rem;}
+    .panel-pg-inner{max-width:1540px;margin:0 auto;}
+    .pg-header{margin-bottom:1.6rem;}
+    .pg-eyebrow{font-size:.58rem;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:.35rem;}
+    .pg-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;color:var(--text);margin-bottom:1.25rem;}
+
+    /* ══ TABLES ══ */
+    .tbl-wrap{overflow-x:auto;border-radius:var(--rs);}
+    .data-tbl{width:100%;border-collapse:collapse;font-size:.72rem;}
+    .data-tbl th{
+      background:var(--bg3);color:var(--text2);font-weight:700;font-size:.6rem;text-transform:uppercase;
+      letter-spacing:1.2px;padding:.65rem .85rem;text-align:left;border-bottom:2px solid var(--brand-blue);
+      white-space:nowrap;position:sticky;top:0;z-index:2;
+    }
+    .data-tbl td{padding:.7rem .85rem;border-bottom:1px solid var(--border);vertical-align:middle;transition:background .12s;line-height:1.4;}
+    .data-tbl tr:last-child td{border-bottom:none;}
+    .data-tbl tbody tr:hover td{background:rgba(72,77,255,.06);}
+    .data-tbl tbody tr:nth-child(even) td{background:rgba(255,255,255,.018);}
+    .data-tbl tbody tr:nth-child(even):hover td{background:rgba(72,77,255,.06);}
+    .ref-card .data-tbl th{background:var(--ref-card-bg);color:var(--text2);border-bottom:2px solid var(--brand-blue);position:static;}
+    .ref-card .data-tbl td{border-bottom:1px solid var(--ref-card-border);color:var(--text);}
+    .ref-card .data-tbl tbody tr:hover td{background:rgba(72,77,255,.05);}
+    .pname{font-weight:700;font-size:.76rem;color:var(--text);}
+    .pprov{font-size:.6rem;color:var(--text2);margin-top:.15rem;letter-spacing:.3px;}
+    .ref-card .pprov{color:var(--text3);}
+    .mono{font-family:'DM Mono',monospace;}
+    .hilite{color:var(--brand-blue);font-weight:700;font-family:'DM Mono',monospace;}
+    .hilite-t{color:var(--brand-blue);font-weight:700;font-family:'DM Mono',monospace;}
+
+    /* ══ TYPE BADGES ══ */
+    .tb{display:inline-block;font-size:.58rem;font-weight:700;padding:.14rem .5rem;border-radius:5px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+    .tb-giveback{background:rgba(255,69,52,.12);color:#FF4534;border:1px solid rgba(255,69,52,.28);}
+    .tb-dsnp{background:rgba(72,77,255,.12);color:#484DFF;border:1px solid rgba(72,77,255,.28);}
+    .tb-csnp{background:rgba(86,13,50,.2);color:#c06090;border:1px solid rgba(86,13,50,.35);}
+    .tb-standard{background:rgba(160,160,160,.1);color:var(--text2);border:1px solid rgba(160,160,160,.2);}
+
+    /* ══ FILTERS ══ */
+    .filter-bar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-bottom:1.3rem;}
+    .fc-chip{
+      background:var(--surface2);border:1px solid var(--border);padding:.32rem .85rem;
+      border-radius:40px;font-size:.71rem;font-weight:500;cursor:pointer;color:var(--text2);
+      transition:all .15s;
+    }
+    .fc-chip:hover:not(.afa){border-color:rgba(72,77,255,.4);color:var(--text);}
+    .fc-chip.afa{background:var(--brand-blue);border-color:var(--brand-blue);color:#fff;font-weight:700;}
+    .srch{
+      background:var(--surface2);border:1px solid var(--border);border-radius:40px;
+      padding:.32rem .9rem;font-family:'DM Sans',sans-serif;font-size:.73rem;
+      color:var(--text);width:210px;transition:border-color .15s;
+    }
+    .srch::placeholder{color:var(--text3);}
+    .srch:focus{outline:none;border-color:rgba(72,77,255,.5);}
+
+    /* ══ FLASHCARDS ══ */
+    .fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem;}
+    .flashcard{height:260px;perspective:1100px;cursor:pointer;}
+    .fc-inner{position:relative;width:100%;height:100%;transition:transform .52s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;border-radius:var(--r);}
+    .flashcard.flipped .fc-inner{transform:rotateY(180deg);}
+    .fc-front,.fc-back{
+      position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);padding:1.15rem;
+      background:var(--navy2);border:1px solid var(--border);display:flex;flex-direction:column;
+      transition:box-shadow .2s;
+    }
+    .fc-front:hover{box-shadow:0 8px 28px rgba(0,0,0,.4);}
+    .fc-back{transform:rotateY(180deg);background:var(--navy3);overflow-y:auto;border-color:var(--border2);}
+    .fc-prov{font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--text2);margin-bottom:.25rem;}
+    .fc-name{font-weight:700;font-size:.84rem;line-height:1.3;flex:1;color:var(--text);}
+    .fc-statgrid{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;margin-top:.65rem;}
+    .fc-stat{background:var(--navy3);border-radius:var(--rxs);padding:.32rem .42rem;}
+    .fc-sl{font-size:.55rem;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;}
+    .fc-sv{font-family:'DM Mono',monospace;font-size:.72rem;font-weight:500;margin-top:.05rem;color:var(--gold);}
+    .fc-hint{font-size:.56rem;color:var(--text3);margin-top:.42rem;text-align:center;}
+    .fc-row{display:flex;justify-content:space-between;align-items:baseline;padding:.26rem 0;border-bottom:1px solid var(--border);gap:.4rem;}
+    .fc-row:last-child{border-bottom:none;}
+    .fc-rl{color:var(--text2);font-size:.62rem;flex-shrink:0;}
+    .fc-rv{font-family:'DM Mono',monospace;font-size:.67rem;font-weight:500;text-align:right;color:var(--text);}
+    .fc-backname{font-weight:700;font-size:.79rem;margin-bottom:.5rem;color:var(--text);}
+    .fc-G{border-top:3px solid var(--amber);}
+    .fc-D{border-top:3px solid var(--teal);}
+    .fc-C{border-top:3px solid var(--purple);}
+    .fc-S{border-top:3px solid var(--text3);}
+
+    /* ══ QUIZ ══ */
+    .quiz-layout{display:grid;grid-template-columns:280px 1fr;gap:1.5rem;align-items:start;}
+    @media(max-width:900px){.quiz-layout{grid-template-columns:1fr;}}
+    .quiz-sidebar{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;position:sticky;top:70px;}
+    .qs-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-bottom:.85rem;}
+    .plan-picker{display:flex;flex-direction:column;gap:.3rem;max-height:400px;overflow-y:auto;}
+    .pp-option{
+      padding:.4rem .65rem;border-radius:7px;border:1px solid transparent;
+      font-size:.73rem;cursor:pointer;color:var(--text2);transition:all .13s;
+    }
+    .pp-option:hover{background:var(--navy3);color:var(--text);border-color:var(--border);}
+    .pp-option.pp-sel{background:rgba(201,162,39,.12);border-color:var(--border2);color:var(--gold);font-weight:600;}
+    .pp-all{background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.2);color:var(--teal);font-weight:600;border-radius:7px;padding:.38rem .65rem;font-size:.73rem;cursor:pointer;margin-bottom:.4rem;transition:all .13s;}
+    .pp-all:hover,.pp-all.pp-sel{background:rgba(0,212,170,.15);border-color:rgba(0,212,170,.4);}
+    .qs-sep{height:1px;background:var(--border);margin:.8rem 0;}
+    .qs-stat{display:flex;justify-content:space-between;font-size:.7rem;margin-bottom:.35rem;}
+    .qs-stat-l{color:var(--text2);}
+    .qs-stat-v{font-family:'DM Mono',monospace;color:var(--text);font-weight:600;}
+    .qwrap{max-width:100%;}
+    .qpb{height:3px;background:var(--navy2);border-radius:2px;margin-bottom:1.3rem;overflow:hidden;}
+    .qpf{height:100%;background:linear-gradient(to right,#009b80,var(--teal));border-radius:2px;transition:width .3s;}
+    .qmeta{display:flex;justify-content:space-between;margin-bottom:1rem;}
+    .qct,.qsc{font-size:.68rem;font-family:'DM Mono',monospace;color:var(--text2);}
+    .qsc{color:var(--teal);}
+    .qtext{font-size:.95rem;font-weight:600;margin-bottom:1.1rem;line-height:1.5;color:var(--text);}
+    .option{
+      background:var(--navy2);border:1.5px solid var(--border);margin:.4rem 0;padding:.7rem .95rem;
+      border-radius:var(--rs);cursor:pointer;font-size:.79rem;font-family:'DM Mono',monospace;
+      transition:all .13s;color:var(--text);
+    }
+    .option:hover:not(.locked){border-color:rgba(201,162,39,.5);background:var(--navy3);}
+    .option.correct{background:rgba(34,197,94,.1);border-color:var(--success);color:var(--success);}
+    .option.incorrect{background:rgba(239,68,68,.09);border-color:var(--error);color:var(--error);}
+    .locked{cursor:default;}
+    .qfb{margin-top:.55rem;font-size:.75rem;font-weight:600;min-height:1.1em;}
+    .rcard{text-align:center;padding:3rem 2rem;}
+    .rscore{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .rlabel{font-size:.88rem;color:var(--text2);margin:.4rem 0 2rem;}
+    .quiz-plan-tag{
+      display:inline-block;background:rgba(201,162,39,.08);border:1px solid var(--border2);
+      color:var(--gold);font-size:.62rem;font-weight:600;padding:.15rem .5rem;border-radius:4px;
+      margin-bottom:.7rem;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.2s ease, color 0.2s ease;
+    /* ══ DRILLS ══ */
+    .dmodes{display:flex;gap:.4rem;margin-bottom:1.3rem;flex-wrap:wrap;}
+    .dmbtn{
+      background:var(--navy2);border:1px solid var(--border);color:var(--text2);
+      font-family:'DM Sans',sans-serif;font-size:.73rem;font-weight:500;
+      padding:.4rem .88rem;border-radius:40px;cursor:pointer;transition:all .13s;
+    }
+    .dmbtn:hover,.dmbtn.dma{background:var(--gold);border-color:var(--gold);color:#08111f;font-weight:700;}
+    .dq{font-size:.95rem;font-weight:600;margin-bottom:.9rem;line-height:1.45;}
+    .drow{display:flex;gap:.6rem;align-items:center;margin-bottom:.8rem;}
+    .dinp{
+      flex:1;padding:.56rem .92rem;border-radius:var(--rs);border:1.5px solid var(--border);
+      background:var(--navy2);color:var(--text);font-family:'DM Mono',monospace;font-size:.82rem;
+      transition:border-color .15s;
+    }
+    .dinp:focus{outline:none;border-color:rgba(201,162,39,.5);}
+    .btn{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#08111f;
+      font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;
+      padding:.5rem 1.15rem;border-radius:40px;cursor:pointer;transition:opacity .14s,transform .1s;
+      white-space:nowrap;
+    }
+    .btn:hover{opacity:.88;transform:translateY(-1px);}
+    .btn:disabled{opacity:.3;cursor:not-allowed;transform:none;}
+    .btng{background:var(--navy2);border:1px solid var(--border);color:var(--text2);font-weight:500;}
+    .btng:hover{opacity:1;transform:none;border-color:rgba(201,162,39,.4);color:var(--text);}
+    .dfb{font-size:.79rem;font-weight:700;min-height:1.3em;margin-top:.35rem;}
+    .stimer{
+      font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;text-align:center;margin-bottom:.9rem;
+      background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;}
+    .mcol-t{font-size:.61rem;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--text2);margin-bottom:.6rem;}
+    .mi{
+      background:var(--navy2);border:1.5px solid var(--border);padding:.5rem .7rem;margin-bottom:.38rem;
+      border-radius:var(--rs);cursor:pointer;font-size:.73rem;transition:all .13s;color:var(--text);
+    }
+    .mi:hover{border-color:rgba(201,162,39,.4);}
+    .mi.ms{background:rgba(201,162,39,.1);border-color:var(--gold);}
+
+    /* ══ MEMORY AIDS ══ */
+    .mem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem;}
+    .mem-card{
+      background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+      padding:1.5rem;position:relative;overflow:hidden;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    .mem-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(72,77,255,.1);}
+    .mem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--brand-blue),var(--brand-red));}
+    .mem-title{font-weight:700;font-size:.88rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;color:var(--text);}
+    .mem-row{
+      font-size:.76rem;color:var(--text2);padding:.38rem 0;
+      border-bottom:1px solid var(--border);line-height:1.5;
+      display:flex;align-items:baseline;gap:.4rem;flex-wrap:wrap;
+    }
+    .mem-row:last-child{border-bottom:none;}
+    .mh{font-family:'DM Mono',monospace;color:var(--brand-blue);font-weight:700;white-space:nowrap;}
+    .mht{font-family:'DM Mono',monospace;color:var(--brand-red);font-weight:700;white-space:nowrap;}
+
+    /* ══ STUDY PLAN ══ */
+    .wk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-bottom:1.2rem;}
+    .wk-card{
+      background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);
+      padding:1.3rem;position:relative;overflow:hidden;
+    }
+    .wk-card::before{
+      content:attr(data-w);position:absolute;top:-1.5rem;right:.5rem;
+      font-size:6rem;font-weight:900;color:var(--navy3);font-family:'Playfair Display',serif;
+    }
+    .wk-l{font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold);margin-bottom:.3rem;position:relative;}
+    .wk-t{font-weight:700;font-size:.88rem;margin-bottom:.4rem;position:relative;color:var(--text);}
+    .wk-d{font-size:.74rem;color:var(--text2);line-height:1.6;position:relative;}
+
+    /* ══ PLAN COMPARISON ══ */
+    .compare-wrap{overflow-x:auto;}
+    .cmp-tbl{width:100%;border-collapse:collapse;font-size:.71rem;}
+    .cmp-tbl th{
+      background:#0b1929;color:var(--text2);font-size:.59rem;text-transform:uppercase;
+      letter-spacing:.8px;padding:.6rem .75rem;text-align:left;border-bottom:1px solid var(--border);
+      white-space:nowrap;position:sticky;top:0;z-index:2;
+    }
+    .cmp-tbl th:first-child{position:sticky;left:0;z-index:3;background:#0b1929;}
+    .cmp-tbl td{padding:.58rem .75rem;border-bottom:1px solid var(--border);vertical-align:top;}
+    .cmp-tbl td:first-child{
+      position:sticky;left:0;z-index:1;background:var(--navy2);
+      font-weight:600;font-size:.72rem;color:var(--text2);white-space:nowrap;
+    }
+    .cmp-tbl .cmp-plan-col{
+      min-width:160px;text-align:center;background:var(--navy2);
+    }
+    .cmp-tbl .cmp-plan-col.cmp-active{background:rgba(201,162,39,.06);}
+    .cmp-tbl .cmp-val{font-family:'DM Mono',monospace;font-size:.7rem;text-align:center;}
+    .cmp-tbl .good{color:var(--teal);}
+    .cmp-tbl .bad{color:var(--error);}
+    .cmp-tbl .neutral{color:var(--text2);}
+    .cmp-sel-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .cmp-chip{
+      background:var(--navy2);border:1px solid var(--border);color:var(--text2);
+      font-size:.68rem;padding:.28rem .65rem;border-radius:5px;cursor:pointer;transition:all .12s;
+    }
+    .cmp-chip.csel{background:rgba(201,162,39,.12);border-color:var(--border2);color:var(--gold);font-weight:600;}
+    .cmp-note{font-size:.65rem;color:var(--text2);margin-bottom:.8rem;}
+
+    /* ══ QUICK COMPARE TOOL ══ */
+    .qc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;}
+    .qc-plan{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);padding:1rem;cursor:pointer;transition:all .15s;}
+    .qc-plan:hover{border-color:var(--border2);}
+    .qc-plan.qc-sel{border-color:var(--gold);background:rgba(201,162,39,.05);}
+    .qc-name{font-weight:700;font-size:.76rem;margin-bottom:.2rem;color:var(--text);}
+    .qc-sub{font-size:.6rem;color:var(--text2);}
+
+    /* ══ MISC / CARDS ══ */
+    .card{background:var(--surface);border:1px solid var(--card-border);border-radius:var(--r);padding:1.4rem;margin-bottom:1.2rem;}
+    .card-hd{display:flex;align-items:center;gap:.5rem;margin-bottom:1.15rem;}
+    .caccent{width:3px;height:20px;border-radius:2px;background:linear-gradient(to bottom,var(--brand-blue),var(--brand-red));flex-shrink:0;}
+    .ctitle{font-size:.92rem;font-weight:700;color:var(--text);}
+    .note-banner{
+      background:rgba(72,77,255,.07);border-left:3px solid var(--brand-blue);
+      border-radius:0 var(--rs) var(--rs) 0;padding:.75rem 1rem;margin-bottom:1.5rem;
+      font-size:.78rem;color:var(--text2);line-height:1.6;
+    }
+    .info-pill{
+      display:inline-flex;align-items:center;gap:.35rem;
+      background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.2);color:var(--teal);
+      font-size:.67rem;font-weight:600;padding:.22rem .62rem;border-radius:30px;
+    }
+    .warn-pill{
+      display:inline-flex;align-items:center;gap:.35rem;
+      background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#f87171;
+      font-size:.67rem;font-weight:600;padding:.22rem .62rem;border-radius:30px;
+    }
+    .section-divider{height:1px;background:var(--border);margin:1.5rem 0;}
+
+    /* ══ SUMMARY STATS BAR ══ */
+    .stat-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.3rem;}
+    .stat-pill{
+      background:var(--navy2);border:1px solid var(--border);border-radius:8px;
+      padding:.45rem .85rem;display:flex;align-items:center;gap:.6rem;
+    }
+    .stat-pill-icon{font-size:.88rem;}
+    .stat-pill-text{display:flex;flex-direction:column;}
+    .stat-pill-v{font-family:'DM Mono',monospace;font-size:.8rem;font-weight:600;color:var(--text);line-height:1;}
+    .stat-pill-l{font-size:.55rem;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-top:.12rem;}
+
+    /* ══ RESPONSIVE ══ */
+    @media(max-width:680px){
+      .match-grid{grid-template-columns:1fr;}
+      .nav-links .nl:not(.active){display:none;}
+    }
+    @media(max-width:480px){
+      .hero-stats{gap:2rem;}
+      .mode-grid{grid-template-columns:1fr 1fr;}
     }
 
-    /* Header */
-    .header {
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0 24px;
+    /* ══ LOGIN OVERLAY ══ */
+    #loginOverlay{
+      position:fixed;inset:0;z-index:9999;
+      background:var(--bg);display:flex;align-items:center;justify-content:center;
+      flex-direction:column;gap:0;
     }
-    .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .login-box{
+      background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);
+      padding:2.5rem 2.8rem;text-align:center;max-width:420px;width:90%;
+      box-shadow:0 24px 64px rgba(0,0,0,.45);
     }
-    .logo h1 {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
+    .login-logo{
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 1.2rem;
     }
-    .logo p {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-    .stats {
-      display: flex;
-      gap: 24px;
-    }
-    .stat {
-      text-align: center;
-    }
-    .stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 20px;
-      font-weight: 600;
-    }
-    .stat-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;
-    }
-    .header-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    .theme-btn {
-      background: var(--border);
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: all 0.15s;
-    }
-    .ai-btn {
-      background: var(--accent);
-      border: none;
-      padding: 8px 18px;
-      border-radius: 10px;
-      color: white;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.15s;
-    }
-    .ai-btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
+    .login-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:var(--text);margin-bottom:.4rem;}
+    .login-sub{font-size:.78rem;color:var(--text2);margin-bottom:1.8rem;line-height:1.6;}
+    .login-divider{height:1px;background:var(--border);margin:1.4rem 0;}
+    .login-note{font-size:.65rem;color:var(--text3);line-height:1.6;}
+    #gSignInBtn{display:flex;justify-content:center;}
 
-    /* Hero */
-    .hero {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 40px 24px 24px;
+    /* ══ USER PILL (nav) ══ */
+    #userPill{
+      display:none;align-items:center;gap:.5rem;flex-shrink:0;
+      background:var(--navy2);border:1px solid var(--border);border-radius:40px;
+      padding:.25rem .75rem .25rem .3rem;
     }
-    .hero h2 {
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
+    .u-avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;}
+    .u-avatar-placeholder{
+      width:26px;height:26px;border-radius:50%;background:var(--gold3);border:1px solid var(--border2);
+      display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--gold);
     }
-    .hero p {
-      color: var(--text-muted);
-      margin-top: 8px;
-      font-size: 15px;
-    }
+    .u-name{font-size:.7rem;font-weight:600;color:var(--text);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
-    /* Category pills */
-    .categories {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 24px 0 20px;
+    /* ══ ADMIN DASHBOARD ══ */
+    .admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
+    .admin-kpi{
+      background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;
     }
-    .pill {
-      padding: 8px 18px;
-      border-radius: 40px;
-      font-size: 13px;
-      font-weight: 500;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: all 0.15s;
+    .admin-kpi-n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:#ecf3ff;line-height:1;}
+    .admin-kpi-l{font-size:.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem;}
+    .admin-filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;align-items:center;}
+    .admin-srch{
+      background:var(--navy2);border:1px solid var(--border);border-radius:40px;
+      padding:.3rem .9rem;font-family:'DM Sans',sans-serif;font-size:.73rem;
+      color:var(--text);width:200px;transition:border-color .15s;
     }
-    .pill.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
+    .admin-srch:focus{outline:none;border-color:rgba(201,162,39,.45);}
+    .admin-srch::placeholder{color:var(--text3);}
+    .score-bar-wrap{background:var(--navy3);border-radius:3px;height:5px;width:80px;display:inline-block;vertical-align:middle;margin-left:.4rem;}
+    .score-bar-fill{height:100%;border-radius:3px;background:linear-gradient(to right,var(--brand-blue),var(--brand-red));}
+    .admin-empty{text-align:center;padding:3rem;color:var(--text2);font-size:.82rem;}
+    .admin-refresh{
+      background:var(--navy2);border:1px solid var(--border);color:var(--text2);
+      font-family:'DM Sans',sans-serif;font-size:.71rem;font-weight:500;
+      padding:.3rem .75rem;border-radius:40px;cursor:pointer;transition:all .13s;
     }
-    .pill:hover:not(.active) {
-      border-color: var(--accent);
-    }
+    .admin-refresh:hover{border-color:var(--border2);color:var(--brand-blue);}
+    .score-hi{color:var(--teal);font-weight:700;}
+    .score-mid{color:var(--amber);font-weight:700;}
+    .score-lo{color:#f87171;font-weight:700;}
+    .net-tag{font-size:.68rem;font-weight:600;padding:.25rem .6rem;border-radius:20px;white-space:nowrap;}
+    .net-blue{background:rgba(69,69,240,.15);color:#8888ff;border:1px solid rgba(69,69,240,.3);}
+    .net-red{background:rgba(255,64,64,.12);color:#ff8080;border:1px solid rgba(255,64,64,.25);}
+    .net-yes{color:var(--success);font-size:.85rem;text-align:center;}
+    .net-no{color:var(--error);font-size:.85rem;text-align:center;}
 
-    /* Layout */
-    .layout {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 24px 40px;
-      display: flex;
-      gap: 28px;
+    /* ══ FLASHCARD MODAL ══ */
+    #fcModal{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem;}
+    #fcModal.open{display:flex;}
+    /* ── THEME TOGGLE ── */
+    .theme-toggle{
+      background:var(--surface2);border:1px solid var(--border2);color:var(--text2);
+      font-size:.72rem;font-weight:600;padding:.3rem .7rem;border-radius:20px;
+      cursor:pointer;display:flex;align-items:center;gap:.35rem;transition:all .2s;
+      white-space:nowrap;flex-shrink:0;
     }
+    .theme-toggle:hover{background:var(--brand-blue);color:#fff;border-color:var(--brand-blue);}
 
-    /* Sidebar filters */
-    .filters {
-      width: 260px;
-      flex-shrink: 0;
-    }
-    .filter-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-      margin-bottom: 16px;
-    }
-    .filter-title {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .reset-link {
-      color: var(--accent);
-      cursor: pointer;
-      font-size: 11px;
-    }
-    .filter-row {
-      margin-bottom: 14px;
-    }
-    .filter-row label {
-      font-size: 13px;
-      font-weight: 500;
-      display: block;
-      margin-bottom: 6px;
-    }
-    .moop-inputs {
-      display: flex;
-      gap: 8px;
-    }
-    .moop-inputs input {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 12px;
-    }
-    .checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-    .checkbox-row input {
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-    }
-    .apply-btn {
-      width: 100%;
-      padding: 10px;
-      background: var(--accent);
-      border: none;
-      border-radius: 10px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 8px;
-    }
+    .fcm-box{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);}
 
-    /* Plan grid */
-    .plan-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 18px;
-    }
-    .plan-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .plan-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--accent);
-    }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-    .carrier {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .cat-badge {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-    .plan-name {
-      font-size: 16px;
-      font-weight: 700;
-      margin: 6px 0 4px;
-    }
-    .plan-id {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-    .plan-stats {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-value-sm {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
-      font-weight: 600;
-    }
-    .stat-label-sm {
-      font-size: 9px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal {
-      background: var(--surface);
-      border-radius: 20px;
-      max-width: 700px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      border: 1px solid var(--border);
-    }
-    .modal-header {
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      position: sticky;
-      top: 0;
-      background: var(--surface);
-    }
-    .modal-body {
-      padding: 24px;
-    }
-    .resource-section {
-      background: var(--bg);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-    .resource-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .resource-row:last-child {
-      border-bottom: none;
-    }
-    .copy-btn {
-      background: var(--border);
-      border: none;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 11px;
-      cursor: pointer;
-    }
-    .external-link {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .close-modal {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-
-    /* AI Panel */
-    .ai-panel {
-      position: fixed;
-      top: 0;
-      right: -380px;
-      width: 380px;
-      height: 100vh;
-      background: var(--surface);
-      border-left: 1px solid var(--border);
-      z-index: 150;
-      transition: right 0.25s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .ai-panel.open {
-      right: 0;
-    }
-    .ai-header {
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-    }
-    .ai-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .ai-input-area {
-      padding: 16px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 10px;
-    }
-    .ai-input-area input {
-      flex: 1;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-    }
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: white;
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-size: 13px;
-      z-index: 300;
-      animation: fadeUp 0.2s ease;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-      to { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-    .empty-state {
-      text-align: center;
-      padding: 60px;
-      color: var(--text-muted);
-    }
-    @media (max-width: 900px) {
-      .layout { flex-direction: column; }
-      .filters { width: 100%; }
-    }
+    .fcm-top{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem .8rem;border-bottom:1px solid var(--border);}
+    .fcm-nav{display:flex;align-items:center;gap:.5rem;}
+    .fcm-arrow{background:var(--navy3);border:1px solid var(--border);color:var(--text);font-size:1.1rem;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+    .fcm-arrow:hover{background:var(--brand-blue);border-color:var(--brand-blue);}
+    .fcm-counter{font-size:.72rem;color:var(--text2);font-weight:600;min-width:50px;text-align:center;}
+    .fcm-close{background:none;border:none;color:var(--text2);font-size:1.3rem;cursor:pointer;padding:.2rem .4rem;border-radius:6px;transition:color .15s;}
+    .fcm-close:hover{color:var(--brand-red);}
+    .fcm-body{padding:1.5rem;}
+    .fcm-prov{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:.3rem;}
+    .fcm-name{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:800;color:#ecf3ff;margin-bottom:.6rem;line-height:1.25;}
+    .fcm-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.8rem;}
+    .fcm-row:last-child{border-bottom:none;}
+    .fcm-rl{color:var(--text2);font-weight:500;}
+    .fcm-rv{color:var(--text);font-weight:600;text-align:right;max-width:60%;}
+    .fcm-note{margin-top:.6rem;font-size:.67rem;color:var(--amber);background:rgba(255,64,64,.08);padding:.35rem .6rem;border-radius:6px;}
   </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="logo">
-      <h1>Texas Medical Care Plans</h1>
-      <p>TX Medicare Advantage Intelligence</p>
+<!-- ══ LOGIN OVERLAY ══ -->
+<div id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 300 150" width="255" height="127" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:.9rem;">
+        <!-- Left: Texas(0→165), notch(0→60 on Medical row), Care Plans(0→300) -->
+        <!-- Right: Texas ends x=165, Medical ends x=300, Care Plans ends x=240 -->
+        <path d="M 0 0 L 165 0 L 165 50 L 300 50 L 300 100 L 240 100 L 240 150 L 0 150 L 0 100 L 60 100 L 60 50 L 0 50 Z" fill="#484DFF"/>
+        <text x="8" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="32" fill="white">Texas<tspan font-size="13" baseline-shift="super">®</tspan></text>
+        <text x="68" y="90" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="32" fill="white">Medical</text>
+        <text x="8" y="138" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="32" fill="white">Care Plans</text>
+      </svg>
     </div>
-    <div class="stats">
-      <div class="stat"><div class="stat-value" id="totalPlans">0</div><div class="stat-label">Plans</div></div>
-      <div class="stat"><div class="stat-value" id="totalCarriers">0</div><div class="stat-label">Carriers</div></div>
-      <div class="stat"><div class="stat-value" id="showingCount">0</div><div class="stat-label">Showing</div></div>
+    <div class="login-title">Texas Medical Care Plans University</div>
+    <div class="login-sub">Texas Medical Care Plans University<br>Sign in with your Google account to continue.</div>
+    <div id="gSignInBtn"></div>
+    <div class="login-divider"></div>
+    <div class="login-note">Your quiz scores will be saved automatically.<br>Contact your manager if you have trouble signing in.</div>
+  </div>
+</div>
+
+<!-- ══ FLASHCARD MODAL ══ -->
+<div id="fcModal">
+  <div class="fcm-box">
+    <div class="fcm-top">
+      <div class="fcm-nav">
+        <button class="fcm-arrow" id="fcPrev">&#8592;</button>
+        <span class="fcm-counter" id="fcCounter">1 / 1</span>
+        <button class="fcm-arrow" id="fcNext">&#8594;</button>
+      </div>
+      <button class="fcm-close" id="fcClose">✕</button>
     </div>
-    <div class="header-actions">
-      <button class="theme-btn" id="themeToggle">🌙</button>
-      <button class="ai-btn" id="aiToggle"><i class="fas fa-robot"></i> AI Advisor</button>
+    <div class="fcm-body" id="fcModalBody"></div>
+  </div>
+</div>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <svg viewBox="0 0 44 44" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(22,22)">
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(0)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(60)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(120)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(180)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(240)"/>
+            <rect x="-3.5" y="-19" width="7" height="15" rx="3" fill="#484DFF" transform="rotate(300)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="nav-brand-text">
+        <span class="nav-abbr">TMCPU</span>
+        <span class="nav-fullname">Texas Medical Care Plans University</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a class="nl active" data-panel="home">Home</a>
+      <a class="nl" data-panel="notes">Notes</a>
+      <a class="nl" data-panel="flashcards">Flashcards</a>
+      <a class="nl" data-panel="quiz">Quiz</a>
+      <a class="nl" data-panel="networks">🏥 Networks</a>
+      <a class="nl" data-panel="compare">Compare <span class="nav-badge">NEW</span></a>
+      <a class="nl" data-panel="memory">Memory Aids</a>
+      <a class="nl" data-panel="studyplan">Study Plan</a>
+      <a class="nl" id="adminNavLink" data-panel="admin" style="display:none;color:var(--gold)">⚙ Admin</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙 Dark</button>
+    <div id="userPill">
+      <div class="u-avatar-placeholder" id="userInitial">?</div>
+      <span class="u-name" id="userNameNav">—</span>
+      <button onclick="handleSignOut()" style="background:none;border:none;cursor:pointer;color:var(--text2);font-size:.65rem;padding:.1rem .3rem;margin-left:.2rem;border-radius:4px;transition:color .15s;" title="Sign out">✕</button>
     </div>
   </div>
-</header>
+</nav>
 
-<section class="hero">
-  <h2>Find the right plan.</h2>
-  <p>All TX Medicare Advantage plans — Alignment, Devoted, HealthSpring, Humana, UHC, Wellcare, Wellpoint.</p>
-  <div class="categories" id="categoryPills"></div>
-</section>
+<main>
+<!-- ══ HOME ══ -->
+<div id="homePanel" class="panel active-panel">
+  <div class="hero">
+    <div class="hero-bg"><div class="hero-grid"></div></div>
+    <div class="hero-content">
+      <div class="hero-badge">Est. 2025 · El Paso, Texas</div>
+      <h1 class="hero-h1">Master Every<br><span class="hero-gold">Medicare Advantage</span><br>Plan in Texas</h1>
+      <p class="hero-sub">The complete professional study system for Texas Medicare Advantage plans — Giveback, Dual (D-SNP), and Chronic (C-SNP). Know every number cold before AEP.</p>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n">37</div><div class="hstat-l">Total Plans</div></div>
+        <div class="hstat-divider"></div>
+        <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">Carriers</div></div>
+        <div class="hstat-divider"></div>
+        <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">Study Modes</div></div>
+        <div class="hstat-divider"></div>
+        <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Plan Types</div></div>
+      </div>
+    </div>
+  </div>
 
-<div class="layout">
-  <aside class="filters">
-    <div class="filter-card">
-      <div class="filter-title">Filters <span class="reset-link" onclick="resetFilters()">Reset</span></div>
-      <div class="filter-row">
-        <label>MOOP Range</label>
-        <div class="moop-inputs">
-          <input type="number" id="moopMin" placeholder="Min" value="0">
-          <input type="number" id="moopMax" placeholder="Max" value="10000">
+  <div class="start-section">
+    <div class="start-inner">
+      <div class="s-eyebrow">Quick Access</div>
+      <div class="s-title">Choose a Study Mode</div>
+      <div class="mode-grid">
+        <div class="mode-card" data-goto="notes"><span class="mode-icon">📋</span><div class="mode-title">Plan Notes</div><div class="mode-desc">Full benefit table for all 37 plans. Filter by type, search by name.</div></div>
+        <div class="mode-card" data-goto="flashcards"><span class="mode-icon">📇</span><div class="mode-title">Flashcards</div><div class="mode-desc">Tap to flip and quiz yourself on every key benefit per plan.</div></div>
+        <div class="mode-card" data-goto="quiz"><span class="mode-icon">📝</span><div class="mode-title">Quiz</div><div class="mode-desc">Multiple-choice questions. Now with per-plan filtering.</div></div>
+        <div class="mode-card" data-goto="networks"><span class="mode-icon">🏥</span><div class="mode-title">Hospital Networks</div><div class="mode-desc">See which plans cover Del Sol, Providence, UMC, and Las Palmas.</div></div>
+        <div class="mode-card" data-goto="compare"><span class="mode-icon">⚖️</span><div class="mode-title">Compare Plans</div><div class="mode-desc">Side-by-side plan comparison tool. Pick any plans to compare.</div></div>
+        <div class="mode-card" data-goto="memory"><span class="mode-icon">🧠</span><div class="mode-title">Memory Aids</div><div class="mode-desc">Patterns, rankings, and mnemonics for rapid recall.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-section">
+    <div class="ref-inner">
+      <div class="ref-card">
+        <div class="ref-card-title">🟡 Giveback — Ranked by Amount</div>
+        <div class="tbl-wrap"><table class="data-tbl"><thead><tr><th>#</th><th>Plan</th><th>Giveback</th><th>MOOP</th><th>Specialist</th></tr></thead><tbody id="homeGivebackTable"></tbody></table></div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-card-title">🔵 D-SNP — Benefits Snapshot</div>
+        <div class="tbl-wrap"><table class="data-tbl"><thead><tr><th>Plan</th><th>OTC</th><th>Dental</th><th>Hearing</th><th>Transport</th></tr></thead><tbody id="homeDsnpTable"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NOTES ══ -->
+<div id="notesPanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Reference</div>
+      <h2 class="pg-title">Plan Notes</h2>
+      <div class="filter-bar">
+        <div data-f="all" class="fc-chip afa nf">All Plans</div>
+        <div data-f="Giveback" class="fc-chip nf">Giveback</div>
+        <div data-f="D-SNP" class="fc-chip nf">D-SNP</div>
+        <div data-f="C-SNP" class="fc-chip nf">C-SNP</div>
+        <div data-f="Standard" class="fc-chip nf">Standard</div>
+        <input type="text" id="notesSearch" class="srch" placeholder="🔍 Search plan...">
+      </div>
+    </div>
+    <div class="tbl-wrap"><table class="data-tbl">
+      <thead><tr><th>Plan</th><th>Type</th><th>Giveback</th><th>Premium</th><th>MOOP</th><th>PCP</th><th>Specialist</th><th>Hospital</th><th>ER</th><th>Ambulance</th><th>Dental</th><th>Vision</th><th>Hearing</th><th>OTC / Food+Util</th><th>Transport</th><th>Rx Deduct</th></tr></thead>
+      <tbody id="notesTableBody"></tbody>
+    </table></div>
+  </div></div>
+</div>
+
+<!-- ══ FLASHCARDS ══ -->
+<div id="flashcardsPanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Study Tool</div>
+      <h2 class="pg-title">Flashcards</h2>
+      <div class="filter-bar">
+        <div data-f="all" class="fc-chip afa ff">All</div>
+        <div data-f="Giveback" class="fc-chip ff">Giveback</div>
+        <div data-f="D-SNP" class="fc-chip ff">D-SNP</div>
+        <div data-f="C-SNP" class="fc-chip ff">C-SNP</div>
+        <div data-f="Standard" class="fc-chip ff">Standard</div>
+        <input type="text" id="flashSearch" class="srch" placeholder="🔍 Search plan...">
+      </div>
+    </div>
+    <div id="flashcardGrid" class="fc-grid"></div>
+  </div></div>
+</div>
+
+<!-- ══ QUIZ ══ -->
+<div id="quizPanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Study Tool</div>
+      <h2 class="pg-title">Quiz</h2>
+    </div>
+    <div class="quiz-layout">
+      <div class="quiz-sidebar">
+        <div class="qs-title">Filter by Plan</div>
+        <div class="plan-picker" id="planPicker"></div>
+        <div class="qs-sep"></div>
+        <div class="qs-stat"><span class="qs-stat-l">Questions per set</span><span class="qs-stat-v" id="qCountStat">8</span></div>
+        <div class="qs-stat"><span class="qs-stat-l">Pool size</span><span class="qs-stat-v" id="qPoolStat">—</span></div>
+        <div class="qs-sep"></div>
+        <button class="btn" id="startNewQuiz" style="width:100%">Start Quiz →</button>
+      </div>
+      <div class="qwrap" id="quizContainer">
+        <div class="card" style="text-align:center;padding:2.5rem;">
+          <div style="font-size:2.5rem;margin-bottom:.8rem;">📝</div>
+          <div style="font-weight:700;margin-bottom:.4rem;font-size:.95rem;">Select plans and start</div>
+          <div style="font-size:.8rem;color:var(--text2)">Choose one plan or all plans from the sidebar, then hit Start Quiz.</div>
         </div>
       </div>
-      <div class="checkbox-row">
-        <input type="checkbox" id="zeroMoopOnly"> <span>$0 MOOP only</span>
-      </div>
-      <button class="apply-btn" onclick="applyFilters()">Apply Filters</button>
     </div>
-    <div class="filter-card">
-      <div class="filter-title">Carriers</div>
-      <div id="carrierCheckboxes"></div>
-    </div>
-  </aside>
-  <div class="plan-grid" id="planGrid"></div>
+  </div></div>
 </div>
 
-<!-- AI Panel -->
-<div class="ai-panel" id="aiPanel">
-  <div class="ai-header">
-    <strong><i class="fas fa-robot"></i> MERIDIAN AI Advisor</strong>
-    <button class="close-modal" id="closeAi" style="background:none;border:none;font-size:20px;">✕</button>
-  </div>
-  <div class="ai-messages" id="aiMessages">
-    <div style="background: var(--bg); padding: 12px; border-radius: 12px;">Ask me about any plan, drug coverage, or client needs.</div>
-  </div>
-  <div class="ai-input-area">
-    <input type="text" id="aiInput" placeholder="e.g., Best plan for diabetes...">
-    <button class="apply-btn" style="width: auto; padding: 0 16px;" id="sendAi">Send</button>
-  </div>
+<!-- ══ HOSPITAL NETWORKS ══ -->
+<div id="networksPanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Provider Reference</div>
+      <h2 class="pg-title">Hospital Networks</h2>
+    </div>
+    <div class="note-banner">🏥 Use this to quickly match a client's hospital to eligible plans. Network access is based on El Paso, TX service area.</div>
+
+    <!-- Hospital cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;margin-bottom:2rem;">
+
+      <!-- Del Sol -->
+      <div class="card" style="border-top:3px solid var(--brand-blue);">
+        <div class="card-hd"><div class="caccent" style="background:var(--brand-blue)"></div><div class="ctitle">🏥 Del Sol Medical Center</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">Accepted by ALL carriers in the area</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-blue">UnitedHealthcare</span>
+          <span class="net-tag net-blue">AARP</span>
+          <span class="net-tag net-blue">Humana</span>
+          <span class="net-tag net-blue">Wellpoint</span>
+          <span class="net-tag net-blue">Wellcare</span>
+          <span class="net-tag net-red">Alignment</span>
+          <span class="net-tag net-red">Devoted</span>
+          <span class="net-tag net-red">HealthSpring</span>
+        </div>
+      </div>
+
+      <!-- Providence -->
+      <div class="card" style="border-top:3px solid var(--brand-red);">
+        <div class="card-hd"><div class="caccent" style="background:var(--brand-red)"></div><div class="ctitle">🏥 Providence Memorial / Sierra Providence</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">Includes all Providence-affiliated facilities in El Paso</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-blue">UnitedHealthcare</span>
+          <span class="net-tag net-blue">AARP</span>
+          <span class="net-tag net-blue">Humana</span>
+          <span class="net-tag net-blue">Wellpoint</span>
+          <span class="net-tag net-blue">Wellcare</span>
+          <span class="net-tag net-red">Alignment</span>
+          <span class="net-tag net-red">Devoted</span>
+          <span class="net-tag net-red">HealthSpring</span>
+        </div>
+      </div>
+
+      <!-- UMC -->
+      <div class="card" style="border-top:3px solid var(--brand-maroon);">
+        <div class="card-hd"><div class="caccent" style="background:var(--brand-maroon)"></div><div class="ctitle">🏥 University Medical Center (UMC)</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">County hospital — covered by select carriers only</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-blue">UnitedHealthcare</span>
+          <span class="net-tag net-blue">AARP</span>
+          <span class="net-tag net-blue">Humana</span>
+          <span class="net-tag net-blue">Wellpoint</span>
+          <span class="net-tag net-blue">Wellcare</span>
+        </div>
+        <div style="margin-top:.6rem;font-size:.68rem;color:var(--amber);background:rgba(255,64,64,.08);padding:.35rem .5rem;border-radius:6px;">⚠️ Alignment, Devoted, and HealthSpring do NOT cover UMC</div>
+      </div>
+
+      <!-- Las Palmas -->
+      <div class="card" style="border-top:3px solid #a855f7;">
+        <div class="card-hd"><div class="caccent" style="background:#a855f7"></div><div class="ctitle">🏥 Las Palmas Medical Center</div></div>
+        <div style="font-size:.75rem;color:var(--text2);margin-bottom:.75rem;">HCA-affiliated — covered by select carriers only</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="net-tag net-red">Alignment</span>
+          <span class="net-tag net-red">Devoted</span>
+          <span class="net-tag net-red">HealthSpring</span>
+        </div>
+        <div style="margin-top:.6rem;font-size:.68rem;color:var(--amber);background:rgba(255,64,64,.08);padding:.35rem .5rem;border-radius:6px;">⚠️ UHC, AARP, Humana, Wellpoint, and Wellcare do NOT cover Las Palmas</div>
+      </div>
+
+    </div>
+
+    <!-- Carrier lookup table -->
+    <div class="card">
+      <div class="card-hd"><div class="caccent"></div><div class="ctitle">Carrier → Hospital Coverage at a Glance</div></div>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead>
+            <tr>
+              <th>Carrier</th>
+              <th>Del Sol</th>
+              <th>Providence / Sierra</th>
+              <th>UMC</th>
+              <th>Las Palmas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>UnitedHealthcare</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>AARP</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Humana</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Wellpoint</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Wellcare</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td></tr>
+            <tr><td><strong>Alignment</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td><td class="net-yes">✅</td></tr>
+            <tr><td><strong>Devoted</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td><td class="net-yes">✅</td></tr>
+            <tr><td><strong>HealthSpring</strong></td><td class="net-yes">✅</td><td class="net-yes">✅</td><td class="net-no">❌</td><td class="net-yes">✅</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div></div>
 </div>
+
+<!-- ══ COMPARE ══ -->
+<div id="comparePanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Analysis Tool</div>
+      <h2 class="pg-title">Plan Comparison</h2>
+    </div>
+    <div class="note-banner">📌 Select 2–5 plans to compare side-by-side. Click a plan to toggle it. Great for client appointments.</div>
+    <div class="cmp-sel-row" id="cmpSelRow"></div>
+    <div class="compare-wrap">
+      <table class="cmp-tbl" id="cmpTable"></table>
+    </div>
+  </div></div>
+</div>
+
+<!-- ══ MEMORY AIDS ══ -->
+<div id="memoryPanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Quick Reference</div>
+      <h2 class="pg-title">Memory Aids</h2>
+    </div>
+    <div class="note-banner">💡 Optimized for rapid recall. Review these every night before AEP season.</div>
+    <div class="mem-grid">
+      <div class="mem-card">
+        <div class="mem-title" style="color:var(--teal)">🔵 D-SNP Rules</div>
+        <div class="mem-row">MOOP often <span class="mh">$0</span> — "Zero for the Duals"</div>
+        <div class="mem-row">OTC: <span class="mh">$69–$197/mo</span></div>
+        <div class="mem-row">Dental: up to <span class="mh">$4,000</span> (Wellcare Liberty / Alignment)</div>
+        <div class="mem-row">Transport: <span class="mh">24–100 trips</span> — Devoted has <span class="mh">50 one-way</span></div>
+        <div class="mem-row">Hearing: up to <span class="mh">$2,000</span> (Wellcare Liberty)</div>
+        <div class="mem-row">Top OTC: <span class="mh">Devoted Dual $197/mo</span></div>
+      </div>
+      <div class="mem-card">
+        <div class="mem-title" style="color:var(--purple)">🟣 C-SNP Rules</div>
+        <div class="mem-row">Focus: <span class="mh">Diabetes / Heart</span></div>
+        <div class="mem-row">Specialist: <span class="mh">$15</span></div>
+        <div class="mem-row">MOOP: <span class="mh">$2,400</span></div>
+        <div class="mem-row">OTC: <span class="mh">$40/mo</span></div>
+        <div class="mem-row">Transport: <span class="mh">50 one-way</span></div>
+        <div class="mem-row">Hearing: <span class="mh">$195–$1,750/aid</span> (not $0)</div>
+        <div class="mem-row">Alignment SmartSavings hearing: <span class="mh">$0 exam, NO aids</span></div>
+      </div>
+      <div class="mem-card">
+        <div class="mem-title" style="color:var(--amber)">🟡 Giveback Rankings</div>
+        <div class="mem-row">#1 <span class="mh">HealthSpring Full $185</span> — low OTC, high giveback</div>
+        <div class="mem-row">#2 <span class="mh">Devoted 008 $184.70</span> — no transport</div>
+        <div class="mem-row">#3 <span class="mh">HumanaChoice Full $174</span></div>
+        <div class="mem-row">#4 <span class="mh">Alignment SmartSavings $164.90</span></div>
+        <div class="mem-row">#5 <span class="mh">HealthSpring Preferred $145</span></div>
+        <div class="mem-row">#6 <span class="mh">Wellcare Giveback $124</span></div>
+        <div class="mem-row">#7 <span class="mh">HumanaChoice PPO $120</span></div>
+      </div>
+      <div class="mem-card">
+        <div class="mem-title">🔢 Critical Numbers</div>
+        <div class="mem-row">Devoted 008 giveback: <span class="mh">$184.70</span> — NO transport</div>
+        <div class="mem-row">Devoted Dual OTC: <span class="mh">$197/mo</span></div>
+        <div class="mem-row">Alignment Total Dual OTC: <span class="mh">$193/mo</span></div>
+        <div class="mem-row">Wellcare Liberty OTC: <span class="mh">$123/mo</span></div>
+        <div class="mem-row">Humana Gold OTC+Food: <span class="mh">$215/mo</span></div>
+        <div class="mem-row">HS TotalCare transport: <span class="mh">Unlimited</span></div>
+      </div>
+      <div class="mem-card">
+        <div class="mem-title">🚗 Transport Cheat Sheet</div>
+        <div class="mem-row"><span class="mh">Devoted</span> — NO transport on ANY plan (Giveback, Core, Dual)</div>
+        <div class="mem-row"><span class="mh">HS TotalCare D-SNP</span> — Unlimited one-way</div>
+        <div class="mem-row"><span class="mh">Humana SNP-DE</span> — 100 one-way (most trips)</div>
+        <div class="mem-row"><span class="mh">Alignment C-SNP + Total Dual</span> — 50 one-way</div>
+        <div class="mem-row"><span class="mh">Wellpoint Dual Advantage</span> — 48 one-way</div>
+        <div class="mem-row"><span class="mh">Wellpoint Full Dual</span> — 48 one-way</div>
+        <div class="mem-row"><span class="mh">UHC S4 + Wellcare Liberty</span> — 48 one-way</div>
+        <div class="mem-row"><span class="mh">Wellpoint Dual Advantage (lower)</span> — <span class="mht">$0 / Not covered</span></div>
+      </div>
+      <div class="mem-card">
+        <div class="mem-title">👂 Hearing Highlights</div>
+        <div class="mem-row"><span class="mh">Alignment SmartSavings (Giveback)</span> — $0 exam, NO aids</div>
+        <div class="mem-row"><span class="mh">HS Full Savings (Giveback)</span> — $399–$1,800/aid copay</div>
+        <div class="mem-row"><span class="mh">Wellcare Liberty D-SNP</span> — up to <span class="mh">$2,000</span></div>
+        <div class="mem-row"><span class="mh">Wellcare Simple (Standard)</span> — up to <span class="mh">$2,000</span></div>
+        <div class="mem-row"><span class="mh">Humana Gold Plus</span> — <span class="mht">$0 basic aids</span></div>
+        <div class="mem-row"><span class="mh">UHC S4</span> — $750 allowance</div>
+      </div>
+      <div class="mem-card">
+        <div class="mem-title">🏥 Hospital / ER Patterns</div>
+        <div class="mem-row">D-SNP hospital: often <span class="mh">$0/day</span></div>
+        <div class="mem-row">Giveback hospital d1: <span class="mh">$320–$375/day</span></div>
+        <div class="mem-row">C-SNP hospital: <span class="mh">$200/d max 5 days</span></div>
+        <div class="mem-row">ER (Giveback): <span class="mh">$115–$120</span></div>
+        <div class="mem-row">Ambulance: <span class="mh">$200–$275</span></div>
+      </div>
+      <div class="mem-card">
+        <div class="mem-title">📋 Carrier Quick IDs</div>
+        <div class="mem-row">Alignment — <span class="mh">3 plans, local El Paso</span></div>
+        <div class="mem-row">Devoted — <span class="mh">#2 giveback $184.70, NO transport</span></div>
+        <div class="mem-row">HealthSpring — <span class="mh">Cigna, #1 giveback $185</span></div>
+        <div class="mem-row">Humana — <span class="mh">100-trip SNP-DE, $215 OTC</span></div>
+        <div class="mem-row">UHC — <span class="mh">Q2 (basic) vs S4 (premium)</span></div>
+        <div class="mem-row">Wellcare — <span class="mh">7 plans, Liberty/Reserve/Giveback+</span></div>
+        <div class="mem-row">Wellpoint — <span class="mh">Dual plans only</span></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ══ STUDY PLAN ══ -->
+<div id="studyplanPanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Road Map</div>
+      <h2 class="pg-title">Study Plan</h2>
+    </div>
+    <div class="wk-grid">
+      <div class="wk-card" data-w="1"><div class="wk-l">Week 1</div><div class="wk-t">Giveback Mastery</div><div class="wk-d">Memorize all 7 giveback plans ranked by amount. Know MOOP, specialist, OTC. Drill till instant recall. Focus on Devoted's $184.70 and HS Full at $185.</div></div>
+      <div class="wk-card" data-w="2"><div class="wk-l">Week 2</div><div class="wk-t">D-SNP Deep Dive</div><div class="wk-d">OTC, dental, hearing, transport per carrier. Know QMB/FBDE/SLMB/QI eligibility. Wellcare plan differences. Remember: Devoted Dual has NO transport.</div></div>
+      <div class="wk-card" data-w="3"><div class="wk-l">Week 3</div><div class="wk-t">C-SNP + Exceptions</div><div class="wk-d">C-SNP costs, hospital per-day copays, ER/ambulance. Note: Alignment SmartSavings hearing = exam only, no aids. HS Full Savings hearing = $399–$1,800/aid copay.</div></div>
+      <div class="wk-card" data-w="4"><div class="wk-l">Week 4</div><div class="wk-t">Full Speed Drills</div><div class="wk-d">Speed rounds, full quizzes, match games daily. Use the Compare tool for client scenarios. Target 90%+ accuracy before AEP.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="caccent"></div><div class="ctitle">Daily Routine</div></div>
+      <div style="font-size:.8rem;color:var(--text2);line-height:2.2;">
+        ✅ 10 flashcards every morning<br>
+        📝 One full quiz per day (filter to your weak carrier)<br>
+        ⚡ 3 speed rounds on weak areas<br>
+        🧠 Review Memory Aids before bed<br>
+        🎯 One match game daily for number recall<br>
+        ⚖️ One comparison session for client scenario prep
+      </div>
+    </div>
+  </div></div>
+</div>
+<!-- ══ ADMIN DASHBOARD ══ -->
+<div id="adminPanel" class="panel">
+  <div class="panel-pg"><div class="panel-pg-inner">
+    <div class="pg-header">
+      <div class="pg-eyebrow">Manager View</div>
+      <h2 class="pg-title">Team Quiz Dashboard</h2>
+    </div>
+    <div class="admin-grid" id="adminKpis">
+      <div class="admin-kpi"><div class="admin-kpi-n" id="kpiAttempts">—</div><div class="admin-kpi-l">Total Attempts</div></div>
+      <div class="admin-kpi"><div class="admin-kpi-n" id="kpiUsers">—</div><div class="admin-kpi-l">Unique Users</div></div>
+      <div class="admin-kpi"><div class="admin-kpi-n" id="kpiAvg">—</div><div class="admin-kpi-l">Avg Score</div></div>
+      <div class="admin-kpi"><div class="admin-kpi-n" id="kpiTop">—</div><div class="admin-kpi-l">Top Score</div></div>
+    </div>
+    <div class="admin-filter-bar">
+      <input type="text" class="admin-srch" id="adminSearch" placeholder="🔍 Filter by name or email…">
+      <button class="admin-refresh" id="adminRefreshBtn">↺ Refresh</button>
+    </div>
+    <div class="tbl-wrap">
+      <table class="data-tbl" id="adminTable">
+        <thead><tr>
+          <th>#</th><th>Name</th><th>Email</th><th>Score</th><th>%</th><th>Plan Filter</th><th>Date &amp; Time</th>
+        </tr></thead>
+        <tbody id="adminTableBody"><tr><td colspan="7" class="admin-empty">Loading results…</td></tr></tbody>
+      </table>
+    </div>
+  </div></div>
+</div>
+</main>
 
 <script>
-// ============================================
-// ALL 27 PLANS — COMPLETE DATASET
-// ============================================
-const PLANS = [
-  // Alignment Health
-  {id:"aln-001",carrier:"Alignment Health",name:"Alignment the One + Walgreens",planId:"H5472-001-000",type:"HMO-POS",cat:"standard",premium:0,giveback:0,moop:2950,specialist:15,er:100,ambulance:200,rxDed:0,rxNote:"$0 / $0 / $45 / 32% / 33%",dental:"$2,500",vision:"$200",transport:"34 one-way",food:"$30/mo",notes:"Lowest MOOP at $2,950"},
-  {id:"aln-010",carrier:"Alignment Health",name:"Alignment SmartSavings",planId:"H5472-010",type:"HMO-POS",cat:"giveback",premium:0,giveback:164.90,moop:6450,specialist:35,er:120,ambulance:200,rxDed:615,rxNote:"$0 / $0 / $45 / 40% / 25%",dental:"Preventive only",vision:"$100/2yr",transport:"Not Covered",food:"None",notes:"High giveback, high MOOP"},
-  {id:"aln-002",carrier:"Alignment Health",name:"Alignment Heart & Diabetes",planId:"H5472-002",type:"HMO-POS-CSNP",cat:"csnp",premium:0,giveback:0,moop:2400,specialist:15,er:120,ambulance:200,rxDed:0,rxNote:"$0 / $0 / $45 / 32% / 33%",dental:"$2,000",vision:"$200",transport:"50 one-way",food:"$40/mo",notes:"C-SNP for heart/diabetes"},
-  {id:"aln-004",carrier:"Alignment Health",name:"Alignment Dual H&D Plus",planId:"H5472-004",type:"HMO C-SNP",cat:"csnp",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,600",vision:"$500/2yr",transport:"50 one-way",food:"$197/mo",notes:"$0 MOOP. Requires Medicaid + chronic condition"},
-  {id:"aln-007",carrier:"Alignment Health",name:"Alignment Dual Select+",planId:"H5472-007",type:"HMO-POS-DSNP",cat:"dual",premium:0,giveback:0,moop:2900,specialist:0,er:135,ambulance:100,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$2,700",vision:"$400/2yr",transport:"50 one-way",food:"$100/mo",notes:"D-SNP for SLMB/QI"},
-  {id:"aln-009",carrier:"Alignment Health",name:"Alignment Total Dual+",planId:"H5472-009",type:"HMO-POS D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$4,000",vision:"$400/2yr",transport:"50 one-way",food:"$193/mo",notes:"Full $0 MOOP D-SNP for QMB/FBDE"},
-  // Devoted Health
-  {id:"dev-007",carrier:"Devoted Health",name:"Devoted Core 007 TX",planId:"H7993-007-00",type:"HMO",cat:"standard",premium:0,giveback:0,moop:3450,specialist:20,er:150,ambulance:315,rxDed:0,rxNote:"$0 / $0 / 24% / 43% / 33%",dental:"$3,500",vision:"$400",transport:"Not Covered",food:"$100/mo",notes:"Best dental among standard plans"},
-  {id:"dev-008",carrier:"Devoted Health",name:"Devoted Giveback 008 TX",planId:"H7993-008-000",type:"HMO",cat:"giveback",premium:0,giveback:184.70,moop:7550,specialist:45,er:115,ambulance:315,rxDed:605,rxNote:"$0 / $0 / 24% / 25% / 25%",dental:"$3,000",vision:"$400",transport:"Not Covered",food:"None",notes:"Highest giveback at $184.70"},
-  {id:"dev-017",carrier:"Devoted Health",name:"Devoted Dual 017 TX",planId:"H7993-017-000",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$400",transport:"Not Covered",food:"$200/mo",notes:"$0 MOOP D-SNP for QMB/SLMB+"},
-  {id:"dev-038",carrier:"Devoted Health",name:"Devoted Dual Full 038 TX",planId:"H7993-038-000",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$4,000",vision:"$400",transport:"Not Covered",food:"$375/mo",notes:"Best dental at $4,000, $375/mo food"},
-  {id:"dev-029",carrier:"Devoted Health",name:"Devoted C-SNP Plus 029 TX",planId:"H7993-029-000",type:"HMO C-SNP",cat:"csnp",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$400",transport:"Not Covered",food:"$425/mo",notes:"Highest food benefit at $425/mo"},
-  {id:"dev-028",carrier:"Devoted Health",name:"Devoted C-SNP Premium 028 TX",planId:"H7993-028-000",type:"HMO C-SNP",cat:"csnp",premium:4.80,giveback:0,moop:4250,specialist:30,er:130,ambulance:315,rxDed:605,rxNote:"$18 / $20 / 23% / 26% / 25%",dental:"$2,000",vision:"$400",transport:"Not Covered",food:"$175/mo",notes:"$4.80 premium ($0 for LIS)"},
-  {id:"dev-027",carrier:"Devoted Health",name:"Devoted C-SNP 027 TX",planId:"H7993-027-000",type:"HMO C-SNP",cat:"csnp",premium:0,giveback:0,moop:3750,specialist:25,er:150,ambulance:315,rxDed:325,rxNote:"$0 / $0 / 20% / 25% / 27%",dental:"$3,500",vision:"$400",transport:"Not Covered",food:"$40/mo",notes:"Best dental among C-SNP at $3,500"},
-  // HealthSpring / Cigna
-  {id:"hs-061",carrier:"HealthSpring / Cigna",name:"HealthSpring Preferred",planId:"H4513-061-003",type:"HMO",cat:"standard",premium:0,giveback:0,moop:3500,specialist:15,er:150,ambulance:150,rxDed:200,rxNote:"$0 / $2 / $47 / 50% / 30%",dental:"$2,700",vision:"$200",transport:"Unlimited",food:"None",notes:"UNLIMITED transportation"},
-  {id:"hs-083",carrier:"HealthSpring / Cigna",name:"HealthSpring Preferred Savings",planId:"H4513-083-003",type:"HMO",cat:"giveback",premium:0,giveback:145,moop:6775,specialist:45,er:115,ambulance:240,rxDed:300,rxNote:"$0 / $0 / $47 / 50% / 29%",dental:"$2,500",vision:"$250",transport:"Not Covered",food:"None",notes:"$145 giveback, high MOOP"},
-  {id:"hs-093",carrier:"HealthSpring / Cigna",name:"HealthSpring Preferred Full Savings",planId:"H4513-093-003",type:"HMO",cat:"giveback",premium:0,giveback:185,moop:6900,specialist:50,er:115,ambulance:240,rxDed:500,rxNote:"$0 / $0 / $47 / 50% / 27%",dental:"$1,200",vision:"$125",transport:"10 one-way",food:"None",notes:"Highest giveback at $185"},
-  {id:"hs-060",carrier:"HealthSpring / Cigna",name:"HealthSpring TotalCare",planId:"H4513-060-003",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:3400,specialist:0,er:150,ambulance:100,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$300",transport:"Unlimited",food:"None",notes:"Unlimited transport D-SNP"},
-  {id:"hs-ppo",carrier:"HealthSpring / Cigna",name:"True Choice PPO",planId:"H7849-154-000",type:"PPO",cat:"standard",premium:0,giveback:0,moop:6800,specialist:40,er:115,ambulance:275,rxDed:500,rxNote:"$0 / $5 / $47 / 50% / 30%",dental:"$600",vision:"$100",transport:"10 one-way",food:"None",notes:"Only PPO in database"},
-  // Humana
-  {id:"hum-061",carrier:"Humana",name:"Humana Gold Plus (HMO)",planId:"H4461-061-000",type:"HMO",cat:"standard",premium:0,giveback:0,moop:3350,specialist:15,er:150,ambulance:335,rxDed:615,rxNote:"$0 / $0 / $45 / 35% / 25%",dental:"$2,000",vision:"$250",transport:"24 one-way",food:"None",notes:"Good all-around standard plan"},
-  {id:"hum-053",carrier:"Humana",name:"Humana Gold Plus (HMO) $14",planId:"H4461-053-000",type:"HMO",cat:"standard",premium:14,giveback:0,moop:3400,specialist:0,er:150,ambulance:335,rxDed:615,rxNote:"$0 / $0 / $45 / 50% / 25%",dental:"$5,000",vision:"$350",transport:"100 one-way",food:"None",notes:"$5,000 dental, 100 transport trips"},
-  {id:"hum-066",carrier:"Humana",name:"Humana Gold Plus-Diabetes & Heart",planId:"H4461-066-000",type:"HMO C-SNP",cat:"csnp",premium:0,giveback:0,moop:3450,specialist:10,er:150,ambulance:335,rxDed:615,rxNote:"$0 / $0 / $45 / 47% / 25%",dental:"$2,000",vision:"$200",transport:"60 one-way",food:"None",notes:"$10 specialist, $75/mo OTC rollover"},
-  {id:"hum-gvb",carrier:"Humana",name:"HumanaChoice Giveback (PPO)",planId:"H7617-041-000",type:"PPO",cat:"giveback",premium:0,giveback:120,moop:7950,specialist:35,er:115,ambulance:335,rxDed:0,rxNote:"$0 / $0 / $30 / 34% / 33%",dental:"$3,000",vision:"$113",transport:"Not Covered",food:"None",notes:"No Rx deductible"},
-  {id:"hum-ppo1",carrier:"Humana",name:"HumanaChoice (PPO)",planId:"H7617-063-000",type:"PPO",cat:"standard",premium:0,giveback:1,moop:4225,specialist:30,er:130,ambulance:335,rxDed:340,rxNote:"$0 / $9 / $45 / 45% / 29%",dental:"$2,500",vision:"$250",transport:"48 one-way",food:"None",notes:"PPO with $2,500 dental"},
-  {id:"hum-ppo2",carrier:"Humana",name:"HumanaChoice (PPO) $20",planId:"H7617-059-000",type:"PPO",cat:"standard",premium:20,giveback:2,moop:7700,specialist:40,er:115,ambulance:335,rxDed:420,rxNote:"$0 / $5 / $47 / 48% / 28%",dental:"$1,000",vision:"$113",transport:"Not Covered",food:"None",notes:"$20 premium, high MOOP"},
-  {id:"hum-usaa",carrier:"Humana",name:"Humana USAA Honor Giveback (PPO)",planId:"H7617-062-000",type:"PPO",cat:"giveback",premium:0,giveback:130,moop:7900,specialist:40,er:115,ambulance:335,rxDed:0,rxNote:"NO PART D",dental:"$1,000",vision:"$113",transport:"Not Covered",food:"None",notes:"⚠ NO PART D coverage"},
-  {id:"hum-dsnp1",carrier:"Humana",name:"Humana Gold Plus SNP-DE (HMO D-SNP)",planId:"H4461-070-000",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$250",transport:"60 one-way",food:"$215/mo",notes:"$215/mo SSBCI"},
-  {id:"hum-dsnp2",carrier:"Humana",name:"Humana Gold Plus SNP-DE Legacy",planId:"H4461-069-000",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$250",transport:"100 one-way",food:"$130/mo",notes:"100 transport trips"},
-  // UnitedHealthcare
-  {id:"uhc-q2",carrier:"UnitedHealthcare",name:"UHC Dual Complete TX-Q2",planId:"H4527-057-000",type:"HMO-POS",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$1,500",vision:"$200",transport:"24 one-way",food:"$99/mo",notes:"$99/mo SSBCI, $2,200/2yr hearing"},
-  {id:"uhc-d001",carrier:"UnitedHealthcare",name:"UHC Dual Complete TX-D001 PPO",planId:"H2406-050-000",type:"PPO",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$1,500",vision:"$200",transport:"24 one-way",food:"$60/mo",notes:"D-SNP PPO, $60/mo SSBCI"},
-  {id:"uhc-s4",carrier:"UnitedHealthcare",name:"UHC Dual Complete TX-S4",planId:"H4527-054-000",type:"HMO-POS",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$350",transport:"48 one-way",food:"$143/mo",notes:"Best UHC dual plan, $143/mo SSBCI"},
-  {id:"uhc-v002",carrier:"UnitedHealthcare",name:"UHC Dual Complete TX-V002",planId:"H4527-003-000",type:"HMO-POS",cat:"dual",premium:0,giveback:0,moop:4900,specialist:35,er:130,ambulance:290,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$1,500",vision:"$150",transport:"24 one-way",food:"$50/mo",notes:"D-SNP for SLMB/QI, MOOP $4,900"},
-  // Wellcare
-  {id:"wc-dual-access",carrier:"Wellcare",name:"Wellcare Dual Access",planId:"H0174-004-000",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$300",transport:"24 one-way",food:"$87/mo",notes:"PERS benefit included"},
-  {id:"wc-dual-liberty",carrier:"Wellcare",name:"Wellcare Dual Liberty",planId:"H0174-006-000",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$4,000",vision:"$400",transport:"48 one-way",food:"$123/mo",notes:"Best dental at $4,000, PERS included"},
-  {id:"wc-giveback",carrier:"Wellcare",name:"Wellcare Giveback (HMO)",planId:"H0174-021-000",type:"HMO",cat:"giveback",premium:0,giveback:124,moop:6900,specialist:50,er:115,ambulance:210,rxDed:615,rxNote:"$0 / $0 / 25% / 42% / 25%",dental:"$3,000",vision:"$100",transport:"Not Covered",food:"None",notes:"$124 giveback with $3,000 dental"},
-  {id:"wc-assist",carrier:"Wellcare",name:"Wellcare Assist (HMO)",planId:"H0174-009-000",type:"HMO",cat:"standard",premium:4.80,giveback:0,moop:3450,specialist:20,er:150,ambulance:250,rxDed:615,rxNote:"$18 / $19 / 20% / $100 / 25%",dental:"$3,000",vision:"$200",transport:"Not Covered",food:"None",notes:"$4.80 premium ($0 for LIS)"},
-  {id:"wc-simple",carrier:"Wellcare",name:"Wellcare Simple (HMO)",planId:"H0174-016-000",type:"HMO",cat:"standard",premium:0,giveback:0,moop:3900,specialist:20,er:150,ambulance:250,rxDed:615,rxNote:"$0 / $0 / 25% / 35% / 25%",dental:"$2,000",vision:"$200",transport:"12 one-way",food:"None",notes:"$2,000 hearing benefit"},
-  {id:"wc-simple-ppo",carrier:"Wellcare",name:"Wellcare Simple Open (PPO)",planId:"H7323-007-000",type:"PPO",cat:"standard",premium:0,giveback:0,moop:5000,specialist:30,er:130,ambulance:245,rxDed:615,rxNote:"$0 / $0 / 25% / 36% / 25%",dental:"$1,000",vision:"$200",transport:"24 one-way",food:"None",notes:"PPO option with 24 transport trips"},
-  // Wellpoint
-  {id:"wlpt-010",carrier:"Wellpoint",name:"Wellpoint Full Dual Advantage",planId:"H8849-010-004",type:"HMO D-SNP",cat:"dual",premium:0,giveback:0,moop:0,specialist:0,er:0,ambulance:0,rxDed:0,rxNote:"$0 / $1.60 / $4.90 / $5.10 / $12.65",dental:"$3,000",vision:"$250",transport:"48 one-way",food:"$105/mo",notes:"$3,000 hearing benefit, PERS included"}
-];
-
-// Carrier resources with CUSTOMER SERVICE numbers (main member line)
-const CARRIER_RESOURCES = {
-  "Alignment Health": { 
-    customerService: "(888) 442-4788",
-    pharmacyPhone: "(888) 442-4788", 
-    portalLink: "https://www.alignmenthealthplan.com/members", 
-    providerLink: "https://www.alignmenthealthplan.com/find-a-doctor" 
-  },
-  "Devoted Health": { 
-    customerService: "(800) 338-6833",
-    pharmacyPhone: "(800) 338-6833", 
-    portalLink: "https://www.devoted.com/members", 
-    providerLink: "https://www.devoted.com/find-a-doctor" 
-  },
-  "HealthSpring / Cigna": { 
-    customerService: "(800) 244-6224",
-    pharmacyPhone: "(800) 244-6224", 
-    portalLink: "https://www.cigna.com/medicare/members", 
-    providerLink: "https://hcpdirectory.cigna.com/" 
-  },
-  "Humana": { 
-    customerService: "(800) 457-4708",
-    pharmacyPhone: "(800) 555-2546", 
-    portalLink: "https://www.humana.com/medicare/members", 
-    providerLink: "https://docfinder.humana.com/" 
-  },
-  "UnitedHealthcare": { 
-    customerService: "(877) 473-2973",
-    pharmacyPhone: "(888) 867-5561", 
-    portalLink: "https://www.uhcmedicaresolutions.com/members", 
-    providerLink: "https://www.uhcmedicaresolutions.com/find-a-doctor.html" 
-  },
-  "Wellcare": { 
-    customerService: "(888) 550-5252",
-    pharmacyPhone: "(888) 550-5252", 
-    portalLink: "https://www.wellcare.com/medicare/members", 
-    providerLink: "https://www.wellcare.com/en/Medicare/Member-Resources/Find-a-Provider" 
-  },
-  "Wellpoint": { 
-    customerService: "(888) 755-5455",
-    pharmacyPhone: "(888) 755-5455", 
-    portalLink: "https://www.wellpoint.com/members", 
-    providerLink: "https://www.wellpoint.com/find-care.html" 
-  }
+// ═══════════════════════════════════════════════
+// ⚙️  CONFIGURATION — fill in these 3 values
+// ═══════════════════════════════════════════════
+const CONFIG = {
+  googleClientId:   "962036782925-phqp23kjdooqlbetm8qtmq9vfqe1cdf5.apps.googleusercontent.com",
+  appsScriptUrl:    "https://script.google.com/macros/s/AKfycbwpft_VNDNld8i9dHytn5_dwHV_Km2pSkQKR2uTgC8u9lStarRady0jyGfrpHxfU80A/exec",
+  adminEmails:      ["jbriseno@texasmedicalcareplans.com","mcarillo@texasmedicalcareplans.com"],
 };
+// ═══════════════════════════════════════════════
 
-// State
-let currentPlans = [...PLANS];
-let currentCategory = "all";
+// ── AUTH STATE ──
+let currentUser = null; // {email, name, picture}
 
-// Helper functions
-function showToast(msg) {
-  const t = document.createElement("div");
-  t.className = "toast";
-  t.innerText = msg;
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 2000);
+function parseJwt(token){
+  const b64=token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+  return JSON.parse(decodeURIComponent(atob(b64).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join('')));
 }
 
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text);
-  showToast("Copied!");
+function handleGoogleSignIn(response){
+  const payload = parseJwt(response.credential);
+  currentUser = {email: payload.email, name: payload.name, picture: payload.picture};
+  // Update nav pill
+  document.getElementById('userNameNav').textContent = currentUser.name.split(' ')[0];
+  document.getElementById('userInitial').textContent = currentUser.name[0].toUpperCase();
+  document.getElementById('userPill').style.display = 'flex';
+  // Show admin tab if admin
+  if(CONFIG.adminEmails.includes(currentUser.email)){
+    document.getElementById('adminNavLink').style.display = '';
+  }
+  // Hide overlay
+  document.getElementById('loginOverlay').style.display = 'none';
 }
 
-function renderStats() {
-  document.getElementById("totalPlans").innerText = PLANS.length;
-  const carriers = [...new Set(PLANS.map(p => p.carrier))];
-  document.getElementById("totalCarriers").innerText = carriers.length;
-  document.getElementById("showingCount").innerText = currentPlans.length;
+function handleSignOut(){
+  currentUser = null;
+  google.accounts.id.disableAutoSelect();
+  document.getElementById('userPill').style.display = 'none';
+  document.getElementById('adminNavLink').style.display = 'none';
+  document.getElementById('userNameNav').textContent = '—';
+  document.getElementById('userInitial').textContent = '?';
+  document.getElementById('loginOverlay').style.display = 'flex';
+  switchPanel('home');
 }
 
-function renderCategories() {
-  const cats = ["all", "standard", "dual", "giveback", "csnp"];
-  const labels = { all: "All Plans", standard: "Standard", dual: "D-SNP", giveback: "Giveback", csnp: "C-SNP" };
-  const container = document.getElementById("categoryPills");
-  container.innerHTML = cats.map(cat => `<div class="pill ${cat === currentCategory ? 'active' : ''}" onclick="setCategory('${cat}')">${labels[cat]}</div>`).join("");
+// Init Google Sign-In button
+window.addEventListener('load', ()=>{
+  if(typeof google !== 'undefined'){
+    google.accounts.id.initialize({
+      client_id: CONFIG.googleClientId,
+      callback: handleGoogleSignIn,
+    });
+    google.accounts.id.renderButton(
+      document.getElementById('gSignInBtn'),
+      {theme:'filled_black', size:'large', shape:'pill', text:'signin_with'}
+    );
+  }
+});
+
+// ── SCORE SUBMISSION ──
+function submitScore(score, total, planFilter){
+  if(!currentUser || !CONFIG.appsScriptUrl || CONFIG.appsScriptUrl.startsWith('YOUR')) return;
+  fetch(CONFIG.appsScriptUrl, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      email: currentUser.email,
+      name:  currentUser.name,
+      score, total,
+      planFilter: planFilter || 'All Plans',
+      timestamp: new Date().toISOString()
+    })
+  }).catch(()=>{}); // silent fail — score still visible on screen
 }
 
-function setCategory(cat) {
-  currentCategory = cat;
-  filterPlans();
-  renderCategories();
-  renderPlanGrid();
-  renderStats();
-}
+// ── ADMIN DASHBOARD ──
+let adminData = [];
 
-function filterPlans() {
-  if (currentCategory === "all") currentPlans = [...PLANS];
-  else currentPlans = PLANS.filter(p => p.cat === currentCategory);
-}
-
-function applyFilters() {
-  const moopMin = parseInt(document.getElementById("moopMin")?.value) || 0;
-  const moopMax = parseInt(document.getElementById("moopMax")?.value) || 10000;
-  const zeroOnly = document.getElementById("zeroMoopOnly")?.checked || false;
-  const carrierChecks = {};
-  document.querySelectorAll(".carrier-check").forEach(cb => { carrierChecks[cb.value] = cb.checked; });
-  
-  let filtered = PLANS;
-  if (currentCategory !== "all") filtered = filtered.filter(p => p.cat === currentCategory);
-  filtered = filtered.filter(p => p.moop >= moopMin && p.moop <= moopMax);
-  if (zeroOnly) filtered = filtered.filter(p => p.moop === 0);
-  filtered = filtered.filter(p => carrierChecks[p.carrier] !== false);
-  
-  currentPlans = filtered;
-  renderPlanGrid();
-  renderStats();
-}
-
-function resetFilters() {
-  if (document.getElementById("moopMin")) document.getElementById("moopMin").value = 0;
-  if (document.getElementById("moopMax")) document.getElementById("moopMax").value = 10000;
-  if (document.getElementById("zeroMoopOnly")) document.getElementById("zeroMoopOnly").checked = false;
-  document.querySelectorAll(".carrier-check").forEach(cb => cb.checked = true);
-  currentCategory = "all";
-  filterPlans();
-  renderCategories();
-  renderPlanGrid();
-  renderStats();
-}
-
-function renderCarrierFilters() {
-  const carriers = [...new Set(PLANS.map(p => p.carrier))];
-  const container = document.getElementById("carrierCheckboxes");
-  container.innerHTML = carriers.map(c => `
-    <div class="checkbox-row">
-      <input type="checkbox" class="carrier-check" value="${c}" checked onchange="applyFilters()">
-      <span>${c}</span>
-    </div>
-  `).join("");
-}
-
-function renderPlanGrid() {
-  const grid = document.getElementById("planGrid");
-  if (!currentPlans.length) {
-    grid.innerHTML = `<div class="empty-state">No plans match your filters.<br>Try adjusting the criteria.</div>`;
+async function loadAdminData(){
+  if(!currentUser || !CONFIG.appsScriptUrl || CONFIG.appsScriptUrl.startsWith('YOUR')){
+    document.getElementById('adminTableBody').innerHTML=`<tr><td colspan="7" class="admin-empty" style="color:var(--amber)">⚙️ Set your CONFIG values to see results.</td></tr>`;
     return;
   }
-  grid.innerHTML = currentPlans.map(plan => `
-    <div class="plan-card" onclick="showPlanDetail('${plan.id}')">
-      <div class="card-header">
-        <span class="carrier">${plan.carrier}</span>
-        <span class="cat-badge">${plan.cat.toUpperCase()}</span>
-      </div>
-      <div class="plan-name">${plan.name}</div>
-      <div class="plan-id">${plan.planId} · ${plan.type}</div>
-      ${plan.giveback > 0 ? `<div style="color: var(--accent); font-size: 12px; font-weight: 600; margin: 6px 0;">↓ Part B: $${plan.giveback}/mo</div>` : ''}
-      <div class="plan-stats">
-        <div class="stat-item"><div class="stat-value-sm">${plan.moop === 0 ? '$0' : '$' + plan.moop.toLocaleString()}</div><div class="stat-label-sm">MOOP</div></div>
-        <div class="stat-item"><div class="stat-value-sm">$${plan.specialist}</div><div class="stat-label-sm">Specialist</div></div>
-        <div class="stat-item"><div class="stat-value-sm">${plan.rxDed === 0 ? '$0' : '$' + plan.rxDed}</div><div class="stat-label-sm">Rx Ded</div></div>
-      </div>
-    </div>
-  `).join("");
+  document.getElementById('adminTableBody').innerHTML=`<tr><td colspan="7" class="admin-empty">Loading…</td></tr>`;
+  try{
+    const url = CONFIG.appsScriptUrl + '?adminEmail=' + encodeURIComponent(currentUser.email);
+    const res = await fetch(url);
+    const json = await res.json();
+    if(json.error){ throw new Error(json.error); }
+    adminData = json;
+    renderAdminTable(adminData);
+    renderAdminKpis(adminData);
+  } catch(e){
+    document.getElementById('adminTableBody').innerHTML=`<tr><td colspan="7" class="admin-empty" style="color:var(--error)">Error loading data: ${e.message}</td></tr>`;
+  }
 }
 
-function showPlanDetail(planId) {
-  const plan = PLANS.find(p => p.id === planId);
-  if (!plan) return;
-  const res = CARRIER_RESOURCES[plan.carrier] || CARRIER_RESOURCES["Wellcare"];
-  const modal = document.createElement("div");
-  modal.className = "modal-overlay active";
-  modal.innerHTML = `
-    <div class="modal">
-      <div class="modal-header">
-        <div>
-          <div style="color: var(--accent); font-size: 12px; font-weight: 600;">${plan.carrier}</div>
-          <div style="font-size: 20px; font-weight: 700;">${plan.name}</div>
-          <div style="font-family: monospace; font-size: 11px; color: var(--text-muted);">${plan.planId} · ${plan.type}</div>
-        </div>
-        <button class="close-modal" onclick="this.closest('.modal-overlay').remove()">✕</button>
-      </div>
-      <div class="modal-body">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
-          <div><strong>MOOP</strong><br>${plan.moop === 0 ? '$0' : '$' + plan.moop.toLocaleString()}</div>
-          <div><strong>Premium</strong><br>${plan.premium === 0 ? '$0' : '$' + plan.premium + '/mo'}</div>
-          <div><strong>Part B Giveback</strong><br>${plan.giveback > 0 ? '$' + plan.giveback + '/mo' : '—'}</div>
-          <div><strong>Specialist Copay</strong><br>$${plan.specialist}</div>
-          <div><strong>ER Copay</strong><br>$${plan.er}</div>
-          <div><strong>Ambulance</strong><br>$${plan.ambulance}</div>
-          <div><strong>Rx Deductible</strong><br>${plan.rxDed === 0 ? '$0' : '$' + plan.rxDed}</div>
-          <div><strong>Dental</strong><br>${plan.dental}</div>
-          <div><strong>Vision</strong><br>${plan.vision}</div>
-          <div><strong>Transportation</strong><br>${plan.transport}</div>
-          <div><strong>Food Benefit</strong><br>${plan.food || '—'}</div>
-        </div>
-        <div class="resource-section">
-          <div class="resource-row"><span>📞 Customer Service:</span> <strong>${res.customerService}</strong> <button class="copy-btn" onclick="copyToClipboard('${res.customerService}')">Copy</button></div>
-          <div class="resource-row"><span>💊 Pharmacy Line:</span> ${res.pharmacyPhone} <button class="copy-btn" onclick="copyToClipboard('${res.pharmacyPhone}')">Copy</button></div>
-          <div class="resource-row"><span>🔗 Member Portal:</span> <a href="${res.portalLink}" target="_blank" class="external-link">Visit Portal →</a></div>
-          <div class="resource-row"><span>🩺 Provider Directory:</span> <a href="${res.providerLink}" target="_blank" class="external-link">Find a Doctor →</a></div>
-        </div>
-        <div class="resource-section">
-          <div><strong>⚠️ Advisor Note</strong></div>
-          <div style="font-size: 13px; margin-top: 8px;">${plan.notes}</div>
-        </div>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
+function renderAdminKpis(data){
+  const users = new Set(data.map(r=>r.Email)).size;
+  const pcts = data.map(r=>parseInt(r.Percent)||0);
+  const avg = pcts.length ? Math.round(pcts.reduce((a,b)=>a+b,0)/pcts.length) : 0;
+  const top = pcts.length ? Math.max(...pcts) : 0;
+  document.getElementById('kpiAttempts').textContent = data.length;
+  document.getElementById('kpiUsers').textContent = users;
+  document.getElementById('kpiAvg').textContent = avg+'%';
+  document.getElementById('kpiTop').textContent = top+'%';
 }
 
-// Theme
-function setupTheme() {
-  const toggle = document.getElementById("themeToggle");
-  const saved = localStorage.getItem("theme");
-  if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
-  toggle.addEventListener("click", () => {
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    if (isDark) {
-      document.documentElement.removeAttribute("data-theme");
-      localStorage.setItem("theme", "light");
-      toggle.innerHTML = "🌙";
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-      toggle.innerHTML = "☀️";
-    }
+function renderAdminTable(data){
+  if(!data.length){
+    document.getElementById('adminTableBody').innerHTML=`<tr><td colspan="7" class="admin-empty">No quiz results yet. Have your team take a quiz!</td></tr>`;
+    return;
+  }
+  const scoreClass = p => p>=80?'score-hi':p>=60?'score-mid':'score-lo';
+  document.getElementById('adminTableBody').innerHTML=[...data].reverse().map((r,i)=>{
+    const pct = parseInt(r.Percent)||0;
+    const barW = Math.min(pct,100);
+    return `<tr>
+      <td class="mono" style="color:var(--text3);font-size:.65rem">${data.length-i}</td>
+      <td><div class="pname">${r.Name||'—'}</div></td>
+      <td style="font-size:.67rem;color:var(--text2)">${r.Email||'—'}</td>
+      <td class="mono">${r.Score||0} / ${r.Total||8}</td>
+      <td><span class="${scoreClass(pct)}">${r.Percent||'—'}</span>
+          <span class="score-bar-wrap"><span class="score-bar-fill" style="width:${barW}%"></span></span></td>
+      <td style="font-size:.67rem;color:var(--text2)">${r['Plan Filter']||'All Plans'}</td>
+      <td style="font-size:.67rem;color:var(--text2)">${r.Timestamp||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+const DB = [
+  // ── ALIGNMENT ──
+  {name:"Alignment SmartSavings",provider:"Alignment",type:"Giveback",
+   premium:"$0",giveback:"$164.90",moop:"$6,450",pcp:"$0",specialist:"$35",
+   hospital:"$375/d (d1-6)",er:"$120",ambulance:"$200",
+   dental:"Preventive only",vision:"$100 every 2yr",
+   hearing:"$0 exam only (no aids covered)",
+   otc:"Not covered",food_util:"—",transport:"Not covered",rx_deduct:"$615 (T4-5)"},
+
+  {name:"Alignment the One + Walgreens",provider:"Alignment",type:"Standard",plan_id:"H5472-001-000",
+   premium:"$0",giveback:"$0",moop:"$2,950",pcp:"$0",specialist:"$15",
+   hospital:"$0 d1-2 / $120 d3-7",er:"$100",ambulance:"$200",
+   dental:"$2,500",vision:"$200",hearing:"$195–$1,750/aid",
+   otc:"$20/mo",food_util:"$30/mo (SSBCI)",transport:"34 one-way",rx_deduct:"$0",
+   rx:"$0,$0,$45,32%,33%,$5",gym:"Covered"},
+
+  {name:"Alignment Heart & Diabetes (C-SNP)",provider:"Alignment",type:"C-SNP",
+   premium:"$0",giveback:"$0",moop:"$2,400",pcp:"$0",specialist:"$15",
+   hospital:"$200/d (d1-5)",er:"$90",ambulance:"$200",
+   dental:"$2,000",vision:"$200",hearing:"$195–$1,750/aid",
+   otc:"$40/mo",food_util:"—",transport:"50 one-way",rx_deduct:"$0"},
+
+  {name:"Alignment Dual Select+ (D-SNP)",provider:"Alignment",type:"D-SNP",plan_id:"H5472-007-000",
+   premium:"$0",giveback:"$0",moop:"$2,900",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$135",ambulance:"$100",
+   dental:"$2,700",vision:"$400 every 2yr",hearing:"$0 copay (basic aids)",
+   otc:"$100/mo",food_util:"$100/mo",transport:"50 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"SLMB, QI"},
+
+  {name:"Alignment Total Dual+ (D-SNP)",provider:"Alignment",type:"D-SNP",plan_id:"H5472-009",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$4,000",vision:"$400 every 2yr",hearing:"$0 copay (basic aids)",
+   otc:"$193/mo",food_util:"—",transport:"50 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"NEW — QMB, FBDE, QMB+, SLMB+"},
+
+  // ── DEVOTED ──
+  {name:"Devoted GIVEBACK 008 TX",provider:"Devoted",type:"Giveback",
+   premium:"$0",giveback:"$184.70",moop:"$7,550",pcp:"$0",specialist:"$45",
+   hospital:"$375/d (d1-5)",er:"$120",ambulance:"$250",
+   dental:"$2,500",vision:"$250",hearing:"$0–$299/aid",
+   otc:"$100/q ($400/yr)",food_util:"—",transport:"Not covered",rx_deduct:"$0 T1-2 / $100 T3"},
+
+  {name:"Devoted CORE 007",provider:"Devoted",type:"Standard",
+   premium:"$0",giveback:"$0",moop:"$3,450",pcp:"$0",specialist:"$20",
+   hospital:"$325/d (d1-4)",er:"$120",ambulance:"$200",
+   dental:"Preventive",vision:"$200",hearing:"$0–$299/aid",
+   otc:"$20/mo",food_util:"—",transport:"Not covered",rx_deduct:"$0 T1-2"},
+
+  {name:"Devoted DUAL 017 (D-SNP)",provider:"Devoted",type:"D-SNP",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,600",vision:"$300",hearing:"$500",
+   otc:"$197/mo",food_util:"—",transport:"Not covered",rx_deduct:"$0"},
+
+  {name:"Devoted Dual Full 038 TX (D-SNP)",provider:"Devoted",type:"D-SNP",plan_id:"H7993-038-000",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$4,000",vision:"$400",hearing:"$0–$299/aid",
+   otc:"$50/q",food_util:"$375/mo",transport:"Not covered",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"NEW — FBDE, QMB+, SLMB+"},
+
+  {name:"Devoted C-SNP Plus 029 TX",provider:"Devoted",type:"C-SNP",plan_id:"H7993-029-000",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,000",vision:"$400",hearing:"$0–$299/aid",
+   otc:"$50/q",food_util:"$425/mo",transport:"Not covered",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"NEW — FBDE, QMB+, SLMB+"},
+
+  {name:"Devoted C-SNP Premium 028 TX",provider:"Devoted",type:"C-SNP",plan_id:"H7993-028-000",
+   premium:"$4.80 ($0 LIS)",giveback:"$0",moop:"$4,250",pcp:"$0",specialist:"$30",
+   hospital:"$300/d (d1-5)",er:"$130",ambulance:"$315",
+   dental:"$2,000",vision:"$400",hearing:"$0–$299/aid",
+   otc:"$50/q",food_util:"$175/mo",transport:"Not covered",rx_deduct:"$605 (T1-5)",
+   rx:"$18,$20,23%,26%,25%,$0",gym:"Covered",note:"NEW"},
+
+  {name:"Devoted C-SNP 027 TX",provider:"Devoted",type:"C-SNP",plan_id:"H7993-027-000",
+   premium:"$0",giveback:"$0",moop:"$3,750",pcp:"$0",specialist:"$25",
+   hospital:"$175/d (d1-5)",er:"$150",ambulance:"$315",
+   dental:"$3,500 Reimbursement",vision:"$400",hearing:"$0–$299/aid",
+   otc:"$50/q",food_util:"$40/mo",transport:"Not covered",rx_deduct:"$325 (T3-5)",
+   rx:"$0,$0,20%,25%,27%",gym:"Covered",note:"NEW"},
+
+  // ── HUMANA ──
+  {name:"Alignment Health Dual Heart & Diabetes Plus (C-SNP)",provider:"Alignment",type:"C-SNP",plan_id:"H5472-004-000",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,600 (Liberty Dental)",vision:"$500 every 2yr (VSP)",hearing:"$0 copay (basic aids)",
+   otc:"—",food_util:"$197/mo",transport:"50 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"QMB, FBDE, QMB+, SLMB+"},
+
+  {name:"HumanaChoice (PPO)",provider:"Humana",type:"Standard",plan_id:"H7617-063-000",
+   premium:"$0",giveback:"$0",moop:"$4,225",pcp:"$0",specialist:"$30",
+   hospital:"$245/d (d1-5)",er:"$130",ambulance:"$335",
+   dental:"$1,000 (no dentures)",vision:"$200–$300",hearing:"$299–$599/aid",
+   otc:"$60/q",food_util:"Not covered",transport:"48 one-way",rx_deduct:"$340 (T3-5)",
+   rx:"$0,$9,$45,45%,29%",gym:"Covered"},
+
+  {name:"HumanaChoice (PPO) Premium",provider:"Humana",type:"Standard",plan_id:"H7617-059-000",
+   premium:"$20/mo",giveback:"$2",moop:"$7,700",pcp:"$0",specialist:"$40",
+   hospital:"$345/d (d1-6)",er:"$115",ambulance:"$335",
+   dental:"$2,500 (no dentures)",vision:"$75–$150",hearing:"$699–$999/aid",
+   otc:"$45/q",food_util:"Not covered",transport:"Not covered",rx_deduct:"$420 (T3-5)",
+   rx:"$0,$5,$47,48%,28%",gym:"Covered"},
+
+  {name:"HumanaChoice Giveback (PPO)",provider:"Humana",type:"Giveback",
+   premium:"$0",giveback:"$120",moop:"$7,950",pcp:"$0",specialist:"$35",
+   hospital:"$325/d (d1-6)",er:"$120",ambulance:"$275",
+   dental:"$3,000 (no dentures)",vision:"$75–$150",hearing:"$699–$999/aid",
+   otc:"$40/q ($160/yr)",food_util:"—",transport:"Not covered",rx_deduct:"$0 T1-2"},
+
+  {name:"Humana USAA Honor Giveback (PPO)",provider:"Humana",type:"Giveback",plan_id:"H7617-062-000",
+   premium:"$0",giveback:"$130",moop:"$7,900",pcp:"$0",specialist:"$40",
+   hospital:"$345/d (d1-6)",er:"$115",ambulance:"$335",
+   dental:"$1,000",vision:"$75–$150",hearing:"$399–$999/aid",
+   otc:"Not covered",food_util:"Not covered",transport:"Not covered",rx_deduct:"$0 T1-2",
+   gym:"Covered",note:"Legacy: H5216-348-000"},
+
+  {name:"Humana Gold Plus (HMO)",provider:"Humana",type:"Standard",
+   premium:"$14/mo",giveback:"$0",moop:"$3,400",pcp:"$0",specialist:"$0",
+   hospital:"$275/d (d1-5)",er:"$90",ambulance:"$200",
+   dental:"$1,500",vision:"$150",hearing:"$0 basic aids",
+   otc:"$215/mo",food_util:"Included in $215/mo",transport:"60 one-way",rx_deduct:"$0 T1-2"},
+
+  {name:"Humana Gold Plus-Diabetes and Heart (C-SNP)",provider:"Humana",type:"C-SNP",plan_id:"H4461-066-000",
+   premium:"$0",giveback:"$0",moop:"$3,450",pcp:"$0",specialist:"$10",
+   hospital:"$95/d (d1-5)",er:"$150",ambulance:"$335",
+   dental:"$2,000",vision:"$150–$250",hearing:"$299–$599/aid",
+   otc:"$75/mo (rollover)",food_util:"—",transport:"60 one-way",rx_deduct:"$615 (T4-5)",
+   rx:"$0,$0,$45,47%,25%,$0",gym:"Covered",note:"Legacy: H0028-039-000"},
+
+  {name:"Humana Gold Plus SNP-DE (D-SNP) QMB+/SLMB+",provider:"Humana",type:"D-SNP",plan_id:"H4461-070-000",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,000",vision:"$200–$300",hearing:"$0 copay (basic aids)",
+   otc:"—",food_util:"$215/mo (SSBCI)",transport:"60 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",note:"QMB+, SLMB+"},
+
+  {name:"Humana Gold Plus SNP-DE (D-SNP)",provider:"Humana",type:"D-SNP",plan_id:"H4461-069-000",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,000",vision:"$200–$300",hearing:"$0 copay (basic aids)",
+   otc:"—",food_util:"$130/mo (SSBCI)",transport:"100 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",note:"QMB, QMB+ — Legacy: H0028-036-000"},
+
+  // ── HEALTHSPRING (Cigna) ──
+  {name:"HealthSpring Preferred Savings",provider:"HealthSpring (Cigna)",type:"Giveback",
+   premium:"$0",giveback:"$145",moop:"$6,775",pcp:"$0",specialist:"$45",
+   hospital:"$320/d (d1-6)",er:"$120",ambulance:"$200",
+   dental:"$2,500",vision:"$250",hearing:"$399–$1,800/aid",
+   otc:"$100/q",food_util:"—",transport:"Not covered",rx_deduct:"$0 T1-2"},
+
+  {name:"HealthSpring Full Savings",provider:"HealthSpring (Cigna)",type:"Giveback",
+   premium:"$0",giveback:"$185",moop:"$6,900",pcp:"$0",specialist:"$50",
+   hospital:"$375/d (d1-6)",er:"$120",ambulance:"$200",
+   dental:"$1,200",vision:"$125",hearing:"$399–$1,800 copay per aid",
+   otc:"$30/q",food_util:"—",transport:"Not covered",rx_deduct:"$0 T1-2"},
+
+  {name:"HealthSpring Preferred (HMO)",provider:"HealthSpring (Cigna)",type:"Standard",plan_id:"H4513-061-003",
+   premium:"$0",giveback:"$0",moop:"$3,500",pcp:"$0",specialist:"$15",
+   hospital:"$50/d (d1-5)",er:"$150",ambulance:"$150",
+   dental:"$2,700",vision:"$200",hearing:"$399–$1,800/aid",
+   otc:"$85/q",food_util:"Not covered",transport:"Unlimited",rx_deduct:"$200 (T3-5)",
+   rx:"$0,$2,$47,50%,30%",gym:"Covered"},
+
+  {name:"HealthSpring Courage (MA Only)",provider:"HealthSpring (Cigna)",type:"Standard",
+   premium:"$0",giveback:"$0",moop:"$4,300",pcp:"$0",specialist:"$25",
+   hospital:"$275/d (d1-5)",er:"$90",ambulance:"$175",
+   dental:"$1,500",vision:"$250",hearing:"$399–$1,800/aid",
+   otc:"$45/q ($180/yr)",food_util:"—",transport:"24 one-way",rx_deduct:"$0 T1-2"},
+
+  {name:"HealthSpring TotalCare (D-SNP)",provider:"HealthSpring (Cigna)",type:"D-SNP",
+   premium:"$0",giveback:"$0",moop:"$3,400",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,000",vision:"$300",hearing:"$500",
+   otc:"$200/q ($800/yr)",food_util:"—",transport:"Unlimited",rx_deduct:"$0"},
+
+  // ── UHC ──
+  {name:"UHC Dual Complete TX-Q2 (D-SNP)",provider:"UnitedHealthcare",type:"D-SNP",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$1,500",vision:"$200",hearing:"$500",
+   otc:"$99/mo",food_util:"—",transport:"24 one-way",rx_deduct:"$0"},
+
+  {name:"UHC Dual Complete TX-S4 (D-SNP)",provider:"UnitedHealthcare",type:"D-SNP",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,000",vision:"$350",hearing:"$750",
+   otc:"$143/mo",food_util:"—",transport:"48 one-way",rx_deduct:"$0"},
+
+  // ── WELLPOINT ──
+  {name:"Wellpoint Full Dual Advantage (D-SNP)",provider:"Wellpoint",type:"D-SNP",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,000",vision:"$250",hearing:"$500",
+   otc:"$105/mo",food_util:"—",transport:"48 one-way",rx_deduct:"$0"},
+
+  {name:"Wellpoint Dual Advantage (D-SNP)",provider:"Wellpoint",type:"D-SNP",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$2,250",vision:"$275",hearing:"$250",
+   otc:"$80/mo",food_util:"—",transport:"48 one-way",rx_deduct:"$0"},
+
+  // ── WELLCARE ──
+  {name:"Wellcare Dual Access (D-SNP)",provider:"Wellcare",type:"D-SNP",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",
+   dental:"$3,000",vision:"$300",hearing:"$1,500",
+   otc:"$87/mo",food_util:"Included in $87/mo",transport:"24 one-way",rx_deduct:"$0",gym:"Covered"},
+
+  {name:"Wellcare Dual Liberty (D-SNP)",provider:"Wellcare",type:"D-SNP",plan_id:"H0174-006",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",outpatient:"$0",mri:"$0",xrays:"$0",labs:"$0",urgent:"$0",
+   dental:"$4,000",vision:"$400",hearing:"$2,000",
+   otc:"$123/mo",food_util:"—",transport:"48 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"QMB+, SLMB+"},
+
+  {name:"Wellcare Dual Reserve (D-SNP)",provider:"Wellcare",type:"D-SNP",plan_id:"H0174-022",
+   premium:"$0",giveback:"$0",moop:"$3,450",pcp:"$0",specialist:"$25",
+   hospital:"$200/d (d1-5)",er:"$150",ambulance:"$250",
+   dental:"$3,000",vision:"$200",hearing:"$1,500",
+   otc:"$69/mo",food_util:"—",transport:"36 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"SLMB, QI — Non-Commissionable"},
+
+  {name:"Wellcare Dual Liberty Sync (D-SNP)",provider:"Wellcare",type:"D-SNP",plan_id:"H0174-026",
+   premium:"$0",giveback:"$0",moop:"$0",pcp:"$0",specialist:"$0",
+   hospital:"$0/d",er:"$0",ambulance:"$0",outpatient:"$0",mri:"$0",xrays:"$0",labs:"$0",urgent:"$0",
+   dental:"$4,000",vision:"$400",hearing:"$2,000",
+   otc:"$114/mo",food_util:"—",transport:"48 one-way",rx_deduct:"$0",
+   rx:"$0,$1.60,$4.90,$5.10,$12.65",gym:"Covered",note:"NEW — QMB+, SLMB+"},
+
+  {name:"Wellcare Giveback (HMO)",provider:"Wellcare",type:"Giveback",plan_id:"H0174-021",
+   premium:"$0",giveback:"$124",moop:"$6,900",deductible:"$350",pcp:"$0",specialist:"$50",
+   hospital:"$375/d (d1-6)",er:"$115",ambulance:"$210",outpatient:"$250–$400",mri:"$250–$350",xrays:"$50",labs:"$0",urgent:"$30",
+   dental:"Preventive",vision:"$100",hearing:"$700",
+   otc:"Not covered",food_util:"Not covered",transport:"Not covered",rx_deduct:"$615 (T3-5)",
+   rx:"$0,$0,25%,42%,25%,$0",gym:"Covered"},
+
+  {name:"Wellcare Assist (HMO)",provider:"Wellcare",type:"Standard",plan_id:"H0174-009",
+   premium:"$4.80 ($0 LIS)",giveback:"$0",moop:"$3,450",pcp:"$0",specialist:"$20",
+   hospital:"$225/d (d1-5)",er:"$150",ambulance:"$250",
+   dental:"$3,000",vision:"$200",hearing:"$1,000",
+   otc:"$15/mo",food_util:"Not covered",transport:"Not covered",rx_deduct:"$615 (T2-5)",
+   rx:"$18,$19,20%,$100,25%,$0",gym:"Covered"},
+
+  {name:"Wellcare Simple (HMO)",provider:"Wellcare",type:"Standard",plan_id:"H0174-016",
+   premium:"$0",giveback:"$0",moop:"$3,900",pcp:"$0",specialist:"$20",
+   hospital:"$325/d (d1-6)",er:"$150",ambulance:"$250",
+   dental:"$2,000",vision:"$200",hearing:"$2,000",
+   otc:"$35/mo",food_util:"Not covered",transport:"12 one-way",rx_deduct:"$615 (T3-5)",
+   rx:"$0,$0,25%,35%,25%,$0",gym:"Covered"},
+
+  {name:"Wellcare Simple Open (PPO)",provider:"Wellcare",type:"Standard",plan_id:"H7323-007",
+   premium:"$0",giveback:"$0",moop:"$5,000",pcp:"$0",specialist:"$30",
+   hospital:"$350/d (d1-5)",er:"$130",ambulance:"$245",
+   dental:"$1,000",vision:"$200",hearing:"$1,500",
+   otc:"$26/mo",food_util:"Not covered",transport:"24 one-way",rx_deduct:"$615 (T3-5)",
+   rx:"$0,$0,25%,36%,25%,$0",gym:"Covered"},
+
+  // ── TRUE CHOICE ──
+  {name:"True Choice PPO",provider:"True Choice",type:"Standard",plan_id:"H7849-154-000",
+   premium:"$0",giveback:"$0",moop:"$6,800",pcp:"$0",specialist:"$40",
+   hospital:"$230/d (d1-6)",er:"$115",ambulance:"$275",
+   dental:"$600",vision:"$100",hearing:"$399–$1,800/aid",
+   otc:"$40/q",food_util:"Not covered",transport:"10 one-way",rx_deduct:"$500 (T3-5)",
+   rx:"$0,$5,$47,50%,30%",gym:"Covered",
+   deductible:"$400"},
+];
+
+// ── HELPERS ──
+function typeBadge(t){
+  const m={Giveback:"tb-giveback","D-SNP":"tb-dsnp","C-SNP":"tb-csnp",Standard:"tb-standard"};
+  return `<span class="tb ${m[t]||'tb-standard'}">${t}</span>`;
+}
+function fcClass(t){return{Giveback:"fc-G","D-SNP":"fc-D","C-SNP":"fc-C",Standard:"fc-S"}[t]||"fc-S";}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5);}
+function gbVal(s){return parseFloat((s||"$0").replace(/[^0-9.]/g,""))||0;}
+
+// ── HOME ──
+function renderHomeGiveback(){
+  const plans=[...DB].filter(p=>p.type==="Giveback").sort((a,b)=>gbVal(b.giveback)-gbVal(a.giveback));
+  document.getElementById("homeGivebackTable").innerHTML=plans.map((p,i)=>`
+    <tr><td class="mono" style="color:#64748b;font-size:.65rem">${i+1}</td>
+    <td><div class="pname" style="color:#0f1e35">${p.name}</div><div class="pprov">${p.provider}</div></td>
+    <td style="color:var(--gold);font-family:'DM Mono',monospace;font-weight:700">${p.giveback}</td>
+    <td class="mono" style="color:#1a2d44">${p.moop}</td>
+    <td class="mono" style="color:#1a2d44">${p.specialist}</td></tr>`).join('');
+}
+function renderHomeDsnp(){
+  const plans=DB.filter(p=>p.type==="D-SNP");
+  document.getElementById("homeDsnpTable").innerHTML=plans.map(p=>`
+    <tr>
+    <td><div class="pname" style="color:#0f1e35">${p.name}</div><div class="pprov">${p.provider}</div></td>
+    <td class="mono" style="color:#1a2d44">${p.otc}</td>
+    <td class="mono" style="color:#1a2d44">${p.dental}</td>
+    <td class="mono" style="color:#1a2d44">${p.hearing||"—"}</td>
+    <td class="mono" style="color:${(p.transport==="Not covered"||p.transport==="—")?"var(--error)":"#1a2d44"}">${p.transport}</td></tr>`).join('');
+}
+
+// ── NOTES ──
+let notesFilter="all";
+function renderNotes(filt="all",search=""){
+  notesFilter=filt;
+  let data=DB.filter(p=>{
+    if(filt!=="all"&&p.type!==filt)return false;
+    if(search&&!p.name.toLowerCase().includes(search.toLowerCase())&&!p.provider.toLowerCase().includes(search.toLowerCase()))return false;
+    return true;
   });
-  if (saved === "dark") toggle.innerHTML = "☀️";
-  else toggle.innerHTML = "🌙";
+  document.getElementById("notesTableBody").innerHTML=data.map(p=>`
+    <tr>
+    <td><div class="pname">${p.name}</div><div class="pprov">${p.provider}${p.plan_id?` · ${p.plan_id}`:""}</div>${p.note?`<div style="font-size:.59rem;margin-top:.1rem"><span style="color:var(--amber)">${p.note}</span></div>`:""}</td>
+    <td>${typeBadge(p.type)}</td>
+    <td class="hilite">${p.giveback||"$0"}</td>
+    <td class="mono">${p.premium||"$0"}</td>
+    <td class="mono">${p.moop||"—"}</td>
+    <td class="mono">${p.pcp||"—"}</td>
+    <td class="mono">${p.specialist||"—"}</td>
+    <td class="mono">${p.hospital||"—"}</td>
+    <td class="mono">${p.er||"—"}</td>
+    <td class="mono">${p.ambulance||"—"}</td>
+    <td class="mono">${p.dental||"—"}</td>
+    <td class="mono">${p.vision||"—"}</td>
+    <td class="mono">${p.hearing||"—"}</td>
+    <td class="mono">${p.otc||"—"}${p.food_util&&p.food_util!=="—"&&p.food_util!=="Not covered"?`<br><span style='font-size:.6rem;color:var(--text2)'>Food: ${p.food_util}</span>`:""}</td>
+    <td class="mono" style="color:${(p.transport==="Not covered"||p.transport==="—")?"var(--error)":p.transport==="Unlimited"?"var(--teal)":"inherit"}">${p.transport||"—"}</td>
+    <td class="mono">${p.rx_deduct||"—"}</td></tr>`).join('');
 }
 
-// AI Panel
-let aiOpen = false;
-function toggleAI() {
-  aiOpen = !aiOpen;
-  document.getElementById("aiPanel").classList.toggle("open", aiOpen);
-}
-async function sendAIMessage() {
-  const input = document.getElementById("aiInput");
-  const msg = input.value.trim();
-  if (!msg) return;
-  const container = document.getElementById("aiMessages");
-  container.innerHTML += `<div style="background: var(--accent); color: white; padding: 10px 14px; border-radius: 16px; align-self: flex-end;">${msg}</div>`;
-  input.value = "";
-  container.innerHTML += `<div style="background: var(--bg); padding: 10px 14px; border-radius: 16px;"><i class="fas fa-spinner fa-spin"></i> Thinking...</div>`;
-  container.scrollTop = container.scrollHeight;
-  setTimeout(() => {
-    container.removeChild(container.lastChild);
-    container.innerHTML += `<div style="background: var(--bg); padding: 10px 14px; border-radius: 16px;">I can help you find plans based on drugs, conditions, or benefits. What specific needs does your client have?</div>`;
-    container.scrollTop = container.scrollHeight;
-  }, 800);
+// ── FLASHCARDS ──
+function renderFlashcards(filt="all",search=""){
+  let data=DB.filter(p=>{
+    if(filt!=="all"&&p.type!==filt)return false;
+    if(search&&!p.name.toLowerCase().includes(search.toLowerCase()))return false;
+    return true;
+  });
+  const grid=document.getElementById("flashcardGrid");
+  grid.innerHTML=data.map(p=>`
+    <div class="flashcard">
+      <div class="fc-inner">
+        <div class="fc-front ${fcClass(p.type)}">
+          <div class="fc-prov">${p.provider}</div>
+          <div class="fc-name">${p.name}</div>
+          <div style="margin-top:.25rem">${typeBadge(p.type)}</div>
+          <div class="fc-statgrid">
+            <div class="fc-stat"><div class="fc-sl">Giveback</div><div class="fc-sv">${p.giveback||"$0"}</div></div>
+            <div class="fc-stat"><div class="fc-sl">MOOP</div><div class="fc-sv">${p.moop||"—"}</div></div>
+            <div class="fc-stat"><div class="fc-sl">OTC</div><div class="fc-sv">${p.otc||"—"}</div></div>
+            <div class="fc-stat"><div class="fc-sl">Dental</div><div class="fc-sv">${p.dental||"—"}</div></div>
+          </div>
+          <div class="fc-hint">↗ tap to view full details</div>
+        </div>
+        <div class="fc-back">
+          <div class="fc-backname">${p.name}</div>
+          <div class="fc-row"><span class="fc-rl">Premium</span><span class="fc-rv">${p.premium||"$0"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Part B Giveback</span><span class="fc-rv" style="color:var(--gold)">${p.giveback||"$0"}</span></div>
+          <div class="fc-row"><span class="fc-rl">MOOP</span><span class="fc-rv">${p.moop||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">PCP / Specialist</span><span class="fc-rv">${p.pcp||"—"} / ${p.specialist||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Hospital</span><span class="fc-rv">${p.hospital||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">ER / Ambulance</span><span class="fc-rv">${p.er||"—"} / ${p.ambulance||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Dental</span><span class="fc-rv">${p.dental||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Vision</span><span class="fc-rv">${p.vision||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Hearing</span><span class="fc-rv" style="color:${p.hearing&&p.hearing.includes('no aids')?'var(--error)':'inherit'}">${p.hearing||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">OTC</span><span class="fc-rv">${p.otc||"—"}</span></div>
+          ${p.food_util&&p.food_util!=="—"?`<div class="fc-row"><span class="fc-rl">Food+Util</span><span class="fc-rv">${p.food_util}</span></div>`:""}
+          <div class="fc-row"><span class="fc-rl">Transport</span><span class="fc-rv" style="color:${(p.transport==="Not covered"||p.transport==="—")?"var(--error)":p.transport==="Unlimited"?"var(--teal)":"inherit"}">${p.transport||"—"}</span></div>
+          <div class="fc-row"><span class="fc-rl">Rx Deductible</span><span class="fc-rv">${p.rx_deduct||"—"}</span></div>
+          ${p.rx?`<div class="fc-row"><span class="fc-rl">Rx Tiers</span><span class="fc-rv">${p.rx}</span></div>`:""}
+          ${p.gym?`<div class="fc-row"><span class="fc-rl">Gym</span><span class="fc-rv" style="color:var(--teal)">${p.gym}</span></div>`:""}
+          ${p.note?`<div style="margin-top:.4rem;font-size:.61rem;color:var(--amber);padding:.2rem .35rem;background:rgba(245,166,35,.08);border-radius:4px">${p.note}</div>`:""}
+        </div>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.flashcard').forEach((c,i)=>c.addEventListener('click',()=>openFcModal(i)));
 }
 
-// Expose globals
-window.setCategory = setCategory;
-window.applyFilters = applyFilters;
-window.resetFilters = resetFilters;
-window.showPlanDetail = showPlanDetail;
-window.copyToClipboard = copyToClipboard;
-window.toggleAI = toggleAI;
-window.sendAIMessage = sendAIMessage;
+// ── THEME TOGGLE ──
+(function(){
+  const saved = localStorage.getItem('tmcpu-theme') || 'dark';
+  applyTheme(saved);
+})();
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  const btn = document.getElementById('themeToggle');
+  if(btn) btn.innerHTML = t === 'light' ? '🌙 Dark' : '☀️ Light';
+  localStorage.setItem('tmcpu-theme', t);
+}
+document.getElementById('themeToggle')?.addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(cur === 'dark' ? 'light' : 'dark');
+});
+let fcCurrentData=[];
+let fcCurrentIdx=0;
+function openFcModal(idx){
+  const filt=document.querySelector('.fc-chip.ff.afa')?.dataset.f||'all';
+  const search=document.getElementById('flashSearch')?.value||'';
+  fcCurrentData=DB.filter(p=>{
+    if(filt!=='all'&&p.type!==filt)return false;
+    if(search&&!p.name.toLowerCase().includes(search.toLowerCase()))return false;
+    return true;
+  });
+  fcCurrentIdx=idx;
+  renderFcModal();
+  document.getElementById('fcModal').classList.add('open');
+}
+function renderFcModal(){
+  const p=fcCurrentData[fcCurrentIdx];
+  if(!p)return;
+  document.getElementById('fcCounter').textContent=`${fcCurrentIdx+1} / ${fcCurrentData.length}`;
+  document.getElementById('fcModalBody').innerHTML=`
+    <div class="fcm-prov">${p.provider} &nbsp;·&nbsp; ${p.type}</div>
+    <div class="fcm-name">${p.name}</div>
+    <div style="margin-bottom:.8rem">${typeBadge(p.type)}</div>
+    <div class="fcm-row"><span class="fcm-rl">Premium</span><span class="fcm-rv">${p.premium||'$0'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Part B Giveback</span><span class="fcm-rv" style="color:var(--brand-blue)">${p.giveback||'$0'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">MOOP</span><span class="fcm-rv">${p.moop||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">PCP / Specialist</span><span class="fcm-rv">${p.pcp||'—'} / ${p.specialist||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Hospital</span><span class="fcm-rv">${p.hospital||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">ER / Ambulance</span><span class="fcm-rv">${p.er||'—'} / ${p.ambulance||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Dental</span><span class="fcm-rv">${p.dental||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Vision</span><span class="fcm-rv">${p.vision||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Hearing</span><span class="fcm-rv">${p.hearing||'—'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">OTC</span><span class="fcm-rv">${p.otc||'—'}</span></div>
+    ${p.food_util&&p.food_util!=='—'?`<div class="fcm-row"><span class="fcm-rl">Food + Utilities</span><span class="fcm-rv">${p.food_util}</span></div>`:''}
+    <div class="fcm-row"><span class="fcm-rl">Transport</span><span class="fcm-rv" style="color:${(p.transport==='Not covered'||!p.transport)?"var(--error)":p.transport==="Unlimited"?"var(--success)":"inherit"}">${p.transport||'Not covered'}</span></div>
+    <div class="fcm-row"><span class="fcm-rl">Rx Deductible</span><span class="fcm-rv">${p.rx_deduct||'—'}</span></div>
+    ${p.rx?`<div class="fcm-row"><span class="fcm-rl">Rx Tiers</span><span class="fcm-rv">${p.rx}</span></div>`:''}
+    ${p.gym?`<div class="fcm-row"><span class="fcm-rl">Gym</span><span class="fcm-rv" style="color:var(--success)">${p.gym}</span></div>`:''}
+    ${p.note?`<div class="fcm-note">📌 ${p.note}</div>`:''}
+  `;
+}
+document.getElementById('fcClose').addEventListener('click',()=>document.getElementById('fcModal').classList.remove('open'));
+document.getElementById('fcModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+document.getElementById('fcNext').addEventListener('click',()=>{fcCurrentIdx=(fcCurrentIdx+1)%fcCurrentData.length;renderFcModal();});
+document.getElementById('fcPrev').addEventListener('click',()=>{fcCurrentIdx=(fcCurrentIdx-1+fcCurrentData.length)%fcCurrentData.length;renderFcModal();});
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('fcModal').classList.contains('open'))return;
+  if(e.key==='ArrowRight')document.getElementById('fcNext').click();
+  if(e.key==='ArrowLeft')document.getElementById('fcPrev').click();
+  if(e.key==='Escape')document.getElementById('fcModal').classList.remove('open');
+});
 
-// Initialize
-function init() {
-  renderStats();
-  renderCategories();
-  renderCarrierFilters();
-  renderPlanGrid();
-  setupTheme();
-  document.getElementById("aiToggle").onclick = toggleAI;
-  document.getElementById("closeAi").onclick = toggleAI;
-  document.getElementById("sendAi").onclick = sendAIMessage;
-  document.getElementById("aiInput").addEventListener("keypress", (e) => { if (e.key === "Enter") sendAIMessage(); });
+// ── QUIZ with Plan Picker ──
+let qPool=[],qIdx=0,qScore=0,quizFilterPlan="all";
+
+function buildPlanPicker(){
+  const picker=document.getElementById("planPicker");
+  const allBtn=`<div class="pp-all ${quizFilterPlan==="all"?"pp-sel":""}" data-plan="all">📋 All Plans</div>`;
+  const opts=DB.map(p=>`<div class="pp-option ${quizFilterPlan===p.name?"pp-sel":""}" data-plan="${p.name}">
+    <span style="font-size:.63rem;color:var(--text2)">${p.provider}</span><br>${p.name.replace(p.provider+" ","").substring(0,38)}
+  </div>`).join('');
+  picker.innerHTML=allBtn+opts;
+
+  picker.querySelectorAll('[data-plan]').forEach(el=>{
+    el.addEventListener('click',function(){
+      quizFilterPlan=this.dataset.plan;
+      picker.querySelectorAll('[data-plan]').forEach(x=>x.classList.remove('pp-sel'));
+      this.classList.add('pp-sel');
+      updatePoolStat();
+    });
+  });
+  updatePoolStat();
 }
 
-init();
+function updatePoolStat(){
+  const pool=buildPool();
+  document.getElementById("qPoolStat").textContent=pool.length;
+  document.getElementById("qCountStat").textContent=Math.min(8,pool.length);
+}
+
+function buildPool(){
+  let src=quizFilterPlan==="all"?DB:DB.filter(p=>p.name===quizFilterPlan);
+  const pool=[];
+  src.forEach(p=>{
+    pool.push({text:`What is the Part B Giveback for <b>${p.name}</b>?`,correct:p.giveback||"$0",
+      distractors:["$0","$120","$124","$145","$164.90","$174","$184.70","$185"]});
+    pool.push({text:`What is the MOOP for <b>${p.name}</b>?`,correct:p.moop||"—",
+      distractors:["$0","$2,400","$3,450","$3,900","$4,300","$6,775","$6,900","$7,550"]});
+    if(p.otc&&p.otc!=="Not covered"&&p.otc!=="—")
+      pool.push({text:`What is the OTC benefit for <b>${p.name}</b>?`,correct:p.otc,
+        distractors:["$15/mo","$20/mo","$26/mo","$35/mo","$69/mo","$80/mo","$87/mo","$99/mo","$105/mo","$114/mo","$123/mo","$130/mo","$143/mo","$193/mo","$197/mo","$215/mo"]});
+    pool.push({text:`What is the transport benefit for <b>${p.name}</b>?`,correct:p.transport||"Not covered",
+      distractors:["Not covered","12 one-way","24 one-way","36 one-way","48 one-way","50 one-way","60 one-way","100 one-way","Unlimited"]});
+    pool.push({text:`What is the hearing benefit for <b>${p.name}</b>?`,correct:p.hearing||"—",
+      distractors:["—","$0 exam only (no aids covered)","$0–$299/aid","$195–$1,750/aid","$250","$399–$1,800/aid","$399–$1,800 copay per aid","$500","$700","$750","$1,000","$1,500","$2,000","$0 basic aids"]});
+    pool.push({text:`What is the dental benefit for <b>${p.name}</b>?`,correct:p.dental||"—",
+      distractors:["Preventive only","Preventive","$1,000","$1,200","$1,500","$2,000","$2,250","$2,500","$3,000","$3,600","$4,000","$3,000 (no dentures)"]});
+  });
+  return shuffle(pool.map(q=>{
+    const wrong=shuffle(q.distractors.filter(d=>d!==q.correct)).slice(0,3);
+    return{...q,options:shuffle([...wrong,q.correct])};
+  }));
+}
+
+function startQuiz(){
+  qPool=buildPool().slice(0,Math.min(8,buildPool().length));
+  qPool=buildPool().slice(0,8);
+  qIdx=0;qScore=0;
+  if(qPool.length===0){
+    document.getElementById("quizContainer").innerHTML=`<div class="card"><p style="color:var(--text2)">No questions available for this selection.</p></div>`;
+    return;
+  }
+  showQ();
+}
+
+function showQ(){
+  const c=document.getElementById("quizContainer");
+  if(qIdx>=qPool.length){
+    const pct=Math.round(qScore/qPool.length*100);
+    // ── Submit score to Google Sheets ──
+    submitScore(qScore, qPool.length, quizFilterPlan==="all"?"All Plans":quizFilterPlan);
+    c.innerHTML=`<div class="card rcard">
+      <div class="rscore">${qScore}/${qPool.length}</div>
+      <div class="rlabel">${pct}% — ${pct>=80?"🏆 Excellent!":pct>=60?"👍 Good progress":"📚 Keep drilling"}</div>
+      ${quizFilterPlan!=="all"?`<div style="font-size:.75rem;color:var(--text2);margin-bottom:1rem">Filtered to: <b style="color:var(--gold)">${quizFilterPlan}</b></div>`:""}
+      <button class="btn" id="restartQ">Restart Quiz</button>
+      <button class="btn btng" id="changeFilter" style="margin-left:.5rem">Change Plan</button></div>`;
+    document.getElementById("restartQ")?.addEventListener("click",startQuiz);
+    document.getElementById("changeFilter")?.addEventListener("click",()=>{
+      document.getElementById("quizContainer").innerHTML=`<div class="card" style="text-align:center;padding:2.5rem;">
+        <div style="font-weight:700;margin-bottom:.4rem">Select a plan and click Start Quiz</div></div>`;
+    });
+    return;
+  }
+  const q=qPool[qIdx];
+  const pct=Math.round(qIdx/qPool.length*100);
+  const planTag=quizFilterPlan!=="all"?`<div class="quiz-plan-tag">📌 ${quizFilterPlan}</div>`:"";
+  c.innerHTML=`<div class="card">
+    ${planTag}
+    <div class="qpb"><div class="qpf" style="width:${pct}%"></div></div>
+    <div class="qmeta"><span class="qct">Q${qIdx+1} of ${qPool.length}</span><span class="qsc">Score: ${qScore}</span></div>
+    <div class="qtext">${q.text}</div>
+    <div>${q.options.map(o=>`<div class="option" data-v="${o}">${o}</div>`).join('')}</div>
+    <div class="qfb" id="qfb"></div></div>`;
+  document.querySelectorAll('.option').forEach(opt=>{
+    opt.addEventListener('click',function(){
+      const v=this.dataset.v;
+      document.querySelectorAll('.option').forEach(o=>o.classList.add('locked'));
+      if(v===q.correct){
+        this.classList.add('correct');qScore++;
+        document.getElementById('qfb').innerHTML='<span style="color:var(--success)">✅ Correct!</span>';
+      }else{
+        this.classList.add('incorrect');
+        document.querySelectorAll('.option').forEach(o=>{if(o.dataset.v===q.correct)o.classList.add('correct');});
+        document.getElementById('qfb').innerHTML=`<span style="color:var(--error)">❌ Correct answer: ${q.correct}</span>`;
+      }
+      qIdx++;setTimeout(showQ,1000);
+    });
+  });
+}
+
+// ── DRILLS ──
+let drillMode="fill",matchPairs=[],speedInt=null;
+function renderDrill(){
+  const d=document.getElementById("drillContent");
+  if(drillMode==="fill"){
+    const p=shuffle(DB)[0];
+    const fields=shuffle([
+      {label:"Part B Giveback",val:p.giveback||"$0"},
+      {label:"MOOP",val:p.moop||"—"},
+      {label:"Specialist copay",val:p.specialist||"—"},
+      {label:"OTC benefit",val:p.otc||"—"},
+      {label:"Transport",val:p.transport||"Not covered"},
+      {label:"Dental",val:p.dental||"—"},
+      {label:"Hearing",val:p.hearing||"—"},
+    ])[0];
+    d.innerHTML=`<div class="dq">${p.name}<br><span style="font-size:.75rem;color:var(--text2)">${p.provider} · ${p.type}</span></div>
+      <div style="font-size:.84rem;margin-bottom:.75rem;color:var(--text2)">${fields.label} = <span style="color:var(--teal)">?</span></div>
+      <div class="drow"><input class="dinp" id="fAns" placeholder="Type answer..."><button class="btn" id="chkFill">Check</button><button class="btn btng" id="nxtFill">Next →</button></div>
+      <div class="dfb" id="fFB"></div>`;
+    document.getElementById("chkFill")?.addEventListener("click",()=>{
+      const a=document.getElementById("fAns").value.trim();
+      const fb=document.getElementById("fFB");
+      fb.innerHTML=a.toLowerCase()===fields.val.toLowerCase()?
+        '<span style="color:var(--success)">✅ Correct!</span>':
+        `<span style="color:var(--error)">❌ Answer: <b>${fields.val}</b></span>`;
+    });
+    document.getElementById("nxtFill")?.addEventListener("click",renderDrill);
+    document.getElementById("fAns")?.addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("chkFill").click();});
+  }
+  else if(drillMode==="match"){
+    const picks=shuffle(DB.filter(p=>gbVal(p.giveback)>0)).slice(0,4);
+    matchPairs=picks.map(p=>({plan:p.name,gb:p.giveback}));
+    d.innerHTML=`<div class="match-grid">
+      <div><div class="mcol-t">Plan Name</div><div id="mLeft"></div></div>
+      <div><div class="mcol-t">Giveback $</div><div id="mRight"></div></div></div>
+      <div class="dfb" id="mFB" style="margin-top:.7rem"></div>
+      <button class="btn btng" id="mReset" style="margin-top:.7rem">New Round</button>`;
+    renderMatch();
+    document.getElementById("mReset")?.addEventListener("click",renderDrill);
+  }
+  else if(drillMode==="speed"){
+    if(speedInt)clearInterval(speedInt);
+    const p=shuffle(DB)[0];
+    const f=shuffle([
+      {l:"Part B Giveback",v:p.giveback||"$0"},
+      {l:"MOOP",v:p.moop||"—"},
+      {l:"OTC",v:p.otc||"—"},
+      {l:"Transport",v:p.transport||"Not covered"},
+      {l:"Hearing",v:p.hearing||"—"},
+    ])[0];
+    d.innerHTML=`<div class="stimer" id="tmr">7.0</div>
+      <div class="dq">${p.name}</div>
+      <div style="font-size:.79rem;color:var(--text2);margin-bottom:.75rem">${p.provider} · ${typeBadge(p.type)}</div>
+      <div style="font-size:.9rem;font-weight:600;margin-bottom:.75rem;color:var(--text2)">${f.l} = ?</div>
+      <div class="drow"><input class="dinp" id="sAns" placeholder="Enter answer"><button class="btn" id="sSubmit">Submit</button><button class="btn btng" id="sNext">Next →</button></div>
+      <div class="dfb" id="sFB"></div>`;
+    let t=7;
+    speedInt=setInterval(()=>{
+      t-=.1;const td=document.getElementById("tmr");
+      if(!td){clearInterval(speedInt);return;}
+      if(t<=0){
+        clearInterval(speedInt);td.innerText="0.0 ⏰";
+        td.style.background="var(--error)";td.style.webkitTextFillColor="";td.style.color="var(--error)";
+        document.getElementById("sSubmit")?.setAttribute("disabled","disabled");
+        document.getElementById("sFB").innerHTML=`<span style="color:var(--error)">⏰ Time's up! Answer: <b>${f.v}</b></span>`;
+      }else td.innerText=t.toFixed(1);
+    },100);
+    document.getElementById("sSubmit")?.addEventListener("click",()=>{
+      clearInterval(speedInt);
+      const a=document.getElementById("sAns").value.trim();
+      document.getElementById("sFB").innerHTML=a.toLowerCase()===f.v.toLowerCase()?
+        '<span style="color:var(--success)">✅ Correct!</span>':
+        `<span style="color:var(--error)">❌ Answer: <b>${f.v}</b></span>`;
+    });
+    document.getElementById("sNext")?.addEventListener("click",()=>{clearInterval(speedInt);renderDrill();});
+    document.getElementById("sAns")?.addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("sSubmit").click();});
+    document.getElementById("sAns")?.focus();
+  }
+}
+function renderMatch(){
+  const lDiv=document.getElementById("mLeft"),rDiv=document.getElementById("mRight");
+  if(!lDiv)return;
+  lDiv.innerHTML=shuffle([...matchPairs]).map(i=>`<div class="mi" data-p="${i.plan}">${i.plan}</div>`).join('');
+  rDiv.innerHTML=shuffle([...matchPairs]).map(i=>`<div class="mi" data-g="${i.gb}">${i.gb}</div>`).join('');
+  let sel=null;
+  document.querySelectorAll("#mLeft .mi").forEach(el=>{
+    el.addEventListener("click",()=>{document.querySelectorAll("#mLeft .mi").forEach(x=>x.classList.remove("ms"));el.classList.add("ms");sel=el.dataset.p;});
+  });
+  document.querySelectorAll("#mRight .mi").forEach(el=>{
+    el.addEventListener("click",()=>{
+      if(!sel)return;
+      const correct=matchPairs.find(p=>p.plan===sel)?.gb;
+      const fb=document.getElementById("mFB");
+      if(el.dataset.g===correct)fb.innerHTML=`<span style="color:var(--success)">✅ Correct! ${sel} → ${correct}</span>`;
+      else fb.innerHTML=`<span style="color:var(--error)">❌ Wrong — ${sel} = ${correct}</span>`;
+      sel=null;document.querySelectorAll("#mLeft .mi").forEach(x=>x.classList.remove("ms"));
+    });
+  });
+}
+
+// ── COMPARE TOOL ──
+let cmpSelected=new Set();
+const CMP_ROWS=[
+  {label:"Type",key:p=>typeBadge(p.type)},
+  {label:"Giveback",key:p=>`<span class="mono" style="color:var(--gold);font-weight:700">${p.giveback||"$0"}</span>`},
+  {label:"Premium",key:p=>p.premium||"$0"},
+  {label:"MOOP",key:p=>p.moop||"—"},
+  {label:"PCP",key:p=>p.pcp||"—"},
+  {label:"Specialist",key:p=>p.specialist||"—"},
+  {label:"Hospital",key:p=>p.hospital||"—"},
+  {label:"ER",key:p=>p.er||"—"},
+  {label:"Ambulance",key:p=>p.ambulance||"—"},
+  {label:"Dental",key:p=>p.dental||"—"},
+  {label:"Vision",key:p=>p.vision||"—"},
+  {label:"Hearing",key:p=>`<span style="color:${p.hearing&&p.hearing.includes('no aids')?'var(--error)':'inherit'}">${p.hearing||"—"}</span>`},
+  {label:"OTC",key:p=>`<span style="color:${(p.otc==="Not covered"||p.otc==="—")?"var(--error)":"var(--teal)"}">${p.otc||"—"}</span>`},
+  {label:"Transport",key:p=>`<span style="color:${(p.transport==="Not covered"||p.transport==="—")?"var(--error)":p.transport==="Unlimited"?"var(--teal)":"inherit"}">${p.transport||"—"}</span>`},
+  {label:"Rx Deductible",key:p=>p.rx_deduct||"—"},
+  {label:"Gym",key:p=>p.gym?`<span style="color:var(--teal)">${p.gym}</span>`:`<span style="color:var(--text3)">—</span>`},
+];
+
+function buildCmpSelRow(){
+  const row=document.getElementById("cmpSelRow");
+  row.innerHTML=DB.map(p=>`<div class="cmp-chip ${cmpSelected.has(p.name)?"csel":""}" data-pname="${p.name}">
+    <span style="font-size:.59rem;color:var(--text2)">${p.type}</span> ${p.name}
+  </div>`).join('');
+  row.querySelectorAll('.cmp-chip').forEach(chip=>{
+    chip.addEventListener('click',function(){
+      const n=this.dataset.pname;
+      if(cmpSelected.has(n)){cmpSelected.delete(n);this.classList.remove('csel');}
+      else if(cmpSelected.size<5){cmpSelected.add(n);this.classList.add('csel');}
+      renderCmpTable();
+    });
+  });
+}
+function renderCmpTable(){
+  const tbl=document.getElementById("cmpTable");
+  if(cmpSelected.size<2){
+    tbl.innerHTML=`<tr><td style="padding:2rem;color:var(--text2);font-size:.8rem">Select 2–5 plans above to compare.</td></tr>`;
+    return;
+  }
+  const plans=DB.filter(p=>cmpSelected.has(p.name));
+  const hdr=`<thead><tr>
+    <th style="min-width:110px">Benefit</th>
+    ${plans.map(p=>`<th class="cmp-plan-col" style="text-align:center;min-width:160px">
+      <div style="font-weight:700;font-size:.72rem;color:var(--text);line-height:1.3">${p.name}</div>
+      <div style="font-size:.6rem;color:var(--text2);margin-top:.15rem">${p.provider}</div>
+      <div style="margin-top:.25rem">${typeBadge(p.type)}</div>
+    </th>`).join('')}
+  </tr></thead>`;
+  const body=`<tbody>${CMP_ROWS.map(row=>`
+    <tr>
+      <td>${row.label}</td>
+      ${plans.map(p=>`<td class="cmp-val">${row.key(p)}</td>`).join('')}
+    </tr>`).join('')}</tbody>`;
+  tbl.innerHTML=hdr+body;
+}
+
+// ── PANEL SWITCHING ──
+function switchPanel(target){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active-panel'));
+  document.getElementById(target+"Panel").classList.add('active-panel');
+  document.querySelectorAll('.nl').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('.nl').forEach(l=>{if(l.dataset.panel===target)l.classList.add('active');});
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(target==="compare"){buildCmpSelRow();renderCmpTable();}
+  if(target==="admin")loadAdminData();
+}
+
+// ── INIT ──
+(function init(){
+  renderHomeGiveback();renderHomeDsnp();renderNotes();renderFlashcards();
+  buildPlanPicker();
+
+  // Nav links
+  document.querySelectorAll('.nl').forEach(l=>l.addEventListener('click',()=>switchPanel(l.dataset.panel)));
+
+  // Mode cards on home
+  document.querySelectorAll('.mode-card').forEach(c=>c.addEventListener('click',()=>switchPanel(c.dataset.goto)));
+
+  // Quiz start button
+  document.getElementById("startNewQuiz")?.addEventListener("click",startQuiz);
+
+  // Notes filters
+  document.querySelectorAll('.nf').forEach(chip=>{
+    chip.addEventListener('click',function(){
+      document.querySelectorAll('.nf').forEach(c=>c.classList.remove('afa'));
+      this.classList.add('afa');
+      renderNotes(this.dataset.f,document.getElementById('notesSearch')?.value||'');
+    });
+  });
+  document.getElementById('notesSearch')?.addEventListener('input',e=>{
+    renderNotes(notesFilter,e.target.value);
+  });
+
+  // Flashcard filters
+  let ffActive="all";
+  document.querySelectorAll('.ff').forEach(chip=>{
+    chip.addEventListener('click',function(){
+      document.querySelectorAll('.ff').forEach(c=>c.classList.remove('afa'));
+      this.classList.add('afa');ffActive=this.dataset.f;
+      renderFlashcards(ffActive,document.getElementById('flashSearch')?.value||'');
+    });
+  });
+  document.getElementById('flashSearch')?.addEventListener('input',e=>renderFlashcards(ffActive,e.target.value));
+
+  // Drill buttons
+  ['Fill','Match','Speed'].forEach(m=>{
+    document.getElementById(`drill${m}Btn`)?.addEventListener('click',()=>{
+      drillMode=m.toLowerCase();
+      document.querySelectorAll('.dmbtn').forEach(b=>b.classList.remove('dma'));
+      document.getElementById(`drill${m}Btn`).classList.add('dma');
+      renderDrill();
+    });
+  });
+  document.getElementById('adminSearch')?.addEventListener('input',e=>{
+    const q=e.target.value.toLowerCase();
+    renderAdminTable(q?adminData.filter(r=>(r.Name||'').toLowerCase().includes(q)||(r.Email||'').toLowerCase().includes(q)):adminData);
+    renderAdminKpis(q?adminData.filter(r=>(r.Name||'').toLowerCase().includes(q)||(r.Email||'').toLowerCase().includes(q)):adminData);
+  });
+  document.getElementById('adminRefreshBtn')?.addEventListener('click',loadAdminData);
+})();
 </script>
 </body>
 </html>
